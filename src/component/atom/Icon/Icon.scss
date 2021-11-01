@@ -1,0 +1,29 @@
+.svg {
+    &.xs {
+        zoom: 0.8;
+    }
+
+    &.sm {
+        zoom: 1;
+    }
+
+    &.md {
+        zoom: 1.5;
+    }
+
+    &.lg {
+        zoom: 2;
+    }
+
+    &.xl {
+        zoom: 3;
+    }
+
+    &.xxl {
+        zoom: 5;
+    }
+}
+
+.clickable-icon {
+    cursor: pointer;
+}
