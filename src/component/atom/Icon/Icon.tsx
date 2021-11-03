@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Svg } from "../Svg/Svg";
 import { icons } from "../../../assets/icons";
-import "./Icon.less";
 import { classNames } from "@agustinmj/class-names";
 
 interface Props {

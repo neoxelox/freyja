@@ -1,0 +1,95 @@
+.avatar{
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display:inline;
+    margin-left: 10px;
+}
+
+.post-header{
+    text-align:left;
+}
+
+.username{
+    display: inline;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.post-text{
+    display: block;
+    margin-left: 70px;
+    margin-right: 20px;
+}
+
+.incident-badge-pending, .incident-badge-rejected, .incident-badge-approved, .incident-badge-progess, .incident-badge-solved {
+    margin-left: 70px;
+    margin-bottom: 20px;
+}
+
+.incident-badge-solved{
+    background-color: #22C55E !important;
+}
+.incident-badge-progess{
+    background-color: #EAB308 !important;
+}
+.incident-badge-approved{
+    background-color: #38BDF8 !important;
+}
+.incident-badge-rejected{
+    background-color: #EF4444 !important;
+}
+.incident-badge-pending{
+    background-color: #6B7280 !important;
+}
+
+
+.post{
+    width: 100%;
+}
+
+.flat-id{
+    display: inline-block;
+    margin-left: 10px;
+    color: #6B7280;
+    font-size: medium;
+}
+
+.post-footer{
+    margin-left: 70px;
+}
+
+.footer-text{
+    color: #6B7280;
+    font-size: medium;
+    display: inline-block;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+.anchor-text{
+    color: #6B7280;
+    font-size: medium;
+    display: inline-block;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+.footer-icon{
+    display: inline-block;
+}
+
+.anchor-icon {
+    color: #6B7280;
+    font-size: medium;
+    display: inline-block;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+.incident-icon{
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
