@@ -1,19 +1,23 @@
 {
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["react", "prettier"],
-    "extends": [
-      "prettier"
-    ],
-    "rules": {
-      "no-console": 1,
-      "prettier/prettier": 2
-    },
-    "settings": {
-      "react": {
-        "pragma": "React",
-        "version": "detect"
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "prettier"],
+  "extends": [
+    "prettier"
+  ],
+  "rules": {
+    "no-console": 1,
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
       }
+    ]
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
     }
   }
-  
+}
