@@ -1,0 +1,22 @@
+@import "../../../index.scss";
+
+.footer {
+    position: fixed;
+    bottom: 0;
+
+    width: 100vw;
+    flex-wrap: nowrap;
+    margin: 0;
+    min-height: 90px;
+    max-height: 90px;
+    overflow: hidden;
+    align-items: center;
+    background-color: white;
+    border-top: solid 2px $primary;
+
+    display: none !important;
+
+    @media (max-width: $break-mobile) {
+        display: flex !important;
+    }
+}

@@ -1,23 +1,25 @@
 import React, { Component } from "react";
 import { Badge, Card, Col, Row } from "react-bootstrap";
+import { getPostPreview } from "../../../utils/get-post-preview";
 import Icon from "../Icon/Icon";
 import "./Post.scss";
 
 interface Props {
-    image?: string;
-    likeCount?: number;
-    commentCount?: number;
-    dayCount?: number;
-    name?: string;
-    flatID?: string;
-    isIncident?: boolean;
-    isAnchored?: boolean;
+    text: string;
+    image: string;
+    likeCount: number;
+    commentCount: number;
+    dayCount: number;
+    name: string;
+    flatID: string;
+    isIncident: boolean;
+    isAnchored: boolean;
     incidentState?: "solved" | "pending" | "approved" | "rejected" | "progress";
 }
 
 export default class Post extends Component<Props> {
     render(): JSX.Element {
-        const { image, likeCount, commentCount, dayCount, name, flatID, isIncident, isAnchored, incidentState } = this.props;
+        const { image, likeCount, commentCount, dayCount, name, flatID, isIncident, isAnchored, incidentState, text } = this.props;
         return (
             <Card className="post">
                 {isAnchored && (
@@ -31,12 +33,7 @@ export default class Post extends Component<Props> {
                     <p className="username">{name}</p>
                     <p className="flat-id">{flatID}</p>
                     {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon"></Icon>}
-                    <p className="post-text">
-                        Duis velit do veniam laborum. Exercitation mollit eiusmod tempor duis eu ipsum sunt. Irure excepteur occaecat do
-                        reprehenderit laborum laboris sit quis nostrud occaecat. Duis occaecat exercitation ut cillum ex amet laborum
-                        eiusmod cillum et magna. Sunt est ut culpa voluptate fugiat exercitation. Laboris ipsum enim aliqua labore est
-                        officia nisi sunt laborum incididunt laboris et dolor.
-                    </p>
+                    <p className="post-text">{getPostPreview(text)}</p>
                     {isIncident && incidentState === "solved" && <Badge className="incident-badge-solved">RESUELTA</Badge>}
                     {isIncident && incidentState === "pending" && <Badge className="incident-badge-pending">PENDIENTE DE APROVACIÓN</Badge>}
                     {isIncident && incidentState === "approved" && <Badge className="incident-badge-approved">ACEPTADA</Badge>}
