@@ -27,11 +27,7 @@
     margin-right: 20px;
 }
 
-.incident-badge-pending,
-.incident-badge-rejected,
-.incident-badge-approved,
-.incident-badge-progess,
-.incident-badge-solved {
+.incident-badge{
     margin-left: 70px;
     margin-bottom: 20px;
 }
@@ -50,6 +46,10 @@
 }
 .incident-badge-pending {
     background-color: #6b7280 !important;
+}
+
+.bg-primary {
+    background-color: #22c55e;
 }
 
 .post {
