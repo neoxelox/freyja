@@ -22,11 +22,31 @@ export default class Post extends Component<PostDto> {
                     <p className="flat-id">{flatID}</p>
                     {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon"></Icon>}
                     <p className="post-text">{getPostPreview(text)}</p>
-                    {isIncident && incidentState === "solved" && <Badge className="incident-badge-solved">RESUELTA</Badge>}
-                    {isIncident && incidentState === "pending" && <Badge className="incident-badge-pending">PENDIENTE DE APROVACIÓN</Badge>}
-                    {isIncident && incidentState === "approved" && <Badge className="incident-badge-approved">ACEPTADA</Badge>}
-                    {isIncident && incidentState === "rejected" && <Badge className="incident-badge-rejected">RECHAZADA</Badge>}
-                    {isIncident && incidentState === "progress" && <Badge className="incident-badge-progess">EN PROGRESO</Badge>}
+                    {isIncident && incidentState === "solved" && (
+                        <Badge bg="success" className="incident-badge">
+                            RESUELTA
+                        </Badge>
+                    )}
+                    {isIncident && incidentState === "pending" && (
+                        <Badge bg="secondary" className="incident-badge">
+                            PENDIENTE DE APROVACIÓN
+                        </Badge>
+                    )}
+                    {isIncident && incidentState === "approved" && (
+                        <Badge bg="info" className="incident-badge">
+                            ACEPTADA
+                        </Badge>
+                    )}
+                    {isIncident && incidentState === "rejected" && (
+                        <Badge bg="danger" className="incident-badge">
+                            RECHAZADA
+                        </Badge>
+                    )}
+                    {isIncident && incidentState === "progress" && (
+                        <Badge bg="warning" className="incident-badge">
+                            EN PROGRESO
+                        </Badge>
+                    )}
                 </div>
                 <div className="post-footer">
                     <Row className="align-content-center">
