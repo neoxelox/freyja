@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Svg } from "../Svg/Svg";
 import { icons } from "../../../assets/icons";
 import { classNames } from "@agustinmj/class-names";
+import "./Icon.scss";
 
 interface Props {
     icon: keyof typeof icons;
