@@ -1,0 +1,16 @@
+@import "../../../index.scss";
+
+.left-menu {
+    align-items: flex-end !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+    > * {
+        margin-top: 20px !important;
+        padding-left: 20px;
+    }
+
+    @media (max-width: $break-mobile) {
+        display: none;
+    }
+}

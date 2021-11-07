@@ -1,93 +1,101 @@
-.avatar{
+.post {
+    padding: 10px;
+    border-radius: 0 !important;
+}
+
+.avatar {
     border-radius: 50%;
     width: 48px;
     height: 48px;
-    display:inline;
+    display: inline;
     margin-left: 10px;
 }
 
-.post-header{
-    text-align:left;
+.post-header {
+    text-align: left;
 }
 
-.username{
+.username {
     display: inline;
     margin-left: 10px;
     font-weight: bold;
 }
 
-.post-text{
+.post-text {
     display: block;
     margin-left: 70px;
     margin-right: 20px;
 }
 
-.incident-badge-pending, .incident-badge-rejected, .incident-badge-approved, .incident-badge-progess, .incident-badge-solved {
+.incident-badge-pending,
+.incident-badge-rejected,
+.incident-badge-approved,
+.incident-badge-progess,
+.incident-badge-solved {
     margin-left: 70px;
     margin-bottom: 20px;
 }
 
-.incident-badge-solved{
-    background-color: #22C55E !important;
+.incident-badge-solved {
+    background-color: #22c55e !important;
 }
-.incident-badge-progess{
-    background-color: #EAB308 !important;
+.incident-badge-progess {
+    background-color: #eab308 !important;
 }
-.incident-badge-approved{
-    background-color: #38BDF8 !important;
+.incident-badge-approved {
+    background-color: #38bdf8 !important;
 }
-.incident-badge-rejected{
-    background-color: #EF4444 !important;
+.incident-badge-rejected {
+    background-color: #ef4444 !important;
 }
-.incident-badge-pending{
-    background-color: #6B7280 !important;
+.incident-badge-pending {
+    background-color: #6b7280 !important;
 }
 
-
-.post{
+.post {
     width: 100%;
 }
 
-.flat-id{
+.flat-id {
     display: inline-block;
     margin-left: 10px;
-    color: #6B7280;
+    color: #6b7280;
     font-size: medium;
 }
 
-.post-footer{
+.post-footer {
     margin-left: 70px;
 }
 
-.footer-text{
-    color: #6B7280;
+.footer-text {
+    color: #6b7280;
     font-size: medium;
     display: inline-block;
     margin-left: 5px;
     margin-bottom: 10px;
 }
 
-.anchor-text{
-    color: #6B7280;
+.anchor-text {
+    color: #6b7280;
     font-size: medium;
     display: inline-block;
     margin-left: 15px;
     margin-bottom: 10px;
 }
 
-.footer-icon{
+.footer-icon {
     display: inline-block;
 }
 
 .anchor-icon {
-    color: #6B7280;
+    color: #6b7280;
     font-size: medium;
     display: inline-block;
     margin-left: 5px;
     margin-bottom: 10px;
 }
 
-.incident-icon{
+.incident-icon {
     display: inline-block;
     position: absolute;
     right: 20px;

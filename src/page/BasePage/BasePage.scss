@@ -1,0 +1,17 @@
+@import "../../index.scss";
+
+.base-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+
+    .page-content {
+        max-width: 600px;
+        min-width: 600px;
+        margin: 0 auto 90px;
+
+        @media (max-width: $break-mobile) {
+            min-width: unset;
+        }
+    }
+}
