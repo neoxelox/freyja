@@ -1,29 +1,17 @@
 import React, { Component } from "react";
 import { Badge, Card, Col, Row } from "react-bootstrap";
+import { PostDto } from "../../../services/model/post.dto";
 import { getPostPreview } from "../../../utils/get-post-preview";
 import Icon from "../Icon/Icon";
 import "./Post.scss";
 
-interface Props {
-    text: string;
-    image: string;
-    likeCount: number;
-    commentCount: number;
-    dayCount: number;
-    name: string;
-    flatID: string;
-    isIncident: boolean;
-    isAnchored: boolean;
-    incidentState?: "solved" | "pending" | "approved" | "rejected" | "progress";
-}
-
-export default class Post extends Component<Props> {
+export default class Post extends Component<PostDto> {
     render(): JSX.Element {
         const { image, likeCount, commentCount, dayCount, name, flatID, isIncident, isAnchored, incidentState, text } = this.props;
         return (
             <Card className="post">
                 {isAnchored && (
-                    <div className="mt-1 ml-2 post-header">
+                    <div className="post-header">
                         <span className="anchor-text">Anclado</span>
                         <Icon icon="anchorIcon" size="xs" color="#6B7280" className="anchor-icon"></Icon>
                     </div>
@@ -41,12 +29,12 @@ export default class Post extends Component<Props> {
                     {isIncident && incidentState === "progress" && <Badge className="incident-badge-progess">EN PROGRESO</Badge>}
                 </div>
                 <div className="post-footer">
-                    <Row>
-                        <Col>
+                    <Row className="align-content-center">
+                        <Col className="justify-content-center">
                             <Icon icon="commentIcon" size="xs" color="#6B7280" className="footer-icon"></Icon>
                             <p className="footer-text">{commentCount}</p>
                         </Col>
-                        <Col>
+                        <Col className="justify-content-center">
                             {isIncident ? (
                                 <Icon icon="upvoteIcon" size="xs" color="#6B7280" className="footer-icon"></Icon>
                             ) : (
