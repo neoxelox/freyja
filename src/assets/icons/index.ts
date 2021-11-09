@@ -9,6 +9,7 @@ import home from "./home.svg";
 import homeOutlined from "./home-outlined.svg";
 import issue from "./issue.svg";
 import issueOutlined from "./issue-outlined.svg";
+import buttonIcon from "./button-icon.svg";
 
 export const icons = {
     commentIcon,
@@ -22,4 +23,5 @@ export const icons = {
     homeOutlined,
     issue,
     issueOutlined,
+    buttonIcon,
 };

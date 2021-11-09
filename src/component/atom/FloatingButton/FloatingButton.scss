@@ -1,0 +1,46 @@
+.floating-button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    color: white;
+    position: fixed; 
+    right: 40px;
+    bottom: 120px;
+    box-shadow: 3px 3px 5px grey;
+    background-color: #6366f1 !important;
+    
+}
+
+.floating-incidence, .floating-post {
+    color: white;
+    position: fixed; 
+    right: 40px;
+    bottom: 180px;
+    box-shadow: 3px 3px 5px grey;
+    background-color: #6366f1 !important;
+}
+
+.floating-incidence{
+    bottom: 230px;
+    text-align: center;
+}
+
+.btn-icon{
+    position: fixed; 
+    right: 51px;
+    bottom: 131px;
+    transition: transform 0.2s;
+}
+
+.btn-text{
+    display: inline;
+}
+
+.inline-incidence-icon{
+    display: inline;
+}
+
+.active{
+    transform: rotate(45deg);
+    transition: all 0.2s;
+}
