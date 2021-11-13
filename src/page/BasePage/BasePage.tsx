@@ -12,11 +12,8 @@ export default function BasePage(props: Props): JSX.Element {
     const { children } = props;
     return (
         <div className="base-page">
-            <Row>
-                <LeftMenu />
-                <Col className="page-content">{children}</Col>
-                <Col className="left-menu" />
-            </Row>
+            <LeftMenu />
+            <Col className="page-content">{children}</Col>
             <Footer />
         </div>
     );

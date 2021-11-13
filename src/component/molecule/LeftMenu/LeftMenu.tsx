@@ -7,20 +7,26 @@ export default class LeftMenu extends Component {
     render(): JSX.Element {
         return (
             <Col className="left-menu">
-                <Row className="align-items-center">
-                    <LocationLink to="/" icon="homeOutlined" selectedIcon="home" align="row">
-                        Comunidad
-                    </LocationLink>
-                </Row>
-                <Row className="align-items-center">
-                    <LocationLink to="/incidencias" icon="issueOutlined" selectedIcon="issue" align="row">
-                        Incidencias
-                    </LocationLink>
-                </Row>
-                <Row className="align-items-center">
-                    <LocationLink to="/calendario" icon="calendarOutline" selectedIcon="calendar" align="row">
-                        Calendario
-                    </LocationLink>
+                <Row>
+                    <Col className="left-menu-container align-items-center">
+                        <Row className="align-items-center">
+                            <LocationLink to="/" icon="homeOutlined" selectedIcon="home" align="row">
+                                Comunidad
+                            </LocationLink>
+                        </Row>
+                        <Row className="align-items-center">
+                            <LocationLink to="/incidencias" icon="issueOutlined" selectedIcon="issue" align="row">
+                                Incidencias
+                            </LocationLink>
+                        </Row>
+                        <Row className="align-items-center">
+                            <LocationLink to="/calendario" icon="calendarOutline" selectedIcon="calendar" align="row">
+                                Calendario
+                            </LocationLink>
+                        </Row>
+                    </Col>
+                    <Col style={{ minWidth: "600px" }} />
+                    <Col />
                 </Row>
             </Col>
         );
