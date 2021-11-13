@@ -10,6 +10,8 @@ import homeOutlined from "./home-outlined.svg";
 import issue from "./issue.svg";
 import issueOutlined from "./issue-outlined.svg";
 import buttonIcon from "./button-icon.svg";
+import whiteIncidentIcon from "./white-incident-icon.svg";
+import whitePostIcon from "./white-post-icon.svg";
 
 export const icons = {
     commentIcon,
@@ -24,4 +26,6 @@ export const icons = {
     issue,
     issueOutlined,
     buttonIcon,
+    whiteIncidentIcon,
+    whitePostIcon,
 };

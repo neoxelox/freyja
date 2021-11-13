@@ -33,11 +33,14 @@
 }
 
 .btn-text{
-    display: inline;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .inline-incidence-icon{
-    display: inline;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
 }
 
 .active{
