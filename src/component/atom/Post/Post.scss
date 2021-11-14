@@ -7,8 +7,8 @@
     cursor: pointer;
     color: $dark;
 
-    border: none;
-    border-bottom: solid 1px $light;
+    border: none !important;
+    border-bottom: solid 1px $light !important;
 
     .post-text {
         display: block;

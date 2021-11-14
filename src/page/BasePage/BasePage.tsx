@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Col, Row } from "react-bootstrap";
 import Footer from "../../component/molecule/Footer/Footer";
+import Header from "../../component/molecule/Header/Header";
 import LeftMenu from "../../component/molecule/LeftMenu/LeftMenu";
 import "./BasePage.scss";
 
@@ -13,7 +14,10 @@ export default function BasePage(props: Props): JSX.Element {
     return (
         <div className="base-page">
             <LeftMenu />
-            <Col className="page-content">{children}</Col>
+            <Col className="page-content">
+                <Header />
+                {children}
+            </Col>
             <Footer />
         </div>
     );

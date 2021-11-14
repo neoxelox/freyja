@@ -1,0 +1,9 @@
+@import "../../../assets/style/colors.scss";
+
+.header {
+    height: 84px;
+    border-bottom: solid 2px $primary;
+    padding: 0 20px;
+
+    font-weight: bold;
+}
