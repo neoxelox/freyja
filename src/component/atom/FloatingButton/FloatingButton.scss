@@ -1,0 +1,85 @@
+.floating-button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    color: white;
+    position: fixed; 
+    right: 40px;
+    bottom: 120px;
+    box-shadow: 3px 3px 5px grey;
+    background-color: #6366f1 !important;
+    
+}
+
+.floating-incidence, .floating-post {
+    color: white;
+    position: fixed; 
+    right: 40px;
+    bottom: 180px;
+    box-shadow: 3px 3px 5px grey;
+    background-color: #6366f1 !important;
+    display: none;
+    transition: all 1s;
+
+}
+
+.floating-incidence{
+    bottom: 230px;
+    text-align: center;
+    display: none;
+}
+
+.btn-icon{
+    position: fixed; 
+    right: 51px;
+    bottom: 131px;
+    transition: transform 0.2s;
+}
+
+.btn-text{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.inline-incidence-icon{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.active{
+    transform: rotate(45deg);
+    transition: all 0.2s;
+}
+
+@keyframes incidence-animation {
+    0% {
+      opacity: 0;
+      bottom: 50px;
+    }
+    100% {
+      opacity: 1;
+      bottom: 230px;
+    }
+}
+@keyframes post-animation {
+    0% {
+      opacity: 0;
+      bottom: 50px;
+    }
+    100% {
+      opacity: 1;
+      bottom: 180px;
+    }
+}
+
+.incidence-animation  {
+display: block;
+-webkit-animation: incidence-animation  0.2s both;
+animation: incidence-animation  0.2s both;
+}
+.post-animation {
+display: block;
+-webkit-animation: post-animation 0.2s both;
+animation: post-animation 0.2s both;
+}
