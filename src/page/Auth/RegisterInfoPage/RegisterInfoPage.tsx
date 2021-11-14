@@ -28,6 +28,9 @@ export default class RegisterInfoPage extends Component {
                             SIGUIENTE
                         </button>
                     </div>
+                    <a className="OptionButton" href="">
+                        Omitir
+                    </a>
                 </header>
             </div>
         );
