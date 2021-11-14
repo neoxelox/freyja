@@ -1,6 +1,8 @@
+import Button from "@restart/ui/esm/Button";
 import React, { Component } from "react";
 import Post from "../../component/atom/Post/Post";
 import BasePage from "../BasePage/BasePage";
+import FloatingButton from "../../component/atom/FloatingButton/FloatingButton";
 
 const mockPostText =
     "Duis velit do veniam laborum. Exercitation mollit eiusmod tempor duis eu ipsum sunt. Irure excepteur occaecat do reprehenderit laborum laboris sit quis nostrud occaecat. Duis occaecat exercitation ut cillum ex amet laborum eiusmod cillum et magna. Sunt est ut culpa voluptate fugiat exercitation. Laboris ipsum enim aliqua labore est officia nisi sunt laborum incididunt laboris et dolor.";
@@ -105,6 +107,7 @@ export default class DashboardPage extends Component {
                     isAnchored={false}
                     text={mockPostText}
                 ></Post>
+                <FloatingButton />
             </BasePage>
         );
     }

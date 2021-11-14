@@ -23,11 +23,11 @@ export default class Post extends Component<PostDto> {
                             <Icon icon="anchorIcon" size="xs" color="#6B7280" className="anchor-icon"></Icon>
                         </div>
                     )}
-                    <div className="post-header mt-1">
+                    <div className="mt-1">
                         <Row gap={10} alignItems="flex-start" justifyContent="flex-start" className="mb-2">
                             <ProfileImage image={image} role="SECRETARY" />
 
-                            <Col>
+                            <Col gap={2}>
                                 <Row gap={5}>
                                     <p style={{ marginBottom: 0 }} className="username">
                                         {name}
@@ -36,14 +36,19 @@ export default class Post extends Component<PostDto> {
                                         {"· " + flatID}
                                     </p>
                                 </Row>
+                                <div>
+                                    <p className="post-text">{getPostPreview(text)}</p>
+                                    {isIncident && <IncidentBadge state={incidentState} />}
+                                    <PostFooter
+                                        commentCount={commentCount}
+                                        likeCount={likeCount}
+                                        dayCount={dayCount}
+                                        isIncident={isIncident}
+                                    />
+                                </div>
                             </Col>
                         </Row>
                         {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon"></Icon>}
-                        <p className="post-text">{getPostPreview(text)}</p>
-                        {isIncident && <IncidentBadge state={incidentState} />}
-                    </div>
-                    <div className="post-footer-wrapper">
-                        <PostFooter commentCount={commentCount} likeCount={likeCount} dayCount={dayCount} isIncident={isIncident} />
                     </div>
                 </Card>
             </Link>
