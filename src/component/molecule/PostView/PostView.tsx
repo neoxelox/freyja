@@ -35,11 +35,14 @@ export default class PostView extends Component<Props> {
                             </p>
                         </Col>
                     </Row>
+
+                    <Col gap={10}>
+                        <div>{text}</div>
+                        <div className="post-date">13:31 PM · Oct 10, 2021 (HARDCODED)</div>
+                        {isIncident && <IncidentBadge state={incidentState} />}
+                        <PostFooter isIncident={isIncident} commentCount={commentCount} likeCount={likeCount} dayCount={dayCount} />
+                    </Col>
                     {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon"></Icon>}
-                    <p>{text}</p>
-                    <p className="post-date">13:31 PM · Oct 10, 2021 (HARDCODED)</p>
-                    {isIncident && <IncidentBadge state={incidentState} />}
-                    <PostFooter isIncident={isIncident} commentCount={commentCount} likeCount={likeCount} dayCount={dayCount} />
                 </div>
             </Card>
         );
