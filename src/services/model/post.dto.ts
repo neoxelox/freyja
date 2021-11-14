@@ -9,6 +9,6 @@ export interface PostDto {
     flatID: string;
     isIncident?: boolean;
     type: "POST" | "ISSUE";
-    isAnchored: boolean;
+    isAnchored?: boolean;
     incidentState?: "solved" | "pending" | "approved" | "rejected" | "progress";
 }

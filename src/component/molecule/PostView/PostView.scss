@@ -1,0 +1,21 @@
+@import "../../../assets/style/colors.scss";
+
+.post-view {
+    padding: 20px 40px;
+    border-radius: 0 !important;
+
+    color: $dark;
+
+    border: none;
+    border-bottom: solid 1px $light;
+
+    .username {
+        font-weight: bold;
+    }
+
+    .flat-id,
+    .role,
+    .post-date {
+        color: $secondary;
+    }
+}

@@ -1,0 +1,22 @@
+@import "../../../assets/style/colors.scss";
+
+.incident-badge {
+    margin-left: 70px;
+    margin-bottom: 20px;
+}
+
+.incident-badge-solved {
+    background-color: $success !important;
+}
+.incident-badge-progess {
+    background-color: $warning !important;
+}
+.incident-badge-approved {
+    background-color: #38bdf8 !important;
+}
+.incident-badge-rejected {
+    background-color: $danger !important;
+}
+.incident-badge-pending {
+    background-color: $secondary !important;
+}

@@ -1,4 +1,12 @@
 .svg {
+    &.mini {
+        zoom: 0.26;
+    }
+
+    &.xxs {
+        zoom: 0.51;
+    }
+
     &.xs {
         zoom: 0.8;
     }

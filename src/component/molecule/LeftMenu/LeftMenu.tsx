@@ -25,7 +25,7 @@ export default class LeftMenu extends Component {
                             </LocationLink>
                         </Row>
                     </Col>
-                    <Col style={{ minWidth: "600px" }} />
+                    <Col style={{ minWidth: "598px", maxWidth: "598px" }} />
                     <Col />
                 </Row>
             </Col>

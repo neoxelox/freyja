@@ -1,73 +1,52 @@
 import React, { Component } from "react";
-import { Badge, Card, Col, Row } from "react-bootstrap";
+import { Badge, Card } from "react-bootstrap";
 import { PostDto } from "../../../services/model/post.dto";
 import { getPostPreview } from "../../../utils/get-post-preview";
 import Icon from "../Icon/Icon";
 import "./Post.scss";
+import { Link } from "react-router-dom";
+import ProfileImage from "../ProfileImage/ProfileImage";
+import IncidentBadge from "../IncidentBadge/IncidentBadge";
+import PostFooter from "./PostFooter/PostFooter";
+import { Row } from "../Row/Row";
+import { Col } from "../Col/Col";
 
 export default class Post extends Component<PostDto> {
     render(): JSX.Element {
-        const { image, likeCount, commentCount, dayCount, name, flatID, isIncident, isAnchored, incidentState, text } = this.props;
+        const { id, image, likeCount, commentCount, dayCount, name, flatID, isIncident, isAnchored, incidentState, text } = this.props;
         return (
-            <Card className="post">
-                {isAnchored && (
-                    <div className="post-header">
-                        <span className="anchor-text">Anclado</span>
-                        <Icon icon="anchorIcon" size="xs" color="#6B7280" className="anchor-icon"></Icon>
+            <Link to={"/post/" + id}>
+                <Card className="post">
+                    {isAnchored && (
+                        <div className="post-header">
+                            <span className="anchor-text">Anclado</span>
+                            <Icon icon="anchorIcon" size="xs" color="#6B7280" className="anchor-icon"></Icon>
+                        </div>
+                    )}
+                    <div className="post-header mt-1">
+                        <Row gap={10} alignItems="flex-start" justifyContent="flex-start" className="mb-2">
+                            <ProfileImage image={image} role="SECRETARY" />
+
+                            <Col>
+                                <Row gap={5}>
+                                    <p style={{ marginBottom: 0 }} className="username">
+                                        {name}
+                                    </p>
+                                    <p style={{ marginBottom: 0 }} className="flat-id">
+                                        {"· " + flatID}
+                                    </p>
+                                </Row>
+                            </Col>
+                        </Row>
+                        {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon"></Icon>}
+                        <p className="post-text">{getPostPreview(text)}</p>
+                        {isIncident && <IncidentBadge state={incidentState} />}
                     </div>
-                )}
-                <div className="post-header mt-1">
-                    <img src={image} className="avatar"></img>
-                    <p className="username">{name}</p>
-                    <p className="flat-id">{flatID}</p>
-                    {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon"></Icon>}
-                    <p className="post-text">{getPostPreview(text)}</p>
-                    {isIncident && incidentState === "solved" && (
-                        <Badge bg="success" className="incident-badge">
-                            RESUELTA
-                        </Badge>
-                    )}
-                    {isIncident && incidentState === "pending" && (
-                        <Badge bg="secondary" className="incident-badge">
-                            PENDIENTE DE APROVACIÓN
-                        </Badge>
-                    )}
-                    {isIncident && incidentState === "approved" && (
-                        <Badge bg="info" className="incident-badge">
-                            ACEPTADA
-                        </Badge>
-                    )}
-                    {isIncident && incidentState === "rejected" && (
-                        <Badge bg="danger" className="incident-badge">
-                            RECHAZADA
-                        </Badge>
-                    )}
-                    {isIncident && incidentState === "progress" && (
-                        <Badge bg="warning" className="incident-badge">
-                            EN PROGRESO
-                        </Badge>
-                    )}
-                </div>
-                <div className="post-footer">
-                    <Row className="align-content-center">
-                        <Col className="justify-content-center">
-                            <Icon icon="commentIcon" size="xs" color="#6B7280" className="footer-icon"></Icon>
-                            <p className="footer-text">{commentCount}</p>
-                        </Col>
-                        <Col className="justify-content-center">
-                            {isIncident ? (
-                                <Icon icon="upvoteIcon" size="xs" color="#6B7280" className="footer-icon"></Icon>
-                            ) : (
-                                <Icon icon="likeIcon" size="xs" color="#6B7280" className="footer-icon"></Icon>
-                            )}
-                            <p className="footer-text">{likeCount}</p>
-                        </Col>
-                        <Col>
-                            <span className="footer-text">{dayCount} días</span>
-                        </Col>
-                    </Row>
-                </div>
-            </Card>
+                    <div className="post-footer-wrapper">
+                        <PostFooter commentCount={commentCount} likeCount={likeCount} dayCount={dayCount} isIncident={isIncident} />
+                    </div>
+                </Card>
+            </Link>
         );
     }
 }
