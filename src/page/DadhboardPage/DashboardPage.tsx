@@ -2,7 +2,6 @@ import Button from "@restart/ui/esm/Button";
 import React, { Component } from "react";
 import Post from "../../component/atom/Post/Post";
 import BasePage from "../BasePage/BasePage";
-import "./DashboardPage.scss";
 import FloatingButton from "../../component/atom/FloatingButton/FloatingButton";
 
 const mockPostText =
@@ -108,7 +107,7 @@ export default class DashboardPage extends Component {
                     isAnchored={false}
                     text={mockPostText}
                 ></Post>
-                <FloatingButton></FloatingButton>
+                <FloatingButton />
             </BasePage>
         );
     }

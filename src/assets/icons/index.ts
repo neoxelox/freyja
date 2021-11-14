@@ -9,6 +9,10 @@ import home from "./home.svg";
 import homeOutlined from "./home-outlined.svg";
 import issue from "./issue.svg";
 import issueOutlined from "./issue-outlined.svg";
+import roleBadge from "./role-badge.svg";
+import administrator from "./administrator.svg";
+import president from "./president.svg";
+import secretary from "./secretary.svg";
 import buttonIcon from "./button-icon.svg";
 import whiteIncidentIcon from "./white-incident-icon.svg";
 import whitePostIcon from "./white-post-icon.svg";
@@ -25,6 +29,10 @@ export const icons = {
     homeOutlined,
     issue,
     issueOutlined,
+    roleBadge,
+    administrator,
+    president,
+    secretary,
     buttonIcon,
     whiteIncidentIcon,
     whitePostIcon,

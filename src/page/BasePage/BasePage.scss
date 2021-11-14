@@ -6,12 +6,21 @@
     position: relative;
 
     .page-content {
+        position: relative;
+
         max-width: 600px;
         min-width: 600px;
-        margin: 0 auto 90px;
+        margin: 0 auto;
+
+        border-left: solid 1px $light;
+        border-right: solid 1px $light;
 
         @media (max-width: $break-mobile) {
+            margin: 0 auto 90px;
             min-width: unset;
+
+            border-left: none;
+            border-right: none;
         }
     }
 }

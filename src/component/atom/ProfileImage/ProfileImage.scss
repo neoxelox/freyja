@@ -1,0 +1,16 @@
+.profile-image-container {
+    position: relative;
+
+    .profile-image {
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: inline;
+    }
+
+    .role-badge {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}

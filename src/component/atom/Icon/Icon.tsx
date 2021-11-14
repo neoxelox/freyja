@@ -6,7 +6,7 @@ import "./Icon.scss";
 
 interface Props {
     icon: keyof typeof icons;
-    size?: "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+    size?: "mini" | "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
     color?: string;
     className?: string;
     style?: any;
