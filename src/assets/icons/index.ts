@@ -13,6 +13,7 @@ import roleBadge from "./role-badge.svg";
 import administrator from "./administrator.svg";
 import president from "./president.svg";
 import secretary from "./secretary.svg";
+import back from "./back.svg";
 import buttonIcon from "./button-icon.svg";
 import whiteIncidentIcon from "./white-incident-icon.svg";
 import whitePostIcon from "./white-post-icon.svg";
@@ -33,6 +34,7 @@ export const icons = {
     administrator,
     president,
     secretary,
+    back,
     buttonIcon,
     whiteIncidentIcon,
     whitePostIcon,

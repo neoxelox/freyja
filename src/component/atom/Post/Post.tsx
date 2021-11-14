@@ -15,7 +15,7 @@ export default class Post extends Component<PostDto> {
     render(): JSX.Element {
         const { id, image, likeCount, commentCount, dayCount, name, flatID, isIncident, isAnchored, incidentState, text } = this.props;
         return (
-            <Link to={"/post/" + id}>
+            <Link to={(isIncident ? "/issue/" : "/post/") + id}>
                 <Card className="post">
                     {isAnchored && (
                         <div className="post-header">
