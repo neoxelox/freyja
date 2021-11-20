@@ -4,6 +4,11 @@ import { StoreActionParam } from "./index";
 export type AuthStoreState = {
     isLoggedIn: boolean;
     token: string;
+    phone: string;
+    name: string;
+    surname: string;
+    email: string;
+    birthday: string;
 };
 
 export enum AuthActionType {
@@ -15,6 +20,11 @@ export default {
     state: {
         isLoggedIn: false,
         token: "",
+        phone: "",
+        name: "",
+        surname: "",
+        email: "",
+        birthday: "",
     },
     mutations: {
         setIsLoggedIn(state: RootStoreState, payload: boolean): RootStoreState {
@@ -23,6 +33,26 @@ export default {
         },
         setToken(state: RootStoreState, payload: string): RootStoreState {
             state.auth.token = payload;
+            return state;
+        },
+        setPhone(state: RootStoreState, payload: string): RootStoreState {
+            state.auth.phone = payload;
+            return state;
+        },
+        setName(state: RootStoreState, payload: string): RootStoreState {
+            state.auth.name = payload;
+            return state;
+        },
+        setSurname(state: RootStoreState, payload: string): RootStoreState {
+            state.auth.surname = payload;
+            return state;
+        },
+        setEmail(state: RootStoreState, payload: string): RootStoreState {
+            state.auth.email = payload;
+            return state;
+        },
+        setBirthday(state: RootStoreState, payload: string): RootStoreState {
+            state.auth.birthday = payload;
             return state;
         },
     },
