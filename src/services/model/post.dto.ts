@@ -1,14 +1,15 @@
 export interface PostDto {
     id: string;
-    text: string;
-    image: string;
-    likeCount: number;
-    commentCount: number;
-    dayCount: number;
-    name: string;
-    flatID: string;
-    isIncident?: boolean;
-    type: "POST" | "ISSUE";
-    isAnchored?: boolean;
-    incidentState?: "solved" | "pending" | "approved" | "rejected" | "progress";
+    thread: string;
+    creator: string;
+    type: "PUBLICATION" | "ISSUE" | "EVENT";
+    priority?: number;
+    recipients?: string[];
+    voters?: string[];
+    message: string;
+    categories?: string[];
+    state?: "PENDING" | "IN PROGRESS" | "REJECTED" | "ACCEOTED" | "RESOLVED";
+    widjets?: Object;
+    media?: Object;
+    created_at: string;
 }

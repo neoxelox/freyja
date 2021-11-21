@@ -1,7 +1,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import { TokenSecureStorage } from '../../storage/TokenSecureStorage';
 import type { ApiRequestOptions } from './ApiRequestOptions';
 
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
@@ -15,14 +14,16 @@ type Config = {
     USERNAME?: string | Resolver<string>;
     PASSWORD?: string | Resolver<string>;
     HEADERS?: Headers | Resolver<Headers>;
+    ENCODE_PATH?: (path: string) => string;
 }
 
-export const ApiOptions: Config = {
-    BASE: process.env.BACKEND_URL || "",
+export const OpenAPI: Config = {
+    BASE: '',
     VERSION: '0.0.0',
     WITH_CREDENTIALS: false,
-    TOKEN: async () => (await new TokenSecureStorage().getToken()) || "",
+    TOKEN: undefined,
     USERNAME: undefined,
     PASSWORD: undefined,
     HEADERS: undefined,
+    ENCODE_PATH: undefined,
 };

@@ -17,6 +17,7 @@ import back from "./back.svg";
 import buttonIcon from "./button-icon.svg";
 import whiteIncidentIcon from "./white-incident-icon.svg";
 import whitePostIcon from "./white-post-icon.svg";
+import trayArrowUp from "./tray-arrow-up.svg";
 
 export const icons = {
     commentIcon,
@@ -38,4 +39,5 @@ export const icons = {
     buttonIcon,
     whiteIncidentIcon,
     whitePostIcon,
+    trayArrowUp,
 };
