@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Icon from "../../../component/atom/Icon/Icon";
 import "../Auth.scss";
-import store from "../../../store";
 import { Redirect } from "react-router-dom";
+import { store } from "../../../store";
+import { authActions } from "../../../store/AuthStore";
 
 interface Props {}
 interface state {
@@ -28,8 +29,8 @@ export default class RegisterNamePage extends Component<Props, state> {
 
     submit() {
         if (this.state.name && this.state.surname) {
-            store.dispatch({ type: "auth/setName", payload: this.state.name });
-            store.dispatch({ type: "auth/setSurname", payload: this.state.surname });
+            store.dispatch(authActions.setName(this.state.name));
+            store.dispatch(authActions.setSurname(this.state.surname));
             this.setState({ redirect: "/register/info" });
         }
     }

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Icon from "../../../component/atom/Icon/Icon";
 import "../Auth.scss";
-import store from "../../../store";
 import { Redirect } from "react-router-dom";
+import { store } from "../../../store";
+import { authActions } from "../../../store/AuthStore";
 
 interface Props {}
 interface state {
@@ -26,7 +27,7 @@ export default class AuthPhonePage extends Component<Props, state> {
 
     submit() {
         if (this.state.phone) {
-            store.dispatch({ type: "auth/setPhone", payload: this.state.phone });
+            store.dispatch(authActions.setPhone(this.state.phone));
             this.setState({ redirect: "/auth/code" });
         }
     }

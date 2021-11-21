@@ -8,6 +8,7 @@ interface AuthState {
     surname: string;
     email: string;
     birthday: string;
+    code: string;
 }
 
 const initialState: AuthState = {
@@ -18,6 +19,7 @@ const initialState: AuthState = {
     surname: "",
     email: "",
     birthday: "",
+    code: "",
 };
 
 const AuthSlice = createSlice({
@@ -50,6 +52,10 @@ const AuthSlice = createSlice({
         },
         setBirthday: (state, { payload }: PayloadAction<string>) => {
             state.birthday = payload;
+            return state;
+        },
+        setCode: (state, { payload }: PayloadAction<string>) => {
+            state.code = payload;
             return state;
         },
     },

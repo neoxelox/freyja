@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Icon from "../../../component/atom/Icon/Icon";
 import "../Auth.scss";
-import store from "../../../store";
 import { Redirect } from "react-router-dom";
+import { store } from "../../../store";
+import { authActions } from "../../../store/AuthStore";
 
 interface Props {}
 interface state {
@@ -26,6 +27,7 @@ export default class AuthCodePage extends Component<Props, state> {
 
     submit() {
         if (this.state.code) {
+            store.dispatch(authActions.setCode(this.state.code));
             // Check if code is valid
             // ...
 

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Icon from "../../../component/atom/Icon/Icon";
 import "../Auth.scss";
-import store from "../../../store";
 import { Redirect } from "react-router-dom";
+import { store } from "../../../store";
+import { authActions } from "../../../store/AuthStore";
 
 interface Props {}
 interface state {
@@ -28,9 +29,9 @@ export default class RegisterInfoPage extends Component<Props, state> {
 
     submit() {
         if (this.state.email || this.state.birthday) {
-            if (this.state.birthday) store.dispatch({ type: "auth/setBirthday", payload: this.state.birthday });
+            if (this.state.birthday) store.dispatch(authActions.setBirthday(this.state.birthday));
             if (this.state.email) {
-                store.dispatch({ type: "auth/setEmail", payload: this.state.email });
+                store.dispatch(authActions.setEmail(this.state.email));
                 // Send code to email
                 // ...
 
