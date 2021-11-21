@@ -1,0 +1,12 @@
+.upload {
+    display: contents;
+    cursor: pointer;
+}
+
+.upload-readonly {
+    cursor: initial;
+}
+
+.upload input {
+    display: none;
+}

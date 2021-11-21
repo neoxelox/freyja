@@ -1,68 +1,57 @@
 import React, { Component } from "react";
-import { Badge, Card, Col, Row } from "react-bootstrap";
+import { Badge, Card } from "react-bootstrap";
+import { PostDto } from "../../../services/model/post.dto";
+import { getPostPreview } from "../../../utils/get-post-preview";
 import Icon from "../Icon/Icon";
 import "./Post.scss";
+import { Link } from "react-router-dom";
+import ProfileImage from "../ProfileImage/ProfileImage";
+import IncidentBadge from "../IncidentBadge/IncidentBadge";
+import PostFooter from "./PostFooter/PostFooter";
+import { Row } from "../Row/Row";
+import { Col } from "../Col/Col";
 
-interface Props {
-    image?: string;
-    likeCount?: number;
-    commentCount?: number;
-    dayCount?: number;
-    name?: string;
-    flatID?: string;
-    isIncident?: boolean;
-    isAnchored?: boolean;
-    incidentState?: "solved" | "pending" | "approved" | "rejected" | "progress";
-}
-
-export default class Post extends Component<Props> {
+export default class Post extends Component<PostDto> {
     render(): JSX.Element {
-        const { image, likeCount, commentCount, dayCount, name, flatID, isIncident, isAnchored, incidentState } = this.props;
+        const { id, image, likeCount, commentCount, dayCount, name, flatID, isIncident, isAnchored, incidentState, text } = this.props;
         return (
-            <Card className="post">
-                {isAnchored && (
-                    <div className="mt-1 ml-2 post-header">
-                        <span className="anchor-text">Anclado</span>
-                        <Icon icon="anchorIcon" size="xs" color="#6B7280" className="anchor-icon"></Icon>
+            <Link to={(isIncident ? "/issue/" : "/post/") + id}>
+                <Card className="post">
+                    {isAnchored && (
+                        <div className="post-header">
+                            <span className="anchor-text">Anclado</span>
+                            <Icon icon="anchorIcon" size="xs" color="#6B7280" className="anchor-icon"></Icon>
+                        </div>
+                    )}
+                    <div className="mt-1">
+                        <Row gap={10} alignItems="flex-start" justifyContent="flex-start" className="mb-2">
+                            <ProfileImage image={image} role="SECRETARY" />
+
+                            <Col gap={2}>
+                                <Row gap={5}>
+                                    <p style={{ marginBottom: 0 }} className="username">
+                                        {name}
+                                    </p>
+                                    <p style={{ marginBottom: 0 }} className="flat-id">
+                                        {"· " + flatID}
+                                    </p>
+                                </Row>
+                                <div>
+                                    <p className="post-text">{getPostPreview(text)}</p>
+                                    {isIncident && <IncidentBadge state={incidentState} />}
+                                    <PostFooter
+                                        commentCount={commentCount}
+                                        likeCount={likeCount}
+                                        dayCount={dayCount}
+                                        isIncident={isIncident}
+                                    />
+                                </div>
+                            </Col>
+                        </Row>
+                        {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon"></Icon>}
                     </div>
-                )}
-                <div className="post-header mt-1">
-                    <img src={image} className="avatar"></img>
-                    <p className="username">{name}</p>
-                    <p className="flat-id">{flatID}</p>
-                    {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon"></Icon>}
-                    <p className="post-text">
-                        Duis velit do veniam laborum. Exercitation mollit eiusmod tempor duis eu ipsum sunt. Irure excepteur occaecat do
-                        reprehenderit laborum laboris sit quis nostrud occaecat. Duis occaecat exercitation ut cillum ex amet laborum
-                        eiusmod cillum et magna. Sunt est ut culpa voluptate fugiat exercitation. Laboris ipsum enim aliqua labore est
-                        officia nisi sunt laborum incididunt laboris et dolor.
-                    </p>
-                    {isIncident && incidentState === "solved" && <Badge className="incident-badge-solved">RESUELTA</Badge>}
-                    {isIncident && incidentState === "pending" && <Badge className="incident-badge-pending">PENDIENTE DE APROVACIÓN</Badge>}
-                    {isIncident && incidentState === "approved" && <Badge className="incident-badge-approved">ACEPTADA</Badge>}
-                    {isIncident && incidentState === "rejected" && <Badge className="incident-badge-rejected">RECHAZADA</Badge>}
-                    {isIncident && incidentState === "progress" && <Badge className="incident-badge-progess">EN PROGRESO</Badge>}
-                </div>
-                <div className="post-footer">
-                    <Row>
-                        <Col>
-                            <Icon icon="commentIcon" size="xs" color="#6B7280" className="footer-icon"></Icon>
-                            <p className="footer-text">{commentCount}</p>
-                        </Col>
-                        <Col>
-                            {isIncident ? (
-                                <Icon icon="upvoteIcon" size="xs" color="#6B7280" className="footer-icon"></Icon>
-                            ) : (
-                                <Icon icon="likeIcon" size="xs" color="#6B7280" className="footer-icon"></Icon>
-                            )}
-                            <p className="footer-text">{likeCount}</p>
-                        </Col>
-                        <Col>
-                            <span className="footer-text">{dayCount} días</span>
-                        </Col>
-                    </Row>
-                </div>
-            </Card>
+                </Card>
+            </Link>
         );
     }
 }

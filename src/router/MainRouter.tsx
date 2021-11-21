@@ -7,6 +7,7 @@ import AuthCodePage from "../page/Auth/AuthCodePage/AuthCodePage";
 import RegisterNamePage from "../page/Auth/RegisterNamePage/RegisterNamePage";
 import RegisterInfoPage from "../page/Auth/RegisterInfoPage/RegisterInfoPage";
 import RegisterCodePage from "../page/Auth/RegisterCodePage/RegisterCodePage";
+import PostPage from "../page/PostPage/PostPage";
 
 export enum MainRouterPage {
     HOME = "/",
@@ -15,6 +16,7 @@ export enum MainRouterPage {
     REGISTER = "/register",
     REGISTERINFO = "/register/info",
     REGISTERCODE = "/register/code",
+    POST = "/post/:id",
 }
 
 export default function MainRouter(): JSX.Element {
@@ -27,6 +29,7 @@ export default function MainRouter(): JSX.Element {
             <Route path={MainRouterPage.REGISTER} component={RegisterNamePage} exact />
             <Route path={MainRouterPage.REGISTERINFO} component={RegisterInfoPage} exact />
             <Route path={MainRouterPage.REGISTERCODE} component={RegisterCodePage} exact />
+            <Route path={MainRouterPage.POST} component={PostPage} />
         </BrowserRouter>
     );
 }

@@ -1,69 +1,59 @@
-import { RootStoreState } from "./RootStore";
-import { StoreActionParam } from "./index";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type AuthStoreState = {
-    isLoggedIn: boolean;
-    token: string;
+interface AuthState {
+    loading: boolean;
+    loggedIn: boolean;
     phone: string;
     name: string;
     surname: string;
     email: string;
     birthday: string;
-};
-
-export enum AuthActionType {
-    LOG_IN = "auth/LOG_IN",
 }
 
-export default {
-    namespace: "auth",
-    state: {
-        isLoggedIn: false,
-        token: "",
-        phone: "",
-        name: "",
-        surname: "",
-        email: "",
-        birthday: "",
-    },
-    mutations: {
-        setIsLoggedIn(state: RootStoreState, payload: boolean): RootStoreState {
-            state.auth.isLoggedIn = payload;
-            return state;
-        },
-        setToken(state: RootStoreState, payload: string): RootStoreState {
-            state.auth.token = payload;
-            return state;
-        },
-        setPhone(state: RootStoreState, payload: string): RootStoreState {
-            state.auth.phone = payload;
-            return state;
-        },
-        setName(state: RootStoreState, payload: string): RootStoreState {
-            state.auth.name = payload;
-            return state;
-        },
-        setSurname(state: RootStoreState, payload: string): RootStoreState {
-            state.auth.surname = payload;
-            return state;
-        },
-        setEmail(state: RootStoreState, payload: string): RootStoreState {
-            state.auth.email = payload;
-            return state;
-        },
-        setBirthday(state: RootStoreState, payload: string): RootStoreState {
-            state.auth.birthday = payload;
-            return state;
-        },
-    },
-    actions: {
-        LOG_IN: async ({ commit, dispatchAction }: StoreActionParam, payload: any): Promise<void> => {
-            /* const value = (await AuthenticateService.authControllerLogin({
-                email: payload.email,
-                password: payload.password,
-            })) as AuthCredentialsDto;
-            commit({ type: "auth/setIsLoggedIn", payload: true });
-            commit({ type: "auth/setToken", payload: value.access_token }); */
-        },
-    },
+const initialState: AuthState = {
+    loading: false,
+    loggedIn: false,
+    phone: "",
+    name: "",
+    surname: "",
+    email: "",
+    birthday: "",
 };
+
+const AuthSlice = createSlice({
+    name: "auth",
+    initialState,
+    reducers: {
+        setLoggedIn: (state, { payload }: PayloadAction<boolean>) => {
+            state.loggedIn = payload;
+            return state;
+        },
+        setLoading: (state, { payload }: PayloadAction<boolean>) => {
+            state.loading = payload;
+            return state;
+        },
+        setPhone: (state, { payload }: PayloadAction<string>) => {
+            state.phone = payload;
+            return state;
+        },
+        setName: (state, { payload }: PayloadAction<string>) => {
+            state.name = payload;
+            return state;
+        },
+        setSurname: (state, { payload }: PayloadAction<string>) => {
+            state.surname = payload;
+            return state;
+        },
+        setEmail: (state, { payload }: PayloadAction<string>) => {
+            state.email = payload;
+            return state;
+        },
+        setBirthday: (state, { payload }: PayloadAction<string>) => {
+            state.birthday = payload;
+            return state;
+        },
+    },
+});
+
+export const authActions = AuthSlice.actions;
+export default AuthSlice.reducer;

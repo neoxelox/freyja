@@ -1,0 +1,27 @@
+.my-row {
+    display: flex;
+}
+
+@media (max-width: 650px) {
+    .my-row.my-row-mobile {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 767px) {
+    .my-row.my-row-mini {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1100px) {
+    .my-row.my-row-sm {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1350px) {
+    .my-row.my-row-md {
+        flex-direction: column;
+    }
+}

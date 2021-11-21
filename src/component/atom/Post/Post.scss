@@ -1,95 +1,55 @@
-.avatar{
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display:inline;
-    margin-left: 10px;
-}
+@import "../../../assets/style/colors.scss";
 
-.post-header{
-    text-align:left;
-}
+.post {
+    padding: 10px 20px;
+    border-radius: 0 !important;
 
-.username{
-    display: inline;
-    margin-left: 10px;
-    font-weight: bold;
-}
+    cursor: pointer;
+    color: $dark;
 
-.post-text{
-    display: block;
-    margin-left: 70px;
-    margin-right: 20px;
-}
+    border: none !important;
+    border-bottom: solid 1px $light !important;
 
-.incident-badge-pending, .incident-badge-rejected, .incident-badge-approved, .incident-badge-progess, .incident-badge-solved {
-    margin-left: 70px;
-    margin-bottom: 20px;
-}
+    .post-text {
+        display: block;
+        margin-bottom: 10px;
+    }
 
-.incident-badge-solved{
-    background-color: #22C55E !important;
-}
-.incident-badge-progess{
-    background-color: #EAB308 !important;
-}
-.incident-badge-approved{
-    background-color: #38BDF8 !important;
-}
-.incident-badge-rejected{
-    background-color: #EF4444 !important;
-}
-.incident-badge-pending{
-    background-color: #6B7280 !important;
-}
+    .bg-primary {
+        background-color: #22c55e;
+    }
 
+    .username {
+        font-weight: bold;
+    }
 
-.post{
-    width: 100%;
-}
+    .flat-id {
+        color: $secondary;
+    }
 
-.flat-id{
-    display: inline-block;
-    margin-left: 10px;
-    color: #6B7280;
-    font-size: medium;
-}
+    .anchor-text {
+        color: $secondary;
+        font-size: medium;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
 
-.post-footer{
-    margin-left: 70px;
-}
+    .anchor-icon {
+        color: $secondary;
+        font-size: medium;
+        display: inline-block;
+        margin-left: 5px;
+        margin-bottom: 10px;
+    }
 
-.footer-text{
-    color: #6B7280;
-    font-size: medium;
-    display: inline-block;
-    margin-left: 5px;
-    margin-bottom: 10px;
-}
+    .incident-icon {
+        display: inline-block;
+        position: absolute;
+        right: 20px;
+        top: 15px;
+    }
 
-.anchor-text{
-    color: #6B7280;
-    font-size: medium;
-    display: inline-block;
-    margin-left: 15px;
-    margin-bottom: 10px;
-}
-
-.footer-icon{
-    display: inline-block;
-}
-
-.anchor-icon {
-    color: #6B7280;
-    font-size: medium;
-    display: inline-block;
-    margin-left: 5px;
-    margin-bottom: 10px;
-}
-
-.incident-icon{
-    display: inline-block;
-    position: absolute;
-    right: 20px;
-    top: 15px;
+    .post-body {
+        margin-left: 60px;
+    }
 }

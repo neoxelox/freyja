@@ -1,0 +1,22 @@
+@import "../../../index.scss";
+
+.role-badge {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .role-badge-icon {
+        @include icon-color($primary);
+    }
+
+    .role-icon {
+        position: absolute;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+
+        @include icon-color($white);
+    }
+}
