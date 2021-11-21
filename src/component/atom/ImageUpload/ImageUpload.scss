@@ -1,0 +1,48 @@
+@import "../../../index.scss";
+
+.image-upload {
+    position: relative;
+    display: block;
+
+    .upload-icon {
+        position: absolute;
+        top: calc(50% - 10px);
+        left: calc(50% - 12px);
+
+        &.top-right {
+            top: 10px;
+            left: unset;
+            right: 10px;
+        }
+
+        @include icon-color($white);
+
+        &.dark {
+            @include icon-color($white);
+        }
+
+        display: none;
+    }
+
+    &:hover:not(.upload-readonly) {
+        > *:not(.upload-icon) {
+            filter: brightness(0.4);
+            transition: filter 0.2s;
+        }
+
+        .upload-icon {
+            display: block;
+
+            animation: appear-from-bottom 0.2s;
+        }
+    }
+}
+
+@keyframes appear-from-bottom {
+    from {
+        transform: translateY(5px);
+    }
+    to {
+        transform: translateY(0px);
+    }
+}
