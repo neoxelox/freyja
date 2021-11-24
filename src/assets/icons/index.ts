@@ -20,8 +20,12 @@ import buttonIcon from "./button-icon.svg";
 import whiteIncidentIcon from "./white-incident-icon.svg";
 import whitePostIcon from "./white-post-icon.svg";
 import trayArrowUp from "./tray-arrow-up.svg";
+import filterIcon from "./filter-icon.svg";
+import orderIcon from "./order-filter-icon.svg";
 
 export const icons = {
+    filterIcon,
+    orderIcon,
     commentIcon,
     likeIcon,
     incidentIcon,
