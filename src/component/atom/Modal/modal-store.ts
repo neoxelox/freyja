@@ -43,7 +43,7 @@ export const hideModal = (options?: { modalName?: string; callback?: () => void 
 };
 
 export const modalIsActive = (modalName: string): boolean => {
-    return modalState.some(m => m.name === modalName);
+    return modalState.some((m) => m.name === modalName);
 };
 
 export const reducer = (state: ModalState, action: Action): ModalState => {
@@ -55,7 +55,7 @@ export const reducer = (state: ModalState, action: Action): ModalState => {
         case ActionType.HIDE_MODAL:
             action.callback?.();
             return action.modalName && modalIsActive(action.modalName)
-                ? state.filter(m => m.name !== action.modalName)
+                ? state.filter((m) => m.name !== action.modalName)
                 : state.slice(0, state.length - 1);
     }
 };
