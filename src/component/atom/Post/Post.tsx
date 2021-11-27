@@ -11,7 +11,7 @@ import PostFooter from "./PostFooter/PostFooter";
 import { Row } from "../Row/Row";
 import { Col } from "../Col/Col";
 
-export default class Post extends Component<PostDto> {
+export default class Post extends Component<any> {
     render(): JSX.Element {
         const { id, image, likeCount, commentCount, dayCount, name, flatID, isIncident, isAnchored, incidentState, text } = this.props;
         return (

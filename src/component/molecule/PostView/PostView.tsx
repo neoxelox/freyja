@@ -11,7 +11,7 @@ import "./PostView.scss";
 
 type Props = Partial<PostDto>;
 
-export default class PostView extends Component<Props> {
+export default class PostView extends Component<any> {
     render(): JSX.Element {
         const { image, name, flatID, isIncident, text, incidentState, commentCount, likeCount, dayCount } = this.props;
 

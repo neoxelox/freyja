@@ -15,7 +15,7 @@ interface Comments {
 
 type State = Partial<PostDto> & Comments;
 
-export default class PostPage extends Component<RouteComponentProps<Params>, State> {
+export default class PostPage extends Component<any> {
     state: State = {
         comments: [],
     };
@@ -31,7 +31,7 @@ export default class PostPage extends Component<RouteComponentProps<Params>, Sta
             name: "Willy",
             flatID: "2-2",
             isIncident: false,
-            type: "POST",
+            type: "PUBLICATION",
             dayCount: 16,
             comments: [
                 {
@@ -43,7 +43,7 @@ export default class PostPage extends Component<RouteComponentProps<Params>, Sta
                     name: "Willy",
                     flatID: "2-2",
                     isIncident: false,
-                    type: "POST",
+                    type: "PUBLICATION",
                     dayCount: 16,
                 },
                 {
@@ -55,7 +55,7 @@ export default class PostPage extends Component<RouteComponentProps<Params>, Sta
                     name: "Willy",
                     flatID: "2-2",
                     isIncident: false,
-                    type: "POST",
+                    type: "PUBLICATION",
                     dayCount: 16,
                 },
                 {
@@ -67,7 +67,7 @@ export default class PostPage extends Component<RouteComponentProps<Params>, Sta
                     name: "Willy",
                     flatID: "2-2",
                     isIncident: false,
-                    type: "POST",
+                    type: "PUBLICATION",
                     dayCount: 16,
                 },
             ],
@@ -75,7 +75,7 @@ export default class PostPage extends Component<RouteComponentProps<Params>, Sta
     }
 
     render(): JSX.Element {
-        const { text, image, likeCount, commentCount, name, flatID, comments } = this.state;
+        const { comments } = this.state;
 
         return (
             <BasePage>
