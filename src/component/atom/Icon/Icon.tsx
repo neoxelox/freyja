@@ -5,7 +5,7 @@ import { classNames } from "@agustinmj/class-names";
 import "./Icon.scss";
 
 interface Props {
-    icon: keyof typeof icons;
+    icon: any;
     size?: "mini" | "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
     color?: string;
     className?: string;
