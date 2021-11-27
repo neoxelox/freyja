@@ -5,6 +5,10 @@ import PostView from "../../component/molecule/PostView/PostView";
 import { PostDto } from "../../services/model/post.dto";
 import BasePage from "../BasePage/BasePage";
 
+interface Params {
+    id: string;
+}
+
 interface Comments {
     comments: PostDto[];
 }
