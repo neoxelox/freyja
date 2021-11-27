@@ -1,15 +1,15 @@
 export interface PostDto {
-    id: any;
-    thread: any;
-    creator: any;
-    type: any;
-    priority?: any;
-    recipients?: any;
-    voters?: any;
-    message: any;
-    categories?: any;
-    state?: any;
-    widjets?: any;
-    media?: any;
-    created_at: any;
+    id: string;
+    thread: string;
+    creator: string;
+    type: "PUBLICATION" | "ISSUE" | "EVENT";
+    priority?: number;
+    recipients?: string[];
+    voters?: string[];
+    message: string;
+    categories?: string[];
+    state?: "PENDING" | "IN PROGRESS" | "REJECTED" | "ACCEOTED" | "RESOLVED";
+    widjets?: Object;
+    media?: Object;
+    created_at: string;
 }
