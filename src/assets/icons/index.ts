@@ -34,8 +34,16 @@ import progresoFilterIcon from "./progreso-filter-icon.svg";
 import rechazadaFilterIcon from "./rechazada-filter-icon.svg";
 import resueltoFilterIcon from "./resuelto-filter-icon.svg";
 import aceptadaFilterIcon from "./aceptada-filter-icon.svg";
+import lockIcon from "./lock-icon.svg";
+import cameraIcon from "./camera-icon.svg";
+import pollIcon from "./poll-icon.svg";
+import worldIcon from "./world-icon.svg";
 
 export const icons = {
+    lockIcon,
+    cameraIcon,
+    pollIcon,
+    worldIcon,
     aceptadaFilterIcon,
     highPriorityFilterIcon,
     mediumPriorityFilterIcon,

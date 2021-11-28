@@ -34,6 +34,10 @@ class Header extends Component<RouteComponentProps> {
                 return <TitleWithBack>Incidencia</TitleWithBack>;
             case "/ajustes":
                 return <TitleWithBack>Ajustes</TitleWithBack>;
+            case "/create-post":
+                return <TitleWithBack>Nueva publicación</TitleWithBack>;
+            case "/create-issue":
+                return <TitleWithBack>Nueva incidencia</TitleWithBack>;
         }
     }
 
