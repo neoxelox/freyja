@@ -38,8 +38,12 @@ import lockIcon from "./lock-icon.svg";
 import cameraIcon from "./camera-icon.svg";
 import pollIcon from "./poll-icon.svg";
 import worldIcon from "./world-icon.svg";
+import rightGreyArrow from "./right-grey-arrow.svg";
+import exitSession from "./exit-session.svg";
 
 export const icons = {
+    exitSession,
+    rightGreyArrow,
     lockIcon,
     cameraIcon,
     pollIcon,

@@ -11,6 +11,7 @@ import PostPage from "../page/PostPage/PostPage";
 import IssuePage from "../page/IssuePage/IssuePage";
 import CreatePostPage from "../page/CreatePostPage/CreatePostPage";
 import CreateIssuePage from "../page/CreateIssuePage/CreateIssuePage";
+import SettingsPage from "../page/SettingsPage/SettingsPage";
 
 export enum MainRouterPage {
     HOME = "/",
@@ -23,6 +24,7 @@ export enum MainRouterPage {
     ISSUES = "/issues",
     CREATEPOST = "/create-post",
     CREATEISSUE = "/create-issue",
+    SETTINGS = "/settings",
 }
 
 export default function MainRouter(): JSX.Element {
@@ -39,6 +41,7 @@ export default function MainRouter(): JSX.Element {
             <Route path={MainRouterPage.ISSUES} component={IssuePage} />
             <Route path={MainRouterPage.CREATEPOST} component={CreatePostPage} />
             <Route path={MainRouterPage.CREATEISSUE} component={CreateIssuePage} />
+            <Route path={MainRouterPage.SETTINGS} component={SettingsPage} />
         </BrowserRouter>
     );
 }

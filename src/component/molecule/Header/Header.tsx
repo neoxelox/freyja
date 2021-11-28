@@ -32,7 +32,7 @@ class Header extends Component<RouteComponentProps> {
 
             case "/incidencia/:id":
                 return <TitleWithBack>Incidencia</TitleWithBack>;
-            case "/ajustes":
+            case "/settings":
                 return <TitleWithBack>Ajustes</TitleWithBack>;
             case "/create-post":
                 return <TitleWithBack>Nueva publicación</TitleWithBack>;
