@@ -7,6 +7,7 @@ import Button from "../../../component/atom/Button/Button";
 import { connect } from "react-redux";
 import { UserService } from "../../../services/api/services/user.service";
 import { MainRouterPage } from "../../../router/MainRouter";
+import { Col } from "../../../component/atom/Col/Col";
 
 interface Props extends RouteComponentProps {
     loading: boolean;
@@ -49,10 +50,12 @@ class RegisterCodePage extends Component<Props, state> {
             <Auth>
                 <h4>Para acabar, introduce el código que hemos enviado a tu correo electrónico</h4>
                 <form id="registerCode" onSubmit={(e) => this.submit(e)}>
-                    <input type="number" name="registerCode" placeholder="XX XX XX" onChange={(evt) => this.updateCode(evt)} required />
-                    <Button type="submit" loading={loading}>
-                        SIGUIENTE
-                    </Button>
+                    <Col gap={20}>
+                        <input type="number" name="registerCode" placeholder="XX XX XX" onChange={(evt) => this.updateCode(evt)} required />
+                        <Button type="submit" loading={loading}>
+                            SIGUIENTE
+                        </Button>
+                    </Col>
                 </form>
             </Auth>
         );

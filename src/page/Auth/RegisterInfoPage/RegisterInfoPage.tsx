@@ -50,7 +50,7 @@ class RegisterInfoPage extends Component<Props, state> {
             if (!picture) return;
         }
         if (birthday || picture) {
-            const success = await UserService.update({ birthday, picture });
+            const success = await UserService.update({ birthday: birthday !== "" ? birthday : undefined, picture });
             if (!success) return;
         }
         if (!email) this.props.history.replace(MainRouterPage.HOME);

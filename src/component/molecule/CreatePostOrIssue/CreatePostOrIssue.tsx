@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import ProfileImage from "../../atom/ProfileImage/ProfileImage";
 import { Row } from "../../atom/Row/Row";
 import { Col } from "../../atom/Col/Col";
+import { classNames } from "@agustinmj/class-names";
 
 export default class CreatePostOrIssue extends Component<any, any> {
     constructor(props) {
@@ -25,6 +26,7 @@ export default class CreatePostOrIssue extends Component<any, any> {
 
     render(): JSX.Element {
         const { type } = this.props;
+        const { priority } = this.state;
         return (
             <div className="mt-3" style={{ marginLeft: "50px important" }}>
                 <Row gap={10} alignItems="flex-start" justifyContent="flex-start" className="mb-2 ml-50p">
@@ -69,23 +71,20 @@ export default class CreatePostOrIssue extends Component<any, any> {
                 ) : (
                     <div className="createPostFooter">
                         <div className="footer-option">
-                            <span style={{ marginLeft: "5px" }}> Prioridad: </span>
-                            {this.state.priority === "low" && <span style={{ color: "#38bdf8" }}>BAJA</span>}
-                            {this.state.priority === "medium" && <span style={{ color: "#eab308" }}>MEDIA</span>}
-                            {this.state.priority === "high" && <span style={{ color: "#ef4444" }}>ALTA</span>}
+                            <span style={{ marginLeft: "5px" }}> Prioridad </span>
                             <Icon
                                 icon="highPriorityFilterIcon"
-                                className="inline-incidence-icon-right"
+                                className={classNames("inline-incidence-icon-right", priority === "high" && "priority-selected")}
                                 onClick={() => this.setState({ priority: "high" })}
                             ></Icon>
                             <Icon
                                 icon="mediumPriorityFilterIcon"
-                                className="inline-incidence-icon-right"
+                                className={classNames("inline-incidence-icon-right", priority === "medium" && "priority-selected")}
                                 onClick={() => this.setState({ priority: "medium" })}
                             ></Icon>
                             <Icon
                                 icon="lowPriorityFilterIcon"
-                                className="inline-incidence-icon-right"
+                                className={classNames("inline-incidence-icon-right", priority === "low" && "priority-selected")}
                                 onClick={() => this.setState({ priority: "low" })}
                             ></Icon>
                         </div>

@@ -1,3 +1,5 @@
+@import "../../../index.scss";
+
 .username {
     font-weight: bold;
 }
@@ -53,4 +55,9 @@
     vertical-align: middle;
     margin-right: 15px;
     float: right;
+    @include icon-color($secondary)
+}
+
+.priority-selected {
+    @include icon-color($primary)
 }

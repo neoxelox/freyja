@@ -12,7 +12,7 @@ export default class DashboardPage extends Component {
     render(): JSX.Element {
         return (
             <BasePage>
-                <IssueFilter></IssueFilter>
+                <IssueFilter />
                 <Post
                     id={"1"}
                     type="POST"
