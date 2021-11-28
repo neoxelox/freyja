@@ -1,3 +1,3 @@
 export interface LoginStartResponse {
-    otp_id: string;
+    id: string;
 }

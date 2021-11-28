@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { RouteComponentProps } from "react-router-dom";
 import Post from "../../component/atom/Post/Post";
 import PostView from "../../component/molecule/PostView/PostView";
 import { PostDto } from "../../services/model/post.dto";
