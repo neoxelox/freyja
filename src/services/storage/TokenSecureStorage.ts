@@ -1,7 +1,7 @@
 import { BaseStorage } from "./BaseSecureStorage";
 
 export class TokenSecureStorage extends BaseStorage {
-    TOKEN_STORAGE_KEY = "auth_token";
+    TOKEN_STORAGE_KEY = "community_auth_token";
 
     async saveToken(token: string): Promise<string | null> {
         return this.saveAsync(this.TOKEN_STORAGE_KEY, token);

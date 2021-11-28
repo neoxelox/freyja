@@ -116,7 +116,7 @@ async function getHeaders(options: ApiRequestOptions, formData?: FormData): Prom
         );
 
     if (isStringWithValue(token)) {
-        headers["Authorization"] = `Bearer ${token}`;
+        headers["Authorization"] = `${token}`;
     }
 
     if (isStringWithValue(username) && isStringWithValue(password)) {

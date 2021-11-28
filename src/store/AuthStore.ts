@@ -3,22 +3,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface AuthState {
     loading: boolean;
     loggedIn: boolean;
-    phone: string;
-    name: string;
-    surname: string;
-    email: string;
-    birthday: string;
+    codeId: string | undefined;
     code: string;
 }
 
 const initialState: AuthState = {
     loading: false,
     loggedIn: false,
-    phone: "",
-    name: "",
-    surname: "",
-    email: "",
-    birthday: "",
+    codeId: undefined,
     code: "",
 };
 
@@ -34,24 +26,8 @@ const AuthSlice = createSlice({
             state.loading = payload;
             return state;
         },
-        setPhone: (state, { payload }: PayloadAction<string>) => {
-            state.phone = payload;
-            return state;
-        },
-        setName: (state, { payload }: PayloadAction<string>) => {
-            state.name = payload;
-            return state;
-        },
-        setSurname: (state, { payload }: PayloadAction<string>) => {
-            state.surname = payload;
-            return state;
-        },
-        setEmail: (state, { payload }: PayloadAction<string>) => {
-            state.email = payload;
-            return state;
-        },
-        setBirthday: (state, { payload }: PayloadAction<string>) => {
-            state.birthday = payload;
+        setCodeId: (state, { payload }: PayloadAction<string>) => {
+            state.codeId = payload;
             return state;
         },
         setCode: (state, { payload }: PayloadAction<string>) => {

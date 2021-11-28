@@ -2,7 +2,15 @@
 
 .image-upload {
     position: relative;
-    display: block;
+    display: flex;
+    background-color: $light;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    width: 135px;
+    height: 135px;
+    border-radius: 100%;
+    overflow: hidden;
 
     .upload-icon {
         position: absolute;
@@ -17,23 +25,21 @@
 
         @include icon-color($white);
 
-        &.dark {
-            @include icon-color($white);
-        }
-
         display: none;
     }
 
-    &:hover:not(.upload-readonly) {
-        > *:not(.upload-icon) {
-            filter: brightness(0.4);
-            transition: filter 0.2s;
-        }
+    @media (min-width: 650px) {
+        &:hover:not(.upload-readonly) {
+            > *:not(.upload-icon) {
+                filter: brightness(0.4);
+                transition: filter 0.2s;
+            }
 
-        .upload-icon {
-            display: block;
+            .upload-icon {
+                display: block;
 
-            animation: appear-from-bottom 0.2s;
+                animation: appear-from-bottom 0.2s;
+            }
         }
     }
 }

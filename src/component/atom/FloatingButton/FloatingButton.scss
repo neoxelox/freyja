@@ -14,7 +14,8 @@
 
 .floating-incidence,
 .floating-post {
-    color: white;
+    color: white !important;
+    font-weight: bold !important;
     position: fixed;
     right: 40px;
     bottom: 180px;
@@ -22,6 +23,7 @@
     background-color: #6366f1 !important;
     display: none;
     transition: all 1s;
+    max-width: 250px;
 }
 
 .floating-incidence {

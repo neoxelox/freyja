@@ -8,6 +8,7 @@ import RegisterNamePage from "../page/Auth/RegisterNamePage/RegisterNamePage";
 import RegisterInfoPage from "../page/Auth/RegisterInfoPage/RegisterInfoPage";
 import RegisterCodePage from "../page/Auth/RegisterCodePage/RegisterCodePage";
 import PostPage from "../page/PostPage/PostPage";
+import PrivateRoute from "./PrivateRoute";
 
 export enum MainRouterPage {
     HOME = "/",
@@ -25,11 +26,11 @@ export default function MainRouter(): JSX.Element {
             <ScrollToTop />
             <Route path={MainRouterPage.HOME} component={DashboardPage} exact />
             <Route path={MainRouterPage.AUTH} component={AuthPhonePage} exact />
-            <Route path={MainRouterPage.AUTHCODE} component={AuthCodePage} exact />
+            <Route path={MainRouterPage.AUTHCODE} component={AuthCodePage} />
             <Route path={MainRouterPage.REGISTER} component={RegisterNamePage} exact />
-            <Route path={MainRouterPage.REGISTERINFO} component={RegisterInfoPage} exact />
-            <Route path={MainRouterPage.REGISTERCODE} component={RegisterCodePage} exact />
-            <Route path={MainRouterPage.POST} component={PostPage} />
+            <Route path={MainRouterPage.REGISTERINFO} component={RegisterInfoPage} />
+            <Route path={MainRouterPage.REGISTERCODE} component={RegisterCodePage} />
+            <PrivateRoute path={MainRouterPage.POST} component={PostPage} />
         </BrowserRouter>
     );
 }

@@ -20,6 +20,7 @@ import buttonIcon from "./button-icon.svg";
 import whiteIncidentIcon from "./white-incident-icon.svg";
 import whitePostIcon from "./white-post-icon.svg";
 import trayArrowUp from "./tray-arrow-up.svg";
+import camera from "./camera.svg";
 
 export const icons = {
     commentIcon,
@@ -44,4 +45,5 @@ export const icons = {
     trayArrowUp,
     logo,
     title,
+    camera,
 };
