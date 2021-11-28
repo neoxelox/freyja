@@ -26,7 +26,6 @@ export default class Post extends Component<any> {
                     <div className="mt-1">
                         <Row gap={10} alignItems="flex-start" justifyContent="flex-start" className="mb-2">
                             <ProfileImage image={image} role="SECRETARY" />
-
                             <Col gap={2}>
                                 <Row gap={5}>
                                     <p style={{ marginBottom: 0 }} className="username">
