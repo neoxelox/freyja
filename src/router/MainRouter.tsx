@@ -8,6 +8,7 @@ import RegisterNamePage from "../page/Auth/RegisterNamePage/RegisterNamePage";
 import RegisterInfoPage from "../page/Auth/RegisterInfoPage/RegisterInfoPage";
 import RegisterCodePage from "../page/Auth/RegisterCodePage/RegisterCodePage";
 import PostPage from "../page/PostPage/PostPage";
+import PrivateRoute from "./PrivateRoute";
 import IssuePage from "../page/IssuePage/IssuePage";
 import CreatePostPage from "../page/CreatePostPage/CreatePostPage";
 import CreateIssuePage from "../page/CreateIssuePage/CreateIssuePage";
@@ -29,16 +30,17 @@ export default function MainRouter(): JSX.Element {
     return (
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <ScrollToTop />
-            <Route path={MainRouterPage.HOME} component={DashboardPage} exact />
+            <PrivateRoute path={MainRouterPage.HOME} component={DashboardPage} exact />
             <Route path={MainRouterPage.AUTH} component={AuthPhonePage} exact />
-            <Route path={MainRouterPage.AUTHCODE} component={AuthCodePage} exact />
+            <Route path={MainRouterPage.AUTHCODE} component={AuthCodePage} />
             <Route path={MainRouterPage.REGISTER} component={RegisterNamePage} exact />
-            <Route path={MainRouterPage.REGISTERINFO} component={RegisterInfoPage} exact />
-            <Route path={MainRouterPage.REGISTERCODE} component={RegisterCodePage} exact />
-            <Route path={MainRouterPage.POST} component={PostPage} />
-            <Route path={MainRouterPage.ISSUES} component={IssuePage} />
-            <Route path={MainRouterPage.CREATEPOST} component={CreatePostPage} />
-            <Route path={MainRouterPage.CREATEISSUE} component={CreateIssuePage} />
+            <Route path={MainRouterPage.REGISTERINFO} component={RegisterInfoPage} />
+            <Route path={MainRouterPage.REGISTERCODE} component={RegisterCodePage} />
+            <PrivateRoute path={MainRouterPage.POST} component={PostPage} />
+            <PrivateRoute path={MainRouterPage.POST} component={PostPage} />
+            <PrivateRoute path={MainRouterPage.ISSUES} component={IssuePage} />
+            <PrivateRoute path={MainRouterPage.CREATEPOST} component={CreatePostPage} />
+            <PrivateRoute path={MainRouterPage.CREATEISSUE} component={CreateIssuePage} />
         </BrowserRouter>
     );
 }

@@ -1,4 +1,4 @@
 export interface LoginEndRequest {
-    otp_id: string;
+    id: string;
     code: string;
 }

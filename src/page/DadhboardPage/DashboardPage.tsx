@@ -1,4 +1,3 @@
-import Button from "@restart/ui/esm/Button";
 import React, { Component } from "react";
 import Post from "../../component/atom/Post/Post";
 import BasePage from "../BasePage/BasePage";

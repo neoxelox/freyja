@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import Footer from "../../component/molecule/Footer/Footer";
 import Header from "../../component/molecule/Header/Header";
 import LeftMenu from "../../component/molecule/LeftMenu/LeftMenu";

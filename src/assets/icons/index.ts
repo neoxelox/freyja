@@ -20,6 +20,7 @@ import buttonIcon from "./button-icon.svg";
 import whiteIncidentIcon from "./white-incident-icon.svg";
 import whitePostIcon from "./white-post-icon.svg";
 import trayArrowUp from "./tray-arrow-up.svg";
+import camera from "./camera.svg";
 import filterIcon from "./filter-icon.svg";
 import orderIcon from "./order-filter-icon.svg";
 import dateSortIcon from "./date-sort-icon.svg";
@@ -80,4 +81,5 @@ export const icons = {
     trayArrowUp,
     logo,
     title,
+    camera,
 };

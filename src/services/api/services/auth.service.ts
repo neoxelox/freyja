@@ -3,13 +3,43 @@ import { LoginStartResponse } from "../responses/auth/login-start.response";
 import { request } from "../core/request";
 import { LoginEndRequest } from "../requests/auth/login-end.request";
 import { LoginEndResponse } from "../responses/auth/login-end.response";
+import { store } from "../../../store";
+import { authActions } from "../../../store/AuthStore";
+import { userActions } from "../../../store/UserStore";
+import { TokenSecureStorage } from "../../storage/TokenSecureStorage";
+import { apiErrorHandler } from "../../../utils/api-error-handler";
 
 export class AuthService {
-    static async loginStart(req: LoginStartRequest): Promise<LoginStartResponse> {
-        return request({ method: "POST", path: "/login/start", body: req });
+    static async loginStart(phone: string): Promise<boolean> {
+        const req: LoginStartRequest = { phone };
+        store.dispatch(authActions.setLoading(true));
+        const res = await request<LoginStartResponse>({ method: "POST", path: "/login/start", body: req }).catch((e) =>
+            apiErrorHandler(e, undefined, [{ code: "ERR_OTP_ALREADY_SEND" }]),
+        );
+        if (res) store.dispatch(authActions.setCodeId(res.id));
+        store.dispatch(authActions.setLoading(false));
+        return !!res;
     }
 
-    static async loginEnd(req: LoginEndRequest): Promise<LoginEndResponse> {
-        return request({ method: "POST", path: "/login/end", body: req });
+    static async loginEnd(code: string): Promise<boolean> {
+        const req: LoginEndRequest = { id: store.getState().auth.codeId, code };
+        store.dispatch(authActions.setLoading(true));
+        const res = await request<LoginEndResponse>({ method: "POST", path: "/login/end", body: req }).catch((e) => apiErrorHandler(e));
+        if (res) {
+            const { access_token, user } = res;
+            await new TokenSecureStorage().saveToken(access_token);
+
+            if (user) {
+                store.dispatch(authActions.setLoggedIn(true));
+                store.dispatch(userActions.setInfo(res.user));
+            }
+        }
+        store.dispatch(authActions.setLoading(false));
+        return !!res;
+    }
+
+    static async logout(): Promise<void> {
+        await new TokenSecureStorage().clear();
+        store.dispatch(authActions.setLoggedIn(false));
     }
 }

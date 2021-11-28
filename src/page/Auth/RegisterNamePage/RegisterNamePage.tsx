@@ -1,37 +1,37 @@
 import React, { Component } from "react";
-import Icon from "../../../component/atom/Icon/Icon";
 import "../Auth.scss";
-import { Redirect } from "react-router-dom";
-import { store } from "../../../store";
-import { authActions } from "../../../store/AuthStore";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import { RootState } from "../../../store";
+import { Col } from "../../../component/atom/Col/Col";
+import Auth from "../Auth";
+import Button from "../../../component/atom/Button/Button";
+import { connect } from "react-redux";
+import { UserService } from "../../../services/api/services/user.service";
+import { MainRouterPage } from "../../../router/MainRouter";
 
-interface Props {}
+interface Props extends RouteComponentProps {
+    loading: boolean;
+}
+
 interface state {
     name: string;
     surname: string;
-    redirect: string;
 }
-export default class RegisterNamePage extends Component<Props, state> {
+class RegisterNamePage extends Component<Props, state> {
     constructor(Props) {
         super(Props);
         this.state = {
             name: "",
             surname: "",
-            redirect: "",
         };
     }
 
-    getInitialState() {
-        return {
-            code: "",
-        };
-    }
-
-    submit() {
-        if (this.state.name && this.state.surname) {
-            store.dispatch(authActions.setName(this.state.name));
-            store.dispatch(authActions.setSurname(this.state.surname));
-            this.setState({ redirect: "/register/info" });
+    async submit(e) {
+        e.preventDefault();
+        const { name, surname } = this.state;
+        if (name && surname) {
+            const success = await UserService.update({ name, last_name: surname });
+            if (success) this.props.history.push(MainRouterPage.REGISTERINFO);
         }
     }
 
@@ -44,47 +44,37 @@ export default class RegisterNamePage extends Component<Props, state> {
     }
 
     render(): JSX.Element {
-        if (this.state.redirect) {
-            return <Redirect to={this.state.redirect} />;
-        }
+        const { loading } = this.props;
+
         return (
-            <div className="App">
-                <header className="App-header">
-                    <div className="title">
-                        <Icon icon="title" size="md" className="title-icon"></Icon>
-                    </div>
-                    <div>
-                        <h3>Ya casi hemos acabado, sólo nos alta un poco de información acerca de ti</h3>
-                    </div>
-                    <div className="content">
-                        <form id="name" onSubmit={() => this.submit()}>
-                            <label className="InputLabel">
-                                <b>Nombre</b>
-                                <input
-                                    className="TextInput"
-                                    type="text"
-                                    name="nombre"
-                                    placeholder="Tu nombre"
-                                    onChange={(evt) => this.updateName(evt)}
-                                    required
-                                />
-                            </label>
-                            <label className="InputLabel">
-                                <b>Apellidos</b>
-                                <input
-                                    className="TextInput"
-                                    type="text"
-                                    name="apellidos"
-                                    placeholder="Tus apellidos"
-                                    onChange={(evt) => this.updateSurname(evt)}
-                                    required
-                                />
-                                <input type="submit" className="NextButton" value="SIGUIENTE" />
-                            </label>
-                        </form>
-                    </div>
-                </header>
-            </div>
+            <Auth>
+                <h4>Ya casi hemos acabado, sólo nos alta un poco de información acerca de ti</h4>
+                <form id="name" onSubmit={(e) => this.submit(e)}>
+                    <Col gap={20}>
+                        <Col gap={5}>
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" placeholder="Tu nombre" onChange={(evt) => this.updateName(evt)} required />
+                        </Col>
+                        <Col gap={5}>
+                            <label>Apellidos</label>
+                            <input
+                                type="text"
+                                name="apellidos"
+                                placeholder="Tus apellidos"
+                                onChange={(evt) => this.updateSurname(evt)}
+                                required
+                            />
+                        </Col>
+                        <Button type="submit" loading={loading}>
+                            SIGUIENTE
+                        </Button>
+                    </Col>
+                </form>
+            </Auth>
         );
     }
 }
+
+export default connect((state: RootState) => ({
+    loading: state.user.loading,
+}))(withRouter(RegisterNamePage));
