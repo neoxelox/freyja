@@ -15,7 +15,7 @@ export default class LeftMenu extends Component {
                             </LocationLink>
                         </Row>
                         <Row className="align-items-center">
-                            <LocationLink to="/incidencias" icon="issueOutlined" selectedIcon="issue" align="row">
+                            <LocationLink to="/issues" icon="issueOutlined" selectedIcon="issue" align="row">
                                 Incidencias
                             </LocationLink>
                         </Row>

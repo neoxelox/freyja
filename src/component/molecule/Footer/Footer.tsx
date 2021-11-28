@@ -13,12 +13,12 @@ export default class Footer extends Component {
                     </LocationLink>
                 </Col>
                 <Col className="align-items-center">
-                    <LocationLink to="/incidencias" icon="issueOutlined" selectedIcon="issue">
+                    <LocationLink to="/issues" icon="issueOutlined" selectedIcon="issue">
                         Incidencias
                     </LocationLink>
                 </Col>
                 <Col className="align-items-center">
-                    <LocationLink to="/calendario" icon="calendarOutline" selectedIcon="calendar">
+                    <LocationLink to="/calendar" icon="calendarOutline" selectedIcon="calendar">
                         Calendario
                     </LocationLink>
                 </Col>

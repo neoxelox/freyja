@@ -31,15 +31,14 @@ export default class FloatingButton extends Component<Props, state> {
         const { clicked } = this.state;
         return (
             <>
-                <Button className="floating-incidence">
+                <Link to="/create-issue" className="floating-incidence">
                     <span className="btn-text">CREAR INCIDENCIA</span>
                     <Icon icon="whiteIncidentIcon" className="inline-incidence-icon"></Icon>
-                </Button>
-                <Button className="floating-post">
+                </Link>
+                <Link to="/create-post" className="floating-post">
                     <span className="btn-text">CREAR PUBLICACIÓN</span>
                     <Icon icon="whitePostIcon" className="inline-incidence-icon"></Icon>
-                </Button>
-
+                </Link>
                 <div className="floating-button" onClick={() => this.onButtonClick()}>
                     <Icon icon="buttonIcon" className="btn-icon"></Icon>
                 </div>
