@@ -13,6 +13,7 @@ import IssuePage from "../page/IssuePage/IssuePage";
 import CreatePostPage from "../page/CreatePostPage/CreatePostPage";
 import CreateIssuePage from "../page/CreateIssuePage/CreateIssuePage";
 import SettingsPage from "../page/SettingsPage/SettingsPage";
+import UserInfoPage from "../page/UserInfoPage/UserInfoPage";
 
 export enum MainRouterPage {
     HOME = "/",
@@ -26,6 +27,7 @@ export enum MainRouterPage {
     CREATEPOST = "/create-post",
     CREATEISSUE = "/create-issue",
     SETTINGS = "/settings",
+    USERINFO = "/user",
 }
 
 export default function MainRouter(): JSX.Element {
@@ -44,6 +46,7 @@ export default function MainRouter(): JSX.Element {
             <PrivateRoute path={MainRouterPage.CREATEPOST} component={CreatePostPage} />
             <PrivateRoute path={MainRouterPage.CREATEISSUE} component={CreateIssuePage} />
             <PrivateRoute path={MainRouterPage.SETTINGS} component={SettingsPage} />
+            <PrivateRoute path={MainRouterPage.USERINFO} component={UserInfoPage} />
         </BrowserRouter>
     );
 }
