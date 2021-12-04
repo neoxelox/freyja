@@ -117,6 +117,10 @@ h1 {
     font-size: clamp(52px, 5vw, 64px);
 }
 
+p, h6, h5, h4, h3, h2, h1 {
+    margin: 0;
+}
+
 .mobile-back-icon {
     display: none;
     margin-right: auto;

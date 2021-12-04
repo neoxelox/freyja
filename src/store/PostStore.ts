@@ -1,13 +1,13 @@
 import { PostDto } from "../services/model/post.dto";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type PostFilter = PostDto["state"] | PostDto["priority"] | undefined;
-type PostOrder = "date-asc" | "date-desc" | "priority-asc" | "priority-desc" | undefined;
+export type IssueFilter = PostDto["state"] | PostDto["priority"] | undefined;
+export type IssueOrder = "date-asc" | "date-desc" | "priority-asc" | "priority-desc" | undefined;
 
 interface PostState {
     posts: PostDto[];
-    filter: PostFilter;
-    order: PostOrder;
+    filter: IssueFilter;
+    order: IssueOrder;
     loading: boolean;
 }
 
@@ -26,11 +26,11 @@ const PostSlice = createSlice({
             state.posts = payload;
             return state;
         },
-        setFilter: (state, { payload }: PayloadAction<PostFilter>) => {
+        setFilter: (state, { payload }: PayloadAction<IssueFilter>) => {
             state.filter = payload;
             return state;
         },
-        setOrder: (state, { payload }: PayloadAction<PostOrder>) => {
+        setOrder: (state, { payload }: PayloadAction<IssueOrder>) => {
             state.order = payload;
             return state;
         },
@@ -41,7 +41,7 @@ const PostSlice = createSlice({
     },
 });
 
-function isStateFilter(filter: PostFilter): boolean {
+export function isStateFilter(filter: IssueFilter): boolean {
     switch (filter) {
         case "PENDING":
         case "IN PROGRESS":
@@ -54,7 +54,7 @@ function isStateFilter(filter: PostFilter): boolean {
     }
 }
 
-function isPriorityFilter(filter: PostFilter): boolean {
+export function isPriorityFilter(filter: IssueFilter): boolean {
     return typeof filter === "number";
 }
 
@@ -78,7 +78,7 @@ function comparePriorityDesc(a: PostDto, b: PostDto): number {
     return comparePriorityAsc(b, a);
 }
 
-function getCompareFunction(order: PostOrder): (a: PostDto, b: PostDto) => number | undefined {
+function getCompareFunction(order: IssueOrder): (a: PostDto, b: PostDto) => number | undefined {
     switch (order) {
         case "date-asc":
             return compareOrderAsc;
@@ -93,7 +93,7 @@ function getCompareFunction(order: PostOrder): (a: PostDto, b: PostDto) => numbe
     }
 }
 
-function orderIssues(issues: PostDto[], order: PostOrder): PostDto[] {
+function orderIssues(issues: PostDto[], order: IssueOrder): PostDto[] {
     const compareFunction = getCompareFunction(order);
     return compareFunction ? issues.sort((a, b) => compareFunction(a, b)) : issues;
 }

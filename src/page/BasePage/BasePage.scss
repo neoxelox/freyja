@@ -10,6 +10,8 @@
 
         max-width: 600px;
         min-width: 600px;
+        max-height: 100vh;
+        min-height: 100vh;
         margin: 0 auto;
 
         border-left: solid 1px $light;
@@ -18,6 +20,9 @@
         @media (max-width: $break-mobile) {
             margin: 0 auto 90px;
             min-width: unset;
+
+            max-height: calc(100vh - 90px);
+            min-height: calc(100vh - 90px);
 
             border-left: none;
             border-right: none;

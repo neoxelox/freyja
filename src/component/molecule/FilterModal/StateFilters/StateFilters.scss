@@ -1,0 +1,27 @@
+.state-bullet {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+
+  &.pending {
+    background-color: #6B7280;
+  }
+
+  &.rejected {
+    background-color: #EF4444;
+  }
+
+  &.accepted {
+    background-color: #38BDF8;
+  }
+
+  &.in-progress {
+    background-color: #EAB308;
+  }
+
+  &.resolved {
+    background-color: #22C55E;
+  }
+
+
+}

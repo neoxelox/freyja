@@ -41,6 +41,7 @@ import pollIcon from "./poll-icon.svg";
 import worldIcon from "./world-icon.svg";
 import rightGreyArrow from "./right-grey-arrow.svg";
 import exitSession from "./exit-session.svg";
+import close from "./close.svg";
 
 export const icons = {
     exitSession,
@@ -86,4 +87,5 @@ export const icons = {
     logo,
     title,
     camera,
+    close,
 };
