@@ -27,12 +27,20 @@ export default class OrderModal extends Component<unknown, State> {
         hideModal({ modalName: "order_modal" });
     }
 
+    getOrder(): string {
+        const { order } = this.state;
+
+        if (order === "date") return " fecha";
+        else if (order === "priority") return " prioridad";
+        else return "";
+    }
+
     render(): JSX.Element {
         const { order } = this.state;
 
         return (
             <Modal
-                title={"Ordenar por"}
+                title={"Ordenar por" + this.getOrder()}
                 name="order_modal"
                 footer={
                     <p
