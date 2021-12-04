@@ -1,0 +1,9 @@
+@import "../../../index";
+
+.order-asc-icon, .order-desc-icon {
+  @include icon-color($dark);
+}
+
+.order-desc-icon {
+  transform: rotate(180deg);
+}

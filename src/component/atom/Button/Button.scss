@@ -16,7 +16,6 @@ button {
   &.button-tertiary {
     background-color: $light;
     color: $dark;
-    @include icon-color($dark);
   }
 
   &.button-sm {
