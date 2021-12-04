@@ -9,7 +9,7 @@ import RegisterInfoPage from "../page/Auth/RegisterInfoPage/RegisterInfoPage";
 import RegisterCodePage from "../page/Auth/RegisterCodePage/RegisterCodePage";
 import PostPage from "../page/PostPage/PostPage";
 import PrivateRoute from "./PrivateRoute";
-import IssuePage from "../page/IssuePage/IssuePage";
+import IssuePage from "../page/IssuesPage/IssuesPage";
 import CreatePostPage from "../page/CreatePostPage/CreatePostPage";
 import CreateIssuePage from "../page/CreateIssuePage/CreateIssuePage";
 import SettingsPage from "../page/SettingsPage/SettingsPage";

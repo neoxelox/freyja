@@ -8,7 +8,7 @@ export interface PostDto {
     voters?: string[];
     message: string;
     categories?: string[];
-    state?: "PENDING" | "IN PROGRESS" | "REJECTED" | "ACCEOTED" | "RESOLVED";
+    state?: "PENDING" | "IN PROGRESS" | "REJECTED" | "ACCEPTED" | "RESOLVED";
     widjets?: Object;
     media?: Object;
     created_at: string;

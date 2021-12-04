@@ -1,20 +1,18 @@
 .btn-filter-container{
     text-align: right;
     border-bottom: 1px solid  rgba(0, 0, 0, 0.125);
+    padding: 10px;
 }
 
 .filter-btn{
     border-radius: 50px;
-    margin: 10px 15px 7px 0px;
-    padding: 2px 20px 2px 20px;
-    border: 0px;
     text-align: center;
 }
 
 .filter-btn-icon{
     display: inline-block;
     vertical-align: middle;
-    margin-right: 5px;
+    margin-right: 8px;
 }
 
 .filter-overlay{

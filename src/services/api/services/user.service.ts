@@ -45,7 +45,7 @@ export class UserService {
     }
 
     static async info(): Promise<void> {
-        const res = await request<UserDto>({ method: "GET", path: "/v1/user/profile" });
+        const res = await request<UserDto>({ method: "GET", path: "/v1/user/profile" }).catch((e) => apiErrorHandler(e));
         if (res) store.dispatch(userActions.setInfo(res));
     }
 }

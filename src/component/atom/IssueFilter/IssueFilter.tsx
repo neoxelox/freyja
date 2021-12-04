@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Button from "@restart/ui/esm/Button";
 import "./IssueFilter.scss";
 import Icon from "../Icon/Icon";
+import { Row } from "../Row/Row";
+import Button from "../Button/Button";
 
 interface state {
     filterOptions: Array<string>;
@@ -39,7 +40,6 @@ export default class DashboardPage extends Component<unknown, state> {
 
     render(): JSX.Element {
         const handleFilterClick = (btn) => {
-            console.log(btn);
             this.setState({ currentOptions: btn });
             const overlay = document.querySelector(".filter-overlay");
             overlay.classList.toggle("filter-overlay-active");
@@ -53,12 +53,13 @@ export default class DashboardPage extends Component<unknown, state> {
         };
 
         return (
-            <div className="btn-filter-container">
-                <Button className="filter-btn" onClick={() => handleFilterClick("filter")}>
-                    <Icon icon="filterIcon" size="sm" className="filter-btn-icon"></Icon> Filtrar
+            <Row className="btn-filter-container" gap={10} justifyContent="flex-end">
+                <Button className="filter-btn" onClick={() => handleFilterClick("filter")} appearence="tertiary" size="sm">
+                    <Icon icon="filterIcon" size="sm" className="filter-btn-icon" />
+                    Filtrar
                 </Button>
-                <Button className="filter-btn" onClick={() => handleFilterClick("sort")}>
-                    <Icon icon="orderIcon" size="sm" className="filter-btn-icon"></Icon> Ordenar{" "}
+                <Button className="filter-btn" onClick={() => handleFilterClick("sort")} appearence="tertiary" size="sm">
+                    <Icon icon="orderIcon" size="sm" className="filter-btn-icon" /> Ordenar
                 </Button>
                 <div className="filter-overlay">
                     <div className="filter-title">
@@ -98,7 +99,7 @@ export default class DashboardPage extends Component<unknown, state> {
                               </div>
                           ))}
                 </div>
-            </div>
+            </Row>
         );
     }
 }

@@ -3,6 +3,7 @@ import AuthStore from "./AuthStore";
 import UserStore from "./UserStore";
 import AppStore from "./AppStore";
 import FileStore from "./FileStore";
+import PostStore from "./PostStore";
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
         auth: AuthStore,
         user: UserStore,
         file: FileStore,
+        post: PostStore,
     },
 });
 
