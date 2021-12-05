@@ -33,14 +33,13 @@ export default function MainRouter(): JSX.Element {
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <ScrollToTop />
             <PrivateRoute path={MainRouterPage.HOME} component={DashboardPage} exact />
+            <PrivateRoute path={MainRouterPage.ISSUES} component={IssuePage} />
             <Route path={MainRouterPage.AUTH} component={AuthPhonePage} exact />
             <Route path={MainRouterPage.AUTHCODE} component={AuthCodePage} />
             <Route path={MainRouterPage.REGISTER} component={RegisterNamePage} exact />
             <Route path={MainRouterPage.REGISTERINFO} component={RegisterInfoPage} />
             <Route path={MainRouterPage.REGISTERCODE} component={RegisterCodePage} />
             <PrivateRoute path={MainRouterPage.POST} component={PostPage} />
-            <PrivateRoute path={MainRouterPage.POST} component={PostPage} />
-            <PrivateRoute path={MainRouterPage.ISSUES} component={IssuePage} />
             <PrivateRoute path={MainRouterPage.CREATEPOST} component={CreatePostPage} />
             <PrivateRoute path={MainRouterPage.CREATEISSUE} component={CreateIssuePage} />
             <PrivateRoute path={MainRouterPage.SETTINGS} component={SettingsPage} />
