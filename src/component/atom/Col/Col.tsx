@@ -3,7 +3,7 @@ import { Property } from "csstype";
 import "./Col.css";
 import { classNames } from "@agustinmj/class-names";
 
-export interface ColProps {
+export interface ColProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     flex?: number;
     className?: string;
     style?: any;
@@ -15,7 +15,7 @@ export interface ColProps {
 
 export class Col extends Component<ColProps> {
     render(): JSX.Element {
-        const { children, flex, className, style, alignItems, justifyContent, gap, overflow } = this.props;
+        const { children, flex, className, style, alignItems, justifyContent, gap, overflow, ...rest } = this.props;
 
         return (
             <div
@@ -28,6 +28,7 @@ export class Col extends Component<ColProps> {
                     overflow: overflow ? "visible" : undefined,
                     ...style,
                 }}
+                {...rest}
             >
                 {children}
             </div>

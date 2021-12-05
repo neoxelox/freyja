@@ -4,12 +4,16 @@
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
+    overflow: hidden;
 
     .page-content {
         position: relative;
+        overflow-y: scroll;
 
         max-width: 600px;
         min-width: 600px;
+        max-height: calc(100vh - 84px);
+        min-height: calc(100vh - 84px);
         margin: 0 auto;
 
         border-left: solid 1px $light;
@@ -18,6 +22,9 @@
         @media (max-width: $break-mobile) {
             margin: 0 auto 90px;
             min-width: unset;
+
+            max-height: calc(100vh - 174px);
+            min-height: calc(100vh - 174px);
 
             border-left: none;
             border-right: none;

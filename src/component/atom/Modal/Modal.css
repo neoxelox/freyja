@@ -1,4 +1,4 @@
-.modal-wrapper {
+.my-modal-wrapper {
     position: fixed;
     top: 0;
     left: 0;
@@ -16,7 +16,16 @@
     transition: opacity 0.3s ease-in-out;
 }
 
-.modal-wrapper .modal {
+.my-modal-wrapper.modal-from-bottom {
+    align-items: end;
+}
+
+.my-modal-wrapper.modal-from-bottom .my-modal {
+    min-width: 650px;
+    animation: from-bot 0.3s;
+}
+
+.my-modal-wrapper .my-modal {
     max-width: 80%;
     max-height: 80%;
     background-color: white;
@@ -26,23 +35,34 @@
     position: relative;
 }
 
-.modal-wrapper .modal .modal-close {
+.my-modal-wrapper .my-modal .my-modal-close {
     position: absolute;
     top: 20px;
     right: 20px;
     cursor: pointer;
 }
 
-.modal-wrapper .modal .modal-footer {
+.my-modal-wrapper .my-modal .my-modal-footer {
     margin-top: auto;
 }
 
-@media (max-width: 600px) {
-    .modal-wrapper .modal {
+@media (max-width: 650px) {
+    .my-modal-wrapper .my-modal {
         min-width: unset;
         max-width: unset;
         max-height: unset;
-        width: 100vw;
-        height: 100vh;
+    }
+
+    .my-modal-wrapper.modal-from-bottom .my-modal {
+        min-width: 100vw;
+    }
+}
+
+@keyframes from-bot {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
     }
 }

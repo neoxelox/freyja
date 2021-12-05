@@ -9,6 +9,7 @@ import { UpdatePhoneStartResponse } from "../responses/user/update-phone-start.r
 import { UpdatePhoneEndResponse } from "../responses/user/update-phone-end.response";
 import { apiErrorHandler } from "../../../utils/api-error-handler";
 import { UserDto } from "../../model/user.dto";
+import { authActions } from "../../../store/AuthStore";
 
 export class UserService {
     static async update(info: UpdateRequest): Promise<boolean> {
@@ -39,7 +40,10 @@ export class UserService {
         const res = await request<UpdateEmailEndResponse>({ method: "POST", path: "/v1/user/email/end", body: req }).catch((e) =>
             apiErrorHandler(e),
         );
-        if (res) store.dispatch(userActions.setInfo({ email: res.email }));
+        if (res) {
+            await this.info();
+            store.dispatch(authActions.setLoggedIn(true));
+        }
         store.dispatch(userActions.setLoading(false));
         return !!res;
     }
@@ -68,7 +72,7 @@ export class UserService {
     }
 
     static async info(): Promise<void> {
-        const res = await request<UserDto>({ method: "GET", path: "/v1/user/profile" });
+        const res = await request<UserDto>({ method: "GET", path: "/v1/user/profile" }).catch((e) => apiErrorHandler(e));
         if (res) store.dispatch(userActions.setInfo(res));
     }
 }

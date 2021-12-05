@@ -1,0 +1,20 @@
+@import "../../../index";
+
+.my-modal-wrapper {
+  .my-modal {
+    background-color: $grey !important;
+
+    .my-modal-close {
+      @include icon-color($dark);
+    }
+
+    border-radius: 28px;
+  }
+
+  &.modal-from-bottom {
+    .my-modal {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}

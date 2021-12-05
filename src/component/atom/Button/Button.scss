@@ -1,13 +1,25 @@
+@import "../../../index.scss";
+
 button {
-  .button-primary {
-
+  &.button-primary {
+    background-color: $dark;
+    color: $white;
+    @include icon-color($white);
   }
 
-  .button-secondary {
-
+  &.button-secondary {
+    background-color: $primary;
+    color: $white;
+    @include icon-color($white);
   }
 
-  .button-light {
+  &.button-tertiary {
+    background-color: $light;
+    color: $dark;
+  }
 
+  &.button-sm {
+    height: 34px;
+    max-width: 100px;
   }
 }

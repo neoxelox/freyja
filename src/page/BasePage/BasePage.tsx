@@ -14,10 +14,8 @@ export default function BasePage(props: Props): JSX.Element {
     return (
         <div className="base-page">
             <LeftMenu />
-            <Col className="page-content">
-                <Header />
-                {children}
-            </Col>
+            <Header />
+            <Col className="page-content">{children}</Col>
             <Footer />
         </div>
     );

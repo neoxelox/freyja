@@ -16,7 +16,7 @@ interface Props {
 export default class LocationLink extends Component<Props> {
     isActive(): boolean {
         const { to } = this.props;
-        const location = window.location.toString();
+        const location = window.location.pathname.toString();
         return location.includes(to + "/") || location.endsWith(to);
     }
 
@@ -26,14 +26,10 @@ export default class LocationLink extends Component<Props> {
         return (
             <Link
                 to={to}
-                className={classNames(
-                    "location-link",
-                    window.location.toString().includes(to) && "location-link-active",
-                    align === "row" && "location-link-row",
-                )}
+                className={classNames("location-link", this.isActive() && "location-link-active", align === "row" && "location-link-row")}
             >
                 {icon && (this.isActive() && selectedIcon ? <Icon icon={selectedIcon} size="sm" /> : <Icon icon={icon} size="sm" />)}
-                <h6>{children}</h6>
+                <h5>{children}</h5>
             </Link>
         );
     }

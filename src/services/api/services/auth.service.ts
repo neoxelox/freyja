@@ -14,7 +14,7 @@ export class AuthService {
         const req: LoginStartRequest = { phone };
         store.dispatch(authActions.setLoading(true));
         const res = await request<LoginStartResponse>({ method: "POST", path: "/login/start", body: req }).catch((e) =>
-            apiErrorHandler(e, undefined, [{ code: "ERR_OTP_ALREADY_SEND" }]),
+            apiErrorHandler(e, undefined, [{ code: "ERR_OTP_ALREADY_SENT" }]),
         );
         if (res) store.dispatch(authActions.setCodeId(res.id));
         store.dispatch(authActions.setLoading(false));

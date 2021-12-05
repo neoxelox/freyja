@@ -1,24 +1,28 @@
+import Button from "@restart/ui/esm/Button";
 import React, { Component } from "react";
 import Post from "../../component/atom/Post/Post";
 import BasePage from "../BasePage/BasePage";
 import FloatingButton from "../../component/atom/FloatingButton/FloatingButton";
+import IssueFilter from "../../component/atom/IssueFilter/IssueFilter";
 import { PostDto } from "../../services/model/post.dto";
 import { connect } from "react-redux";
 import { RootState } from "../../store";
+import { selectIssues } from "../../store/PostStore";
 
 interface Props {
-    posts: PostDto[];
+    issues: PostDto[];
     loading: boolean;
 }
 
-class DashboardPage extends Component<Props> {
+class IssuesPage extends Component<Props> {
     render(): JSX.Element {
-        const { posts } = this.props;
+        const { issues } = this.props;
 
         return (
             <BasePage>
-                {posts.map((post) => (
-                    <Post {...post} />
+                <IssueFilter />
+                {issues.map((issue) => (
+                    <Post {...issue} />
                 ))}
                 <FloatingButton />
             </BasePage>
@@ -27,6 +31,6 @@ class DashboardPage extends Component<Props> {
 }
 
 export default connect((state: RootState) => ({
-    posts: state.post.posts,
+    issues: selectIssues(state.post),
     loading: state.post.loading,
-}))(DashboardPage);
+}))(IssuesPage);

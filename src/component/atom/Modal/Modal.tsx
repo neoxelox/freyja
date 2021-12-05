@@ -5,9 +5,9 @@ import "./Modal.css";
 import { hideModal } from "./modal-store";
 
 export interface ModalProps {
+    name?: string;
     className?: string;
     style?: CSSProperties;
-    onClose?: () => void;
     closable?: boolean;
     wrapperClassName?: string;
     wrapperStyle?: any;
@@ -15,6 +15,7 @@ export interface ModalProps {
     header?: JSX.Element;
     footer?: JSX.Element;
     overlay?: boolean;
+    transition?: "fade" | "from-bottom";
 }
 
 interface ModalState {
@@ -35,16 +36,13 @@ export class Modal extends Component<ModalProps, ModalState> {
                 modal.style.opacity = "0";
                 await Promise.all(modal.getAnimations().map((animation) => animation.finished));
                 this.setState({ closing: true });
-                hideModal();
-                this.props.onClose?.();
-            } else {
-                this.props.onClose?.();
+                hideModal({ modalName: this.props.name });
             }
         }
     }
 
     render(): JSX.Element {
-        const { className, style, wrapperClassName, wrapperStyle, children, overlay, ...rest } = this.props;
+        const { className, style, wrapperClassName, wrapperStyle, children, overlay, transition = "fade", ...rest } = this.props;
 
         nextTick(() => {
             if (this.ref && this.ref.current) {
@@ -54,7 +52,7 @@ export class Modal extends Component<ModalProps, ModalState> {
 
         return (
             <div
-                className={classNames("modal-wrapper", wrapperClassName)}
+                className={classNames("my-modal-wrapper", transition === "fade" ? "modal-fade" : "modal-from-bottom", wrapperClassName)}
                 style={wrapperStyle || {}}
                 onMouseDown={() => this.onClose()}
                 ref={this.ref}
@@ -63,12 +61,7 @@ export class Modal extends Component<ModalProps, ModalState> {
                     (overlay ? (
                         <>{children}</>
                     ) : (
-                        <InnerModal
-                            className={classNames(className, this.state.closing && "modal-closing")}
-                            style={style || {}}
-                            {...rest}
-                            onClose={() => this.onClose()}
-                        >
+                        <InnerModal className={classNames(className)} style={style || {}} {...rest} onClose={() => this.onClose()}>
                             {children}
                         </InnerModal>
                     ))}
@@ -92,15 +85,15 @@ class InnerModal extends Component<InnerProps> {
         const { className, style, children, header, footer, closeElement, onClose, closable } = this.props;
 
         return (
-            <div className={classNames("modal", className)} style={style || {}} onMouseDown={(e) => e.stopPropagation()}>
+            <div className={classNames("my-modal", className)} style={style || {}} onMouseDown={(e) => e.stopPropagation()}>
                 {(closable === undefined || closable) && closeElement && (
-                    <div className="modal-close" onClick={() => onClose?.()}>
+                    <div className="my-modal-close" onClick={() => onClose?.()}>
                         {closeElement}
                     </div>
                 )}
                 {header}
                 {children}
-                {header && <div className="modal-footer">{footer}</div>}
+                {header && <div className="my-modal-footer">{footer}</div>}
             </div>
         );
     }

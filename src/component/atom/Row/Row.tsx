@@ -3,7 +3,7 @@ import { Property } from "csstype";
 import "./Row.css";
 import { classNames } from "@agustinmj/class-names";
 
-export interface RowProps {
+export interface RowProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
     flex?: number;
     breakPoint?: "mobile" | "mini" | "sm" | "md" | number;
     className?: string;
@@ -46,7 +46,7 @@ export class Row extends Component<RowProps, RowState> {
 
     render(): JSX.Element {
         const { direction } = this.state;
-        const { children, flex, breakPoint, className, style, alignItems, justifyContent, gap, rowGap, wrap } = this.props;
+        const { children, flex, breakPoint, className, style, alignItems, justifyContent, gap, rowGap, wrap, ...rest } = this.props;
 
         return (
             <div
@@ -61,6 +61,7 @@ export class Row extends Component<RowProps, RowState> {
                     flexWrap: wrap ? "wrap" : "nowrap",
                     ...style,
                 }}
+                {...rest}
             >
                 {children}
             </div>

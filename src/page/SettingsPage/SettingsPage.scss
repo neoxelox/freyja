@@ -1,12 +1,15 @@
+@import "../../index";
+
 .settings-profile-image {
         border-radius: 50%;
-        width: 150px;
-        height: 150px;
+        width: clamp(120px, 20vw, 150px);
+        height: clamp(120px, 20vw, 150px);
         margin-top: 30px;
 }
 
 .setting-option{
-    border-top: 1px solid black;
+    border-top: 1px solid $dark;
     width: 100%;
-    padding: 10px 0px 10px 20px;
+    padding: 20px;
+    cursor: pointer;
 }
