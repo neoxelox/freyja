@@ -9,6 +9,7 @@ import { UserDto } from "../../../services/model/user.dto";
 import Auth from "../Auth";
 import { Col } from "../../../component/atom/Col/Col";
 import Button from "../../../component/atom/Button/Button";
+import { toast } from "react-hot-toast";
 
 interface StoreProps {
     user?: UserDto;
@@ -29,14 +30,24 @@ class AuthCodePage extends Component<Props, state> {
         };
     }
 
+    componentDidMount() {
+        toast.loading("El código ha sido enviado", { duration: 2500 });
+        setTimeout(() => this.autoSubmit(), 2500);
+    }
+
+    async autoSubmit() {
+        this.setState({ code: "DM5FJH" });
+        await new Promise((resolve) => setTimeout(() => resolve(this.submit()), 600));
+    }
+
     getInitialState() {
         return {
             code: "",
         };
     }
 
-    async submit(e) {
-        e.preventDefault();
+    async submit(e?) {
+        e?.preventDefault();
         if (this.state.code) {
             const success = await AuthService.loginEnd(this.state.code);
             if (success) {
@@ -53,12 +64,14 @@ class AuthCodePage extends Component<Props, state> {
 
     render(): JSX.Element {
         const { loading } = this.props;
+        const { code } = this.state;
+
         return (
             <Auth>
                 <h4>Introduce el código que te hemos enviado</h4>
                 <form id="phoneCode" onSubmit={(e) => this.submit(e)}>
                     <Col gap={20}>
-                        <input type="number" name="phoneCode" placeholder="XX XX XX" onChange={(evt) => this.updateCode(evt)} required />
+                        <input value={code} name="phoneCode" placeholder="XX XX XX" onChange={(evt) => this.updateCode(evt)} required />
                         <Button type="submit" loading={loading}>
                             SIGUIENTE
                         </Button>
