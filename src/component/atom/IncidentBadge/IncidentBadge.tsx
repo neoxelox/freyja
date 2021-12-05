@@ -10,27 +10,27 @@ interface Props {
 export default class IncidentBadge extends Component<any> {
     getBadgeBgAndText(): { bg: string; text: string } {
         switch (this.props.state) {
-            case "solved":
+            case "RESOLVED":
                 return {
                     bg: "success",
                     text: "RESUELTA",
                 };
-            case "pending":
+            case "PENDING":
                 return {
                     bg: "secondary",
                     text: "PENDIENTE DE APROVACIÓN",
                 };
-            case "approved":
+            case "ACCEPTED":
                 return {
                     bg: "info",
                     text: "ACEPTADA",
                 };
-            case "rejected":
+            case "REJECTED":
                 return {
                     bg: "danger",
                     text: "RECHAZADA",
                 };
-            case "progress":
+            case "IN PROGRESS":
             default:
                 return {
                     bg: "warning",
