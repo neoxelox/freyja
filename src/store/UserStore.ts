@@ -11,6 +11,7 @@ interface UserState {
         birthday: string;
     };
     emailTokenId?: string;
+    phoneTokenId?: string;
     loading: boolean;
 }
 
@@ -35,6 +36,10 @@ const UserSlice = createSlice({
         },
         setEmailTokenId: (state, { payload }: PayloadAction<string>) => {
             state.emailTokenId = payload;
+            return state;
+        },
+        setPhoneTokenId: (state, { payload }: PayloadAction<string>) => {
+            state.phoneTokenId = payload;
             return state;
         },
         setLoading: (state, { payload }: PayloadAction<boolean>) => {
