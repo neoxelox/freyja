@@ -5,25 +5,32 @@ import { Row } from "../../component/atom/Row/Row";
 import { Col } from "../../component/atom/Col/Col";
 import Icon from "../../component/atom/Icon/Icon";
 import { AuthService } from "../../services/api/services/auth.service";
+import { UserDto } from "../../services/model/user.dto";
+import { connect } from "react-redux";
+import { RootState } from "../../store";
+import { Image } from "../../component/atom/Image/Image";
 
-export default class SettingsPage extends Component {
+interface Props {
+    info: UserDto;
+}
+
+class SettingsPage extends Component<Props> {
     render(): JSX.Element {
+        const { info } = this.props;
+
         return (
             <BasePage>
                 <Col justifyContent="space-between" gap={50}>
                     <Col gap={10}>
                         <Row gap={10} alignItems="center" justifyContent="center">
-                            <img
-                                src="https://esporters.today/__export/1596476953368/sites/gammers/img/2020/08/03/willyrex.jpg_1745358785.jpg"
-                                className="settings-profile-image"
-                            />
+                            <Image src={info.picture} className="settings-profile-image" />
                         </Row>
 
                         <Row gap={10} alignItems="center" justifyContent="center" className="username">
-                            Willirex
+                            {info.name}
                         </Row>
                         <Row gap={10} alignItems="center" style={{ textAlign: "center" }} justifyContent="center">
-                            Ramblas ferreries 40 no se que <br></br> pallafolls, barcelona
+                            Ramblas ferreries 40 no se que <br /> pallafolls, barcelona
                         </Row>
                     </Col>
                     <Col>
@@ -78,3 +85,7 @@ export default class SettingsPage extends Component {
         );
     }
 }
+
+export default connect((state: RootState) => ({
+    info: state.user.info,
+}))(SettingsPage);

@@ -1,0 +1,36 @@
+.skeleton {
+    height: 100%;
+    width: 100%;
+    background-color: lightgray;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.skeleton::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -100vw;
+    top: 0;
+    height: 100%;
+    width: 800px;
+    background: -webkit-linear-gradient(left right, transparent 0%, #e8e8e8 50%, transparent 100%);
+    background: -moz-linear-gradient(right, transparent 0%, #e8e8e8 50%, transparent 100%);
+    background: -ms-linear-gradient(right, transparent 0%, #e8e8e8 50%, transparent 100%);
+    background: -o-linear-gradient(right, transparent 0%, #e8e8e8 50%, transparent 100%);
+    background: linear-gradient(to right, transparent 0%, #e8e8e8 50%, transparent 100%);
+    animation: loading 1.3s ease-in infinite;
+}
+
+@keyframes loading {
+    0% {
+        left: -100vw;
+    }
+    50% {
+        left: 100vw;
+    }
+    100% {
+        left: -100vw;
+    }
+}
