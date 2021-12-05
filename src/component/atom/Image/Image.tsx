@@ -1,5 +1,6 @@
 import { classNames } from "@agustinmj/class-names";
 import React, { Component } from "react";
+import { Skeleton } from "../Skeleton/Skeleton";
 import "./Image.css";
 
 export interface ImageProps {
@@ -23,13 +24,16 @@ export class Image extends Component<ImageProps> {
 
         return (
             <>
-                <img
-                    src={src}
-                    alt=""
-                    onLoad={() => this.setState({ loaded: true })}
-                    className={classNames("image", !loaded && "image-not-loaded", className)}
-                    style={style}
-                />
+                {src && (
+                    <img
+                        src={src}
+                        alt=""
+                        onLoad={() => this.setState({ loaded: true })}
+                        className={classNames("image", !loaded && "image-not-loaded", className)}
+                        style={style}
+                    />
+                )}
+                {(!loaded || !src) && <Skeleton className={className} style={style} />}
             </>
         );
     }

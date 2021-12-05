@@ -1,16 +1,26 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./ProfileLink.scss";
+import { RootState } from "../../../../store";
+import { Image } from "../../../atom/Image/Image";
 
-export default class ProfileLink extends Component {
+interface Props {
+    profileImg: string;
+}
+
+class ProfileLink extends Component<Props> {
     render(): JSX.Element {
+        const { profileImg } = this.props;
+
         return (
             <Link to="/settings">
-                <img
-                    src="https://esporters.today/__export/1596476953368/sites/gammers/img/2020/08/03/willyrex.jpg_1745358785.jpg"
-                    className="profile-link"
-                />
+                <Image src={profileImg} className="profile-link" />
             </Link>
         );
     }
 }
+
+export default connect((state: RootState) => ({
+    profileImg: state.user.info.picture,
+}))(ProfileLink);

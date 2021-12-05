@@ -3,6 +3,6 @@ export interface UserDto {
     phone: string;
     name: string;
     email?: string;
-    picutre?: string;
+    picture?: string;
     birthday?: string;
 }
