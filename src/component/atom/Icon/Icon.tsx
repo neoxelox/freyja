@@ -12,7 +12,7 @@ interface Props {
     color?: string;
     className?: string;
     style?: any;
-    onClick?: () => void;
+    onClick?: (e?: MouseEvent) => void;
 }
 
 export default class Icon extends Component<Props> {
@@ -22,13 +22,14 @@ export default class Icon extends Component<Props> {
         const { icon, size, color, className, style, onClick } = this.props;
 
         return (
-            <Svg
-                src={this.iconsMap.get(icon) as string}
-                color={color}
-                className={classNames(size || "sm", onClick && "clickable-icon", className)}
-                style={style || {}}
-                onClick={() => onClick?.()}
-            />
+            <div style={{ display: "contents" }} onClick={(e) => onClick?.(e as any)}>
+                <Svg
+                    src={this.iconsMap.get(icon) as string}
+                    color={color}
+                    className={classNames(size || "sm", onClick && "clickable-icon", className)}
+                    style={style || {}}
+                />
+            </div>
         );
     }
 }

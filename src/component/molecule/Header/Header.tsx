@@ -53,7 +53,8 @@ class Header extends Component<Props> {
 
 export default withRouter(
     connect((state: RootState) => {
-        const { community } = selectCommunity(state.community);
+        const c = selectCommunity(state.community);
+        const community = c?.community;
         return {
             communityName: community?.name || community?.address || "Comunidad",
             hasCommunities: state.community.activeCommunity !== undefined,

@@ -7,6 +7,9 @@ import { ListInvitationsResponseDto } from "../responses/invitation/list-invitat
 import { toast } from "react-hot-toast";
 import { CommunityDto } from "../../model/community.dto";
 import { GetCommunityResponse } from "../responses/community/get-community.response";
+import { UserDto } from "../../model/user.dto";
+import { MembershipDto } from "../../model/membership.dto";
+import { GetUserAndMembershipResponse } from "../responses/community/get-user-and-membership.response";
 
 export class CommunityService {
     static async load(): Promise<void> {
@@ -50,5 +53,18 @@ export class CommunityService {
         );
         store.dispatch(communityActions.setLoading(false));
         return !!res;
+    }
+
+    static async getUserAndMembership(
+        communityId: string,
+        membershipId: string,
+    ): Promise<{ user: UserDto; membership: MembershipDto } | void> {
+        store.dispatch(communityActions.setLoading(true));
+        const res = await request<GetUserAndMembershipResponse>({
+            method: "GET",
+            path: "/v1/community/" + communityId + "/user/" + membershipId,
+        }).catch((e) => apiErrorHandler(e));
+        store.dispatch(communityActions.setLoading(false));
+        return res;
     }
 }

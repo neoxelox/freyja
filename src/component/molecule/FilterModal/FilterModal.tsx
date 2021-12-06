@@ -43,7 +43,7 @@ export default class FilterModal extends Component<unknown, State> {
                         style={{ marginTop: "20px", marginBottom: "-20px", textAlign: "center" }}
                         onClick={() => this.dispatchResetFilter()}
                     >
-                        Cancelar
+                        Limpiar
                     </p>
                 }
             >

@@ -8,5 +8,6 @@ export interface PostDto extends PostHistoryDto {
     priority?: number;
     recipient_ids?: string[];
     voter_ids: string[];
+    subposts: number;
     created_at: string;
 }

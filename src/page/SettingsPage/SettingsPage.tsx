@@ -22,7 +22,7 @@ class SettingsPage extends Component<Props> {
         const { info, community } = this.props;
 
         return (
-            <BasePage>
+            <BasePage footer={false}>
                 <Col justifyContent="space-between" gap={50}>
                     <Col gap={10}>
                         <Row gap={10} alignItems="center" justifyContent="center">

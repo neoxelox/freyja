@@ -42,6 +42,10 @@ import worldIcon from "./world-icon.svg";
 import rightGreyArrow from "./right-grey-arrow.svg";
 import exitSession from "./exit-session.svg";
 import close from "./close.svg";
+import voted from "./voted.svg";
+import low from "./low.svg";
+import medium from "./medium.svg";
+import high from "./high.svg";
 
 export const icons = {
     exitSession,
@@ -88,4 +92,8 @@ export const icons = {
     title,
     camera,
     close,
+    voted,
+    low,
+    medium,
+    high,
 };

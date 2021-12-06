@@ -16,24 +16,24 @@
   }
 
   .invitation-deny {
-    background-color: $danger;
-    border: $danger 2px solid;
-    color: white;
+    background-color: transparent;
+    color: $danger;
 
     &.invitation-denied {
-      background-color: transparent;
-      color: $danger;
+      background-color: $danger;
+      border: $danger 2px solid;
+      color: white;
     }
   }
 
   .invitation-accept {
-    background-color: $success;
-    border: $success 2px solid;
-    color: white;
+    background-color: transparent;
+    color: $success;
 
     &.invitation-accepted {
-      background-color: transparent;
-      color: $success;
+      background-color: $success;
+      border: $success 2px solid;
+      color: white;
     }
   }
 }

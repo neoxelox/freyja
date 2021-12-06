@@ -5,8 +5,8 @@ import CreatePostOrIssue from "../../component/molecule/CreatePostOrIssue/Create
 export default class DashboardPage extends Component {
     render(): JSX.Element {
         return (
-            <BasePage>
-                <CreatePostOrIssue type="issue" />
+            <BasePage footer={false}>
+                <CreatePostOrIssue type="ISSUE" />
             </BasePage>
         );
     }

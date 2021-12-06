@@ -26,6 +26,11 @@
             max-height: calc(100vh - 174px);
             min-height: calc(100vh - 174px);
 
+            &.no-footer {
+                max-height: calc(100vh - 84px);
+                min-height: calc(100vh - 84px);
+            }
+
             border-left: none;
             border-right: none;
         }
