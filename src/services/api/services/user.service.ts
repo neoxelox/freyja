@@ -9,7 +9,7 @@ import { UpdateEmailEndRequest } from "../requests/user/update-email-end.request
 import { UpdateEmailEndResponse } from "../responses/user/update-email-end.response";
 import { apiErrorHandler } from "../../../utils/api-error-handler";
 import { UserDto } from "../../model/user.dto";
-import { authActions } from "../../../store/AuthStore";
+import { AppService } from "./app.service";
 
 export class UserService {
     static async update(info: UpdateRequest): Promise<boolean> {
@@ -41,8 +41,7 @@ export class UserService {
             apiErrorHandler(e),
         );
         if (res) {
-            await this.info();
-            store.dispatch(authActions.setLoggedIn(true));
+            await AppService.refresh();
         }
         store.dispatch(userActions.setLoading(false));
         return !!res;

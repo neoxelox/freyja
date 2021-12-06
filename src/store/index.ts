@@ -4,6 +4,7 @@ import UserStore from "./UserStore";
 import AppStore from "./AppStore";
 import FileStore from "./FileStore";
 import PostStore from "./PostStore";
+import CommunityStore from "./CommunityStore";
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
         user: UserStore,
         file: FileStore,
         post: PostStore,
+        community: CommunityStore,
     },
 });
 

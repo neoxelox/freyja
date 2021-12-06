@@ -25,9 +25,12 @@ export async function apiErrorHandler(
     };
 
     if (e.response?.status === 401) {
+        toast.error("La sesión ha expirado", { position: "top-center", id: "La sesión ha expirado" });
         await AuthService.logout();
-        toast.error("La sesión ha expirado", { position: "top-center" });
     } else if (!ignore || !ignore.some((ie: ApiRequestError) => error.code === ie.code && (!ie.message || error.message === ie.message))) {
-        toast.error(errorDic[error.code] || "No se ha podido conectar con el servidor", { position: "top-center" });
+        toast.error(errorDic[error.code] || "No se ha podido conectar con el servidor", {
+            position: "top-center",
+            id: errorDic[error.code] || "No se ha podido conectar con el servidor",
+        });
     }
 }

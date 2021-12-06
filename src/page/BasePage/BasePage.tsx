@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { Col } from "react-bootstrap";
 import Footer from "../../component/molecule/Footer/Footer";
 import Header from "../../component/molecule/Header/Header";
@@ -7,16 +7,18 @@ import "./BasePage.scss";
 
 interface Props {
     children: ReactNode;
+    footer?: ReactNode;
+    showLeftMenu?: boolean;
 }
 
 export default function BasePage(props: Props): JSX.Element {
-    const { children } = props;
+    const { children, footer = <Footer />, showLeftMenu = true } = props;
     return (
         <div className="base-page">
-            <LeftMenu />
+            {showLeftMenu && <LeftMenu />}
             <Header />
             <Col className="page-content">{children}</Col>
-            <Footer />
+            {footer}
         </div>
     );
 }

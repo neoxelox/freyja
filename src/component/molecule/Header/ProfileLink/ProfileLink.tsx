@@ -22,5 +22,5 @@ class ProfileLink extends Component<Props> {
 }
 
 export default connect((state: RootState) => ({
-    profileImg: state.user.info.picture,
+    profileImg: state.user.info?.picture,
 }))(ProfileLink);

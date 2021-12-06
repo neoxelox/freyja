@@ -4,6 +4,9 @@
     position: fixed;
     bottom: 0;
 
+    border-left: solid 1px $light;
+    border-right: solid 1px $light;
+    max-width: 600px;
     width: 100vw;
     flex-wrap: nowrap;
     margin: 0;

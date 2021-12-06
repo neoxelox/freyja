@@ -4,9 +4,11 @@ import { icons } from "../../../assets/icons";
 import { classNames } from "@agustinmj/class-names";
 import "./Icon.scss";
 
+export type IconSize = "mini" | "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+
 interface Props {
     icon: any;
-    size?: "mini" | "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
+    size?: IconSize;
     color?: string;
     className?: string;
     style?: any;

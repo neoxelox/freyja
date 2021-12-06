@@ -1,6 +1,5 @@
 import { BrowserRouter, Route } from "react-router-dom";
 import * as React from "react";
-import { ScrollToTop } from "../component/atom/ScrollToTop/ScrollToTop";
 import DashboardPage from "../page/DadhboardPage/DashboardPage";
 import AuthPhonePage from "../page/Auth/AuthPhonePage/AuthPhonePage";
 import AuthCodePage from "../page/Auth/AuthCodePage/AuthCodePage";
@@ -13,6 +12,8 @@ import IssuePage from "../page/IssuesPage/IssuesPage";
 import CreatePostPage from "../page/CreatePostPage/CreatePostPage";
 import CreateIssuePage from "../page/CreateIssuePage/CreateIssuePage";
 import SettingsPage from "../page/SettingsPage/SettingsPage";
+import JoinCommunitiesPage from "../page/JoinCommunitiesPage/JoinCommunitiesPage";
+import { ScrollToTop } from "../component/atom/ScrollToTop/ScrollToTop";
 
 export enum MainRouterPage {
     HOME = "/",
@@ -26,23 +27,49 @@ export enum MainRouterPage {
     CREATEPOST = "/create-post",
     CREATEISSUE = "/create-issue",
     SETTINGS = "/settings",
+    JOIN_COMMUNITIES = "/join-communities",
 }
 
 export default function MainRouter(): JSX.Element {
     return (
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <ScrollToTop />
-            <PrivateRoute path={MainRouterPage.HOME} component={DashboardPage} exact />
-            <PrivateRoute path={MainRouterPage.ISSUES} component={IssuePage} />
-            <Route path={MainRouterPage.AUTH} component={AuthPhonePage} exact />
-            <Route path={MainRouterPage.AUTHCODE} component={AuthCodePage} />
-            <Route path={MainRouterPage.REGISTER} component={RegisterNamePage} exact />
-            <Route path={MainRouterPage.REGISTERINFO} component={RegisterInfoPage} />
-            <Route path={MainRouterPage.REGISTERCODE} component={RegisterCodePage} />
-            <PrivateRoute path={MainRouterPage.POST} component={PostPage} />
-            <PrivateRoute path={MainRouterPage.CREATEPOST} component={CreatePostPage} />
-            <PrivateRoute path={MainRouterPage.CREATEISSUE} component={CreateIssuePage} />
-            <PrivateRoute path={MainRouterPage.SETTINGS} component={SettingsPage} />
+            <Route path={MainRouterPage.AUTH} exact>
+                <AuthPhonePage />
+            </Route>
+            <Route path={MainRouterPage.AUTHCODE}>
+                <AuthCodePage />
+            </Route>
+            <Route path={MainRouterPage.REGISTER} exact>
+                <RegisterNamePage />
+            </Route>
+            <Route path={MainRouterPage.REGISTERINFO}>
+                <RegisterInfoPage />
+            </Route>
+            <Route path={MainRouterPage.REGISTERCODE}>
+                <RegisterCodePage />
+            </Route>
+            <Route path={MainRouterPage.JOIN_COMMUNITIES}>
+                <JoinCommunitiesPage />
+            </Route>
+            <PrivateRoute path={MainRouterPage.HOME} exact>
+                <DashboardPage />
+            </PrivateRoute>
+            <PrivateRoute path={MainRouterPage.POST} exact>
+                <PostPage />
+            </PrivateRoute>
+            <PrivateRoute path={MainRouterPage.ISSUES}>
+                <IssuePage />
+            </PrivateRoute>
+            <PrivateRoute path={MainRouterPage.CREATEPOST}>
+                <CreatePostPage />
+            </PrivateRoute>
+            <PrivateRoute path={MainRouterPage.CREATEISSUE}>
+                <CreateIssuePage />
+            </PrivateRoute>
+            <PrivateRoute path={MainRouterPage.SETTINGS}>
+                <SettingsPage />
+            </PrivateRoute>
         </BrowserRouter>
     );
 }

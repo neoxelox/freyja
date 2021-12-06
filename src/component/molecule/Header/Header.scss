@@ -1,6 +1,8 @@
 @import "../../../assets/style/colors.scss";
 
 .header {
+    border-left: solid 1px $light;
+    border-right: solid 1px $light;
     height: 84px;
     border-bottom: solid 2px $primary;
     padding: 0 20px;

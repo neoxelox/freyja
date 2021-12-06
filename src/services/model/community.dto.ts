@@ -3,7 +3,6 @@ export interface CommunityDto {
     address: string;
     name?: string;
     categories: string[];
-    pinned?: string;
+    pinned_ids: string[];
     created_at: string;
-    deleted_at: string;
 }

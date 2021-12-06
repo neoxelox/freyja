@@ -8,6 +8,8 @@ import { authActions } from "../../../store/AuthStore";
 import { userActions } from "../../../store/UserStore";
 import { TokenSecureStorage } from "../../storage/TokenSecureStorage";
 import { apiErrorHandler } from "../../../utils/api-error-handler";
+import { AppService } from "./app.service";
+import { UserDto } from "../../model/user.dto";
 
 export class AuthService {
     static async loginStart(phone: string): Promise<boolean> {
@@ -21,7 +23,7 @@ export class AuthService {
         return !!res;
     }
 
-    static async loginEnd(code: string): Promise<boolean> {
+    static async loginEnd(code: string): Promise<boolean | UserDto> {
         const req: LoginEndRequest = { id: store.getState().auth.codeId, code };
         store.dispatch(authActions.setLoading(true));
         const res = await request<LoginEndResponse>({ method: "POST", path: "/login/end", body: req }).catch((e) => apiErrorHandler(e));
@@ -30,8 +32,7 @@ export class AuthService {
             await new TokenSecureStorage().saveToken(access_token);
 
             if (user) {
-                store.dispatch(authActions.setLoggedIn(true));
-                store.dispatch(userActions.setInfo(res.user));
+                await AppService.refresh();
             }
         }
         store.dispatch(authActions.setLoading(false));
@@ -41,5 +42,7 @@ export class AuthService {
     static async logout(): Promise<void> {
         await new TokenSecureStorage().clear();
         store.dispatch(authActions.setLoggedIn(false));
+        store.dispatch(userActions.setInfo(undefined));
+        window.location.replace("/auth");
     }
 }

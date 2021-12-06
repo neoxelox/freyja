@@ -8,29 +8,37 @@ import { AuthService } from "../../services/api/services/auth.service";
 import { UserDto } from "../../services/model/user.dto";
 import { connect } from "react-redux";
 import { RootState } from "../../store";
-import { Image } from "../../component/atom/Image/Image";
+import { selectCommunity } from "../../store/CommunityStore";
+import { CommunityAndMembershipDto } from "../../services/model/community-and-membership.dto";
+import ProfileImage from "../../component/atom/ProfileImage/ProfileImage";
 
 interface Props {
     info: UserDto;
+    community: CommunityAndMembershipDto;
 }
 
 class SettingsPage extends Component<Props> {
     render(): JSX.Element {
-        const { info } = this.props;
+        const { info, community } = this.props;
 
         return (
             <BasePage>
                 <Col justifyContent="space-between" gap={50}>
                     <Col gap={10}>
                         <Row gap={10} alignItems="center" justifyContent="center">
-                            <Image src={info.picture} className="settings-profile-image" />
+                            <ProfileImage
+                                image={info?.picture}
+                                role={community.membership.role}
+                                className="settings-profile-image"
+                                size="lg"
+                            />
                         </Row>
 
                         <Row gap={10} alignItems="center" justifyContent="center" className="username">
-                            {info.name}
+                            {info?.name}
                         </Row>
                         <Row gap={10} alignItems="center" style={{ textAlign: "center" }} justifyContent="center">
-                            Ramblas ferreries 40 no se que <br /> pallafolls, barcelona
+                            {community.community.name || community.community.address} <br /> {community.membership.door}
                         </Row>
                     </Col>
                     <Col>
@@ -88,4 +96,5 @@ class SettingsPage extends Component<Props> {
 
 export default connect((state: RootState) => ({
     info: state.user.info,
+    community: selectCommunity(state.community),
 }))(SettingsPage);
