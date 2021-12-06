@@ -1,0 +1,39 @@
+@import "../../../index";
+
+.invitation {
+  padding: 20px 40px;
+  border-bottom: 1px $dark solid;
+
+  .invitation-community-name {
+    font-weight: bold;
+  }
+  .invitation-role {
+    color: $secondary;
+  }
+
+  button {
+    height: 36px;
+  }
+
+  .invitation-deny {
+    background-color: $danger;
+    border: $danger 2px solid;
+    color: white;
+
+    &.invitation-denied {
+      background-color: transparent;
+      color: $danger;
+    }
+  }
+
+  .invitation-accept {
+    background-color: $success;
+    border: $success 2px solid;
+    color: white;
+
+    &.invitation-accepted {
+      background-color: transparent;
+      color: $success;
+    }
+  }
+}

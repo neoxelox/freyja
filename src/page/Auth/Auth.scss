@@ -28,6 +28,10 @@
     margin: 0 auto;
   }
 
+  .add-photo-icon {
+    @include icon-color($primary);
+  }
+
   .mobile-back-icon {
     @include icon-color($white);
   }

@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import Button from "../../../component/atom/Button/Button";
 import { UserService } from "../../../services/api/services/user.service";
 import { FileService } from "../../../services/api/services/file.service";
+import { AppService } from "../../../services/api/services/app.service";
 
 interface Props extends RouteComponentProps {
     loading: boolean;
@@ -53,12 +54,17 @@ class RegisterInfoPage extends Component<Props, state> {
             const success = await UserService.update({ birthday: birthday !== "" ? birthday : undefined, picture });
             if (!success) return;
         }
-        if (!email) this.props.history.replace(MainRouterPage.HOME);
+        if (!email) await this.omit();
         else {
             const success = await UserService.updateEmailStart(email);
             if (!success) return;
             this.props.history.replace(MainRouterPage.REGISTERCODE);
         }
+    }
+
+    async omit() {
+        await AppService.load();
+        this.props.history.replace(MainRouterPage.HOME);
     }
 
     updateEmail(evt) {
@@ -79,7 +85,7 @@ class RegisterInfoPage extends Component<Props, state> {
                 <form id="info" onSubmit={(e) => this.submit(e)}>
                     <Col gap={20}>
                         <ImageUpload onNewImageSelected={(val) => this.setState({ img: val })} showUploadIcon={false}>
-                            {img ? <Image src={URL.createObjectURL(img)} /> : <Icon icon="camera" size="lg" />}
+                            {img ? <Image src={URL.createObjectURL(img)} /> : <Icon icon="camera" size="lg" className={"add-photo-icon"} />}
                         </ImageUpload>
                         <Col gap={5}>
                             <label>Correo electrónico</label>
@@ -97,7 +103,7 @@ class RegisterInfoPage extends Component<Props, state> {
                             SIGUIENTE
                         </Button>
 
-                        <h5 onClick={() => this.props.history.replace(MainRouterPage.HOME)}>Omitir</h5>
+                        <h5 onClick={() => this.omit()}>Omitir</h5>
                     </Col>
                 </form>
             </Auth>

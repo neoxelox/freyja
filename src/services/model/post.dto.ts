@@ -1,15 +1,12 @@
-export interface PostDto {
+import { PostHistoryDto } from "./post-history.dto";
+
+export interface PostDto extends PostHistoryDto {
     id: string;
-    thread: string;
-    creator: string;
+    thread_id: string;
+    creator_id: string;
     type: "PUBLICATION" | "ISSUE" | "EVENT";
     priority?: number;
-    recipients?: string[];
-    voters?: string[];
-    message: string;
-    categories?: string[];
-    state?: "PENDING" | "IN PROGRESS" | "REJECTED" | "ACCEPTED" | "RESOLVED";
-    widjets?: Object;
-    media?: Object;
+    recipient_ids?: string[];
+    voter_ids: string[];
     created_at: string;
 }

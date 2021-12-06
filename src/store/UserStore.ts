@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserDto } from "../services/model/user.dto";
 
 interface UserState {
-    info?: UserDto;
+    info: UserDto | undefined;
     register: {
         phone: string;
         name: string;
@@ -15,6 +15,7 @@ interface UserState {
 }
 
 const initialState: UserState = {
+    info: undefined,
     register: {
         phone: "",
         name: "",

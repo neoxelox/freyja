@@ -61,9 +61,9 @@ class RegisterCodePage extends Component<Props, state> {
         return (
             <Auth>
                 <h4>Para acabar, introduce el código que hemos enviado a tu correo electrónico</h4>
-                <form id="registerCode" onSubmit={(e) => this.submit(e)}>
+                <form id="registerCode" onSubmit={() => toast.error("El código no es correcto", { id: "El código no es correcto" })}>
                     <Col gap={20}>
-                        <input value={code} name="registerCode" placeholder="XX XX XX" onChange={(evt) => this.updateCode(evt)} required />
+                        <input value={code} name="registerCode" placeholder="XX XX XX" required />
                         <Button type="submit" loading={loading}>
                             SIGUIENTE
                         </Button>

@@ -1,18 +1,26 @@
 import React, { Component, ReactNode } from "react";
+import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router";
 import { Row } from "../../atom/Row/Row";
 import TitleWithBack from "../../atom/TitleWithBack/TitleWithBack";
 import "./Header.scss";
 import ProfileLink from "./ProfileLink/ProfileLink";
+import { RootState } from "../../../store";
+import { selectCommunity } from "../../../store/CommunityStore";
 
-class Header extends Component<RouteComponentProps> {
+interface Props extends RouteComponentProps {
+    communityName: string;
+    hasCommunities: boolean;
+}
+
+class Header extends Component<Props> {
     getTitle(): ReactNode {
         const pathname = this.props.location.pathname;
 
         if (pathname === "/" || pathname === "/issues") {
             return (
                 <>
-                    Rambla les ferreries nº44 (HARDCODED)
+                    {this.props.communityName}
                     <ProfileLink />
                 </>
             );
@@ -20,20 +28,13 @@ class Header extends Component<RouteComponentProps> {
             return <TitleWithBack>Incidencia</TitleWithBack>;
         } else if (pathname.startsWith("/post/")) {
             return <TitleWithBack>Publicación</TitleWithBack>;
-        } else if (pathname.startsWith("/settings/")) {
+        } else if (pathname.startsWith("/settings")) {
             return <TitleWithBack>Ajustes</TitleWithBack>;
         }
 
         switch (pathname) {
-            case "/":
-            case "/incidencias":
-
-            case "/publicación/":
-
-            case "/incidencia/:id":
-                return <TitleWithBack>Incidencia</TitleWithBack>;
-            case "/settings":
-                return <TitleWithBack>Ajustes</TitleWithBack>;
+            case "/join-communities":
+                return <TitleWithBack action={this.props.hasCommunities ? "back" : "logout"}>Unirse a comunidades</TitleWithBack>;
             case "/create-post":
                 return <TitleWithBack>Nueva publicación</TitleWithBack>;
             case "/create-issue":
@@ -50,4 +51,12 @@ class Header extends Component<RouteComponentProps> {
     }
 }
 
-export default withRouter(Header);
+export default withRouter(
+    connect((state: RootState) => {
+        const { community } = selectCommunity(state.community);
+        return {
+            communityName: community?.name || community?.address || "Comunidad",
+            hasCommunities: state.community.activeCommunity !== undefined,
+        };
+    })(Header),
+);

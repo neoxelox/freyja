@@ -12,7 +12,7 @@ import Button from "../../../component/atom/Button/Button";
 import { toast } from "react-hot-toast";
 
 interface StoreProps {
-    user?: UserDto;
+    user: UserDto;
     loading: boolean;
 }
 
@@ -46,14 +46,14 @@ class AuthCodePage extends Component<Props, state> {
         };
     }
 
-    async submit(e?) {
+    async submit(e?): Promise<void> {
         e?.preventDefault();
         if (this.state.code) {
             const success = await AuthService.loginEnd(this.state.code);
             if (success) {
                 const { user } = this.props;
-                if (user) this.props.history.push(MainRouterPage.HOME);
-                else this.props.history.replace(MainRouterPage.REGISTER);
+                if (user) this.props.history.replace(MainRouterPage.HOME);
+                else this.props.history.push(MainRouterPage.REGISTER);
             }
         }
     }
@@ -69,9 +69,9 @@ class AuthCodePage extends Component<Props, state> {
         return (
             <Auth>
                 <h4>Introduce el código que te hemos enviado</h4>
-                <form id="phoneCode" onSubmit={(e) => this.submit(e)}>
+                <form id="phoneCode" onSubmit={() => toast.error("El código no es correcto")}>
                     <Col gap={20}>
-                        <input value={code} name="phoneCode" placeholder="XX XX XX" onChange={(evt) => this.updateCode(evt)} required />
+                        <input value={code} name="phoneCode" placeholder="XX XX XX" required />
                         <Button type="submit" loading={loading}>
                             SIGUIENTE
                         </Button>
@@ -82,9 +82,7 @@ class AuthCodePage extends Component<Props, state> {
     }
 }
 
-export default withRouter(
-    connect((state: RootState) => ({
-        user: state.user.info,
-        loading: state.auth.loading,
-    }))(AuthCodePage),
-);
+export default connect((state: RootState) => ({
+    user: state.user.info,
+    loading: state.auth.loading,
+}))(withRouter(AuthCodePage));

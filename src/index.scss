@@ -1,7 +1,6 @@
 body {
     margin: 0;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow: hidden;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -45,6 +44,7 @@ button {
     border-radius: 25px;
     width: 100%;
     height: 42px;
+    font-weight: bold;
 
     &:disabled {
         filter: opacity(0.5);
@@ -56,11 +56,12 @@ button {
 
     > * {
         flex: 1;
-        padding: 20px 20px 20px 20px !important;
+        padding: 20px 20px 0 20px !important;
         margin: 0 auto;
         box-sizing: border-box;
         > * {
             width: 100%;
+            background-color: $light;
         }
     }
 }
