@@ -45,7 +45,6 @@ export default class RoleBadge extends Component<Props> {
                             className="role-icon"
                             style={{
                                 marginLeft: role === "PRESIDENT" ? "-1px" : "1px",
-                                zoom: role === "SECRETARY" ? 0.26 : undefined,
                             }}
                         />
                     </div>

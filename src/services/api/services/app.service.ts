@@ -4,6 +4,8 @@ import { authActions } from "../../../store/AuthStore";
 import { appActions } from "../../../store/AppStore";
 import { UserService } from "./user.service";
 import { CommunityService } from "./community.service";
+import { PostService } from "./post.service";
+import { selectCommunity } from "../../../store/CommunityStore";
 
 export class AppService {
     static async load(): Promise<void> {
@@ -11,6 +13,7 @@ export class AppService {
         const token = await new TokenSecureStorage().getToken();
         if (token) {
             await this.refresh();
+            this.setPostPoller();
         }
         store.dispatch(appActions.setLoading(false));
     }
@@ -20,5 +23,11 @@ export class AppService {
         await CommunityService.load();
         await CommunityService.invitations();
         store.dispatch(authActions.setLoggedIn(true));
+    }
+
+    static setPostPoller(): void {
+        const state = store.getState();
+        const communityId = selectCommunity(state.community)?.community?.id;
+        setInterval(() => PostService.getPosts(communityId), 8000);
     }
 }
