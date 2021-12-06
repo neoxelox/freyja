@@ -9,12 +9,18 @@ import { UserDto } from "../../services/model/user.dto";
 import { connect } from "react-redux";
 import { RootState } from "../../store";
 import { Image } from "../../component/atom/Image/Image";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import { MainRouterPage } from "../../router/MainRouter";
 
-interface Props {
+interface Props extends RouteComponentProps {
     info: UserDto;
 }
 
 class SettingsPage extends Component<Props> {
+    redirectToUserInfo() {
+        this.props.history.replace(MainRouterPage.USERINFO);
+    }
+
     render(): JSX.Element {
         const { info } = this.props;
 
@@ -34,7 +40,13 @@ class SettingsPage extends Component<Props> {
                         </Row>
                     </Col>
                     <Col>
-                        <Row gap={10} alignItems="center" justifyContent="space-between" className="setting-option">
+                        <Row
+                            gap={10}
+                            alignItems="center"
+                            justifyContent="space-between"
+                            className="setting-option"
+                            onClick={() => this.redirectToUserInfo()}
+                        >
                             Mis datos
                             <Icon icon="rightGreyArrow" />
                         </Row>
