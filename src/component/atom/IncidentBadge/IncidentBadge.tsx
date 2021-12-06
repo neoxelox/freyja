@@ -4,10 +4,10 @@ import { PostDto } from "../../../services/model/post.dto";
 import "./IncidentBadge.scss";
 
 interface Props {
-    // state: PostDto["incidentState"];
+    state: PostDto["state"];
 }
 
-export default class IncidentBadge extends Component<any> {
+export default class IncidentBadge extends Component<Props> {
     getBadgeBgAndText(): { bg: string; text: string } {
         switch (this.props.state) {
             case "RESOLVED":

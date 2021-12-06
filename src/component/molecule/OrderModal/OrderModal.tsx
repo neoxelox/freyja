@@ -48,7 +48,7 @@ export default class OrderModal extends Component<unknown, State> {
                         style={{ marginTop: "20px", marginBottom: "-20px", textAlign: "center" }}
                         onClick={() => this.dispatchResetorder()}
                     >
-                        Cancelar
+                        Limpiar
                     </p>
                 }
             >

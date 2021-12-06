@@ -120,6 +120,10 @@ h1 {
 
 p, h6, h5, h4, h3, h2, h1 {
     margin: 0;
+
+    &.light {
+        color: $secondary;
+    }
 }
 
 .mobile-back-icon {

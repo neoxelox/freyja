@@ -1,0 +1,12 @@
+@import "../../../index";
+
+.low-priority {
+  @include icon-color($info)
+}
+
+.medium-priority {
+  @include icon-color($warning)
+}
+.high-priority {
+  @include icon-color($danger)
+}

@@ -26,6 +26,10 @@ const PostSlice = createSlice({
             state.posts = payload;
             return state;
         },
+        setPost: (state, { payload }: PayloadAction<PostDto>) => {
+            state.posts = state.posts.map((post) => (post.id === payload.id ? payload : post));
+            return state;
+        },
         setFilter: (state, { payload }: PayloadAction<IssueFilter>) => {
             state.filter = payload;
             return state;

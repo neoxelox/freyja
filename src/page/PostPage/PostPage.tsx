@@ -1,157 +1,61 @@
-import Button from "../../component/atom/Button/Button";
 import React, { Component } from "react";
 import Post from "../../component/atom/Post/Post";
-import StateUpdate from "../../component/atom/StateUpdate/StateUpdate";
 import PostView from "../../component/molecule/PostView/PostView";
 import { PostDto } from "../../services/model/post.dto";
 import BasePage from "../BasePage/BasePage";
-import { Row } from "../../component/atom/Row/Row";
-import { Col } from "../../component/atom/Col/Col";
-import "./PostPage.scss";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { RootState } from "../../store";
+import { selectCommunity } from "../../store/CommunityStore";
+import { PostService } from "../../services/api/services/post.service";
 
 interface Params {
     id: string;
 }
 
-interface Comments {
+interface StoreProps {
+    communityId: string;
+}
+
+type Props = RouteComponentProps<Params> & StoreProps;
+
+interface State {
+    post: PostDto | undefined;
     comments: PostDto[];
 }
 
-type State = Partial<PostDto> &
-    Comments & {
-        showComments: boolean;
-        records: any[];
-    };
-
-export default class PostPage extends Component<any> {
+class PostPage extends Component<Props, State> {
     state: State = {
+        post: undefined,
         comments: [],
-        records: [],
-        showComments: true,
     };
 
-    componentDidMount(): void {
+    async componentDidMount(): Promise<void> {
         //Fetch post and comments and set page state with them
-        this.setState({
-            id: "1abcd",
-            text: "Hola! Este es el nuevo espacio de la comunidad. Aquí podeis poner problemas o inquietudes que tengais dentro de la misma.",
-            image: "https://esporters.today/__export/1596476953368/sites/gammers/img/2020/08/03/willyrex.jpg_1745358785.jpg",
-            likeCount: 2,
-            commentCount: 1,
-            name: "Willy",
-            flatID: "2-2",
-            isIncident: true,
-            type: "ISSUE",
-            state: "RESOLVED",
-            dayCount: 16,
-            comments: [
-                {
-                    id: "2abcd",
-                    text: "Hola! Este es el nuevo espacio de la comunidad. Aquí podeis poner problemas o inquietudes que tengais dentro de la misma.",
-                    image: "https://esporters.today/__export/1596476953368/sites/gammers/img/2020/08/03/willyrex.jpg_1745358785.jpg",
-                    likeCount: 2,
-                    commentCount: 1,
-                    name: "Willy",
-                    flatID: "2-2",
-                    isIncident: false,
-                    type: "PUBLICATION",
-                    dayCount: 16,
-                },
-                {
-                    id: "3abcd",
-                    text: "Hola! Este es el nuevo espacio de la comunidad. Aquí podeis poner problemas o inquietudes que tengais dentro de la misma.",
-                    image: "https://esporters.today/__export/1596476953368/sites/gammers/img/2020/08/03/willyrex.jpg_1745358785.jpg",
-                    likeCount: 2,
-                    commentCount: 1,
-                    name: "Willy",
-                    flatID: "2-2",
-                    isIncident: false,
-                    type: "PUBLICATION",
-                    dayCount: 16,
-                },
-                {
-                    id: "4abcd",
-                    text: "Hola! Este es el nuevo espacio de la comunidad. Aquí podeis poner problemas o inquietudes que tengais dentro de la misma.",
-                    image: "https://esporters.today/__export/1596476953368/sites/gammers/img/2020/08/03/willyrex.jpg_1745358785.jpg",
-                    likeCount: 2,
-                    commentCount: 1,
-                    name: "Willy",
-                    flatID: "2-2",
-                    isIncident: false,
-                    type: "PUBLICATION",
-                    dayCount: 16,
-                },
-            ],
-            records: [
-                {
-                    id: "2abcd",
-                    image: "https://esporters.today/__export/1596476953368/sites/gammers/img/2020/08/03/willyrex.jpg_1745358785.jpg",
-                    name: "Willy",
-                    flatID: "2-2",
-                    createdAt: "December 17, 1995 03:24:00",
-                    newState: "RESOLVED",
-                },
-                {
-                    id: "2abcd",
-                    image: "https://esporters.today/__export/1596476953368/sites/gammers/img/2020/08/03/willyrex.jpg_1745358785.jpg",
-                    name: "Willy",
-                    flatID: "2-2",
-                    createdAt: "December 17, 1995 03:24:00",
-                    newState: "IN PROGRESS",
-                },
-                {
-                    id: "2abcd",
-                    image: "https://esporters.today/__export/1596476953368/sites/gammers/img/2020/08/03/willyrex.jpg_1745358785.jpg",
-                    name: "Willy",
-                    flatID: "2-2",
-                    createdAt: "December 17, 1995 03:24:00",
-                    newState: "PENDING",
-                },
-            ],
-        });
+        const { id } = this.props.match.params;
+        const { communityId } = this.props;
+        const post = await PostService.getPost(communityId, id);
+        if (post) this.setState({ post });
     }
 
     render(): JSX.Element {
-        const { comments, type, showComments, records } = this.state;
+        const { comments, post } = this.state;
 
         return (
-            <BasePage>
-                {type === "PUBLICATION" && (
-                    <div>
-                        <PostView {...this.state} />
+            <BasePage footer={false}>
+                {post && (
+                    <>
+                        <PostView post={post} onVote={(val) => this.setState({ post: val })} />
                         {comments.map((comment: PostDto, i: number) => (
-                            <Post key={i.toString()} {...comment} />
+                            <Post key={i.toString()} post={comment} />
                         ))}
-                    </div>
-                )}
-                {type === "ISSUE" && (
-                    <div>
-                        <PostView {...this.state} />
-                        <Row gap={8} alignItems="center" justifyContent="space-around" className="comment-or-record-btns">
-                            <Col alignItems="center">
-                                <Button
-                                    appearence={showComments ? "secondary" : "tertiary"}
-                                    size="sm"
-                                    onClick={() => this.setState({ showComments: true })}
-                                >
-                                    Comentarios
-                                </Button>
-                            </Col>
-                            <Col alignItems="center">
-                                <Button
-                                    appearence={showComments ? "tertiary" : "secondary"}
-                                    size="sm"
-                                    onClick={() => this.setState({ showComments: false })}
-                                >
-                                    Historial
-                                </Button>
-                            </Col>
-                        </Row>
-                        {showComments && comments.map((comment: PostDto, i: number) => <Post key={i.toString()} {...comment} />)}
-                        {!showComments && records.map((record: any, i: number) => <StateUpdate key={i.toString()} {...record} />)}
-                    </div>
+                    </>
                 )}
             </BasePage>
         );
     }
 }
+
+export default connect((state: RootState) => ({
+    communityId: selectCommunity(state.community).community.id,
+}))(withRouter(PostPage));
