@@ -10,6 +10,7 @@ import { UpdateEmailEndResponse } from "../responses/user/update-email-end.respo
 import { apiErrorHandler } from "../../../utils/api-error-handler";
 import { UserDto } from "../../model/user.dto";
 import { AppService } from "./app.service";
+import { selectCommunity } from "../../../store/CommunityStore";
 
 export class UserService {
     static async update(info: UpdateRequest): Promise<boolean> {
@@ -50,5 +51,10 @@ export class UserService {
     static async info(): Promise<void> {
         const res = await request<UserDto>({ method: "GET", path: "/v1/user/profile" }).catch((e) => apiErrorHandler(e));
         if (res) store.dispatch(userActions.setInfo(res));
+    }
+
+    static userHasPowers(): boolean {
+        const role = selectCommunity(store.getState().community)?.membership.role;
+        return role === "ADMINISTRATOR" || role === "SECRETARY" || role === "PRESIDENT";
     }
 }

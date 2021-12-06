@@ -1,0 +1,27 @@
+@import "../../../index";
+
+.update-history {
+  button {
+    background-color: transparent;
+
+    &.accept-history {
+      border: 2px solid $info;
+      color: $info;
+    }
+
+    &.reject-history {
+      border: 2px solid $danger;
+      color: $danger;
+    }
+
+    &.start-history {
+      border: 2px solid $warning;
+      color: $warning;
+    }
+
+    &.resolve-history {
+      border: 2px solid $success;
+      color: $success;
+    }
+  }
+}

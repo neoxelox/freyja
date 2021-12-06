@@ -9,6 +9,7 @@ import { UserService } from "../../../services/api/services/user.service";
 import { MainRouterPage } from "../../../router/MainRouter";
 import { Col } from "../../../component/atom/Col/Col";
 import { toast } from "react-hot-toast";
+import { AppService } from "../../../services/api/services/app.service";
 
 interface Props extends RouteComponentProps {
     loading: boolean;
@@ -47,7 +48,10 @@ class RegisterCodePage extends Component<Props, state> {
         const { code } = this.state;
         if (code) {
             const success = await UserService.updateEmailEnd(code);
-            if (success) this.props.history.replace(MainRouterPage.HOME);
+            if (success) {
+                AppService.setLoadingTimeout();
+                this.props.history.replace(MainRouterPage.HOME);
+            }
         }
     }
 

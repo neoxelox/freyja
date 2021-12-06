@@ -1,0 +1,14 @@
+.loading-page {
+  background: linear-gradient(150deg, rgba(167,139,250,1) 0%, rgba(99,102,241,1) 50%);
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+
+  .spinner-border {
+    width: 100px;
+    height: 100px;
+  }
+}

@@ -20,11 +20,16 @@ import Button from "../../atom/Button/Button";
 import { classNames } from "@agustinmj/class-names";
 import PostComments from "./PostComments/PostComments";
 import PostHistory from "./PostHistory/PostHistory";
+import { UserService } from "../../../services/api/services/user.service";
+import UpdateHistory from "../UpdateHistory/UpdateHistory";
 
 interface Props {
     post: PostDto;
     communityId: string;
+    role: MembershipDto["role"];
     onVote: (post: PostDto) => any;
+    onUpdate: () => any;
+    lastRefresh: Date;
 }
 
 interface State {
@@ -51,7 +56,7 @@ class PostView extends Component<Props, State> {
     }
 
     render(): JSX.Element {
-        const { post, onVote } = this.props;
+        const { post, onVote, onUpdate, lastRefresh } = this.props;
         const { user, membership, tab } = this.state;
         const isIncident = post.type === "ISSUE";
 
@@ -81,6 +86,7 @@ class PostView extends Component<Props, State> {
                             <div>{post.message}</div>
                             {isIncident && <IncidentBadge state={post.state} />}
                             <div className="post-date">{formatDate(new Date(post.created_at))}</div>
+                            {isIncident && UserService.userHasPowers() && <UpdateHistory post={post} onUpdate={() => onUpdate()} />}
                             <PostFooter post={post} onVote={(val) => onVote(val)} />
                         </Col>
                         {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon" />}
@@ -106,12 +112,20 @@ class PostView extends Component<Props, State> {
                         </Button>
                     </Row>
                 )}
-                {tab === "comments" ? <PostComments post={post} postCreatorName={user?.name} /> : <PostHistory post={post} />}
+                {tab === "comments" ? (
+                    <PostComments post={post} postCreatorName={user?.name} lastRefresh={lastRefresh} />
+                ) : (
+                    <PostHistory post={post} lastRefresh={lastRefresh} />
+                )}
             </>
         );
     }
 }
 
-export default connect((state: RootState) => ({
-    communityId: selectCommunity(state.community).community.id,
-}))(PostView);
+export default connect((state: RootState) => {
+    const community = selectCommunity(state.community);
+    return {
+        communityId: community?.community?.id,
+        role: community?.membership?.role,
+    };
+})(PostView);

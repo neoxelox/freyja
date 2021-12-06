@@ -18,10 +18,10 @@
   .invitation-deny {
     background-color: transparent;
     color: $danger;
+    border: $danger 2px solid;
 
     &.invitation-denied {
       background-color: $danger;
-      border: $danger 2px solid;
       color: white;
     }
   }
@@ -29,10 +29,10 @@
   .invitation-accept {
     background-color: transparent;
     color: $success;
+    border: $success 2px solid;
 
     &.invitation-accepted {
       background-color: $success;
-      border: $success 2px solid;
       color: white;
     }
   }

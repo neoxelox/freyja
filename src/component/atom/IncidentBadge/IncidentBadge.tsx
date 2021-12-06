@@ -18,7 +18,7 @@ export default class IncidentBadge extends Component<Props> {
             case "PENDING":
                 return {
                     bg: "secondary",
-                    text: "PENDIENTE DE APROVACIÓN",
+                    text: "PENDIENTE DE APROBACIÓN",
                 };
             case "ACCEPTED":
                 return {

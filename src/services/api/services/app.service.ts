@@ -13,8 +13,8 @@ export class AppService {
         const token = await new TokenSecureStorage().getToken();
         if (token) {
             await this.refresh();
-            this.setPostPoller();
         }
+        await new Promise((resolve) => setTimeout(() => resolve(null), 2000));
         store.dispatch(appActions.setLoading(false));
     }
 
@@ -29,5 +29,11 @@ export class AppService {
         const state = store.getState();
         const communityId = selectCommunity(state.community)?.community?.id;
         setInterval(() => PostService.getPosts(communityId), 8000);
+    }
+
+    static async setLoadingTimeout(): Promise<void> {
+        store.dispatch(appActions.setLoading(true));
+        await new Promise((resolve) => setTimeout(() => resolve(null), 2000));
+        store.dispatch(appActions.setLoading(false));
     }
 }

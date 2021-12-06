@@ -10,6 +10,7 @@ import { GetCommunityResponse } from "../responses/community/get-community.respo
 import { UserDto } from "../../model/user.dto";
 import { MembershipDto } from "../../model/membership.dto";
 import { GetUserAndMembershipResponse } from "../responses/community/get-user-and-membership.response";
+import { AppService } from "./app.service";
 
 export class CommunityService {
     static async load(): Promise<void> {
@@ -17,7 +18,10 @@ export class CommunityService {
         const res = await request<ListCommunitiesResponse>({ method: "GET", path: "/v1/community" }).catch((e) => apiErrorHandler(e));
         if (res) {
             store.dispatch(communityActions.setCommunities(res.communities));
-            if (res.communities.length) store.dispatch(communityActions.setActiveCommunity(0));
+            if (res.communities.length) {
+                store.dispatch(communityActions.setActiveCommunity(0));
+                AppService.setPostPoller();
+            }
         }
         store.dispatch(communityActions.setLoading(false));
     }

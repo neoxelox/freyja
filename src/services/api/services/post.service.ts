@@ -12,6 +12,8 @@ import { VotePostResponse } from "../responses/post/vote-post.response";
 import { GetCommentsResponse } from "../responses/post/get-comments.response";
 import { GetHistoryResponse } from "../responses/post/get-history.response";
 import { PostHistoryDto } from "../../model/post-history.dto";
+import { UpdatePostRequest } from "../requests/post/update-post.request";
+import { UpdatePostResponse } from "../responses/post/update-post.response";
 
 export type IssueOrder = "date" | "priority" | undefined;
 export type OrderType = "asc" | "desc";
@@ -78,6 +80,14 @@ export class PostService {
         );
         store.dispatch(PostAction.setLoading(false));
         return !!res;
+    }
+
+    static async updateIssueState(communityId: string, postId: string, post: UpdatePostRequest): Promise<PostDto | void> {
+        return await request<UpdatePostResponse>({
+            method: "PUT",
+            path: "/v1/community/" + communityId + "/post/" + postId,
+            body: post,
+        }).catch((e) => apiErrorHandler(e));
     }
 
     static async votePost(communityId: string, postId: string): Promise<PostDto | void> {

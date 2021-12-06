@@ -10,6 +10,7 @@ import History from "../../../atom/History/History";
 interface Props {
     post: PostDto;
     communityId: string;
+    lastRefresh: Date;
 }
 
 interface State {
@@ -17,19 +18,18 @@ interface State {
 }
 
 class PostComments extends Component<Props> {
-    historyPoller: NodeJS.Timeout;
-
     state: State = {
         history: [],
     };
 
     async componentDidMount(): Promise<void> {
         await this.loadHistory();
-        this.historyPoller = setInterval(() => this.loadHistory(), 8000);
     }
 
-    componentWillUnmount() {
-        clearInterval(this.historyPoller);
+    componentDidUpdate(prevProps: Readonly<Props>) {
+        const { lastRefresh } = this.props;
+        const shouldUpdate = prevProps.lastRefresh < lastRefresh;
+        if (shouldUpdate) this.loadHistory();
     }
 
     async loadHistory(): Promise<void> {
@@ -40,14 +40,9 @@ class PostComments extends Component<Props> {
 
     render(): JSX.Element {
         const { history } = this.state;
+        const { lastRefresh, post } = this.props;
 
-        return (
-            <>
-                {history.map((h: PostDto, i: number) => (
-                    <History key={i.toString()} history={h} />
-                ))}
-            </>
-        );
+        return <>{lastRefresh && history.map((h: PostDto, i: number) => <History key={i.toString()} history={h} post={post} />)}</>;
     }
 }
 

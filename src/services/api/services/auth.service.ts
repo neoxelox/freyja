@@ -10,6 +10,7 @@ import { TokenSecureStorage } from "../../storage/TokenSecureStorage";
 import { apiErrorHandler } from "../../../utils/api-error-handler";
 import { AppService } from "./app.service";
 import { UserDto } from "../../model/user.dto";
+import { appActions } from "../../../store/AppStore";
 
 export class AuthService {
     static async loginStart(phone: string): Promise<boolean> {
@@ -43,6 +44,7 @@ export class AuthService {
         await new TokenSecureStorage().clear();
         store.dispatch(authActions.setLoggedIn(false));
         store.dispatch(userActions.setInfo(undefined));
+        store.dispatch(appActions.setLoading(true));
         window.location.replace("/auth");
     }
 }

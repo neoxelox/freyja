@@ -11,6 +11,7 @@ interface Props {
     post: PostDto;
     postCreatorName: string;
     communityId: string;
+    lastRefresh: Date;
 }
 
 interface State {
@@ -18,19 +19,18 @@ interface State {
 }
 
 class PostComments extends Component<Props> {
-    commentPoller: NodeJS.Timeout;
-
     state: State = {
         comments: [],
     };
 
     async componentDidMount(): Promise<void> {
         await this.loadComments();
-        this.commentPoller = setInterval(() => this.loadComments(), 8000);
     }
 
-    componentWillUnmount() {
-        clearInterval(this.commentPoller);
+    componentDidUpdate(prevProps: Readonly<Props>) {
+        const { lastRefresh } = this.props;
+        const shouldUpdate = prevProps.lastRefresh < lastRefresh;
+        if (shouldUpdate) this.loadComments();
     }
 
     async loadComments(): Promise<void> {
@@ -42,7 +42,6 @@ class PostComments extends Component<Props> {
     render(): JSX.Element {
         const { post, postCreatorName } = this.props;
         const { comments } = this.state;
-
         return (
             <>
                 <PostReply post={post} postCreatorName={postCreatorName} onReply={() => this.loadComments()} />

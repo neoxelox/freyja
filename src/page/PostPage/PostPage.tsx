@@ -20,6 +20,7 @@ type Props = RouteComponentProps<Params> & StoreProps;
 
 interface State {
     post: PostDto | undefined;
+    lastRefresh: Date;
 }
 
 class PostPage extends Component<Props, State> {
@@ -27,6 +28,7 @@ class PostPage extends Component<Props, State> {
 
     state: State = {
         post: undefined,
+        lastRefresh: new Date(),
     };
 
     async componentDidMount(): Promise<void> {
@@ -49,18 +51,21 @@ class PostPage extends Component<Props, State> {
         const { id } = this.props.match.params;
         const { communityId } = this.props;
         const post = await PostService.getPost(communityId, id);
-        if (post) this.setState({ post });
+        if (post) this.setState({ post, lastRefresh: new Date() });
     }
 
     render(): JSX.Element {
-        const { post } = this.state;
+        const { post, lastRefresh } = this.state;
 
         return (
             <BasePage footer={false}>
                 {post && (
-                    <>
-                        <PostView post={post} onVote={(val) => this.setState({ post: val })} />
-                    </>
+                    <PostView
+                        post={post}
+                        onVote={(val) => this.setState({ post: val })}
+                        onUpdate={() => this.loadPost()}
+                        lastRefresh={lastRefresh}
+                    />
                 )}
             </BasePage>
         );

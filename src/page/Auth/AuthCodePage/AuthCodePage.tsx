@@ -10,6 +10,7 @@ import Auth from "../Auth";
 import { Col } from "../../../component/atom/Col/Col";
 import Button from "../../../component/atom/Button/Button";
 import { toast } from "react-hot-toast";
+import { AppService } from "../../../services/api/services/app.service";
 
 interface StoreProps {
     user: UserDto;
@@ -52,8 +53,10 @@ class AuthCodePage extends Component<Props, state> {
             const success = await AuthService.loginEnd(this.state.code);
             if (success) {
                 const { user } = this.props;
-                if (user) this.props.history.replace(MainRouterPage.HOME);
-                else this.props.history.push(MainRouterPage.REGISTER);
+                if (user) {
+                    AppService.setLoadingTimeout();
+                    this.props.history.replace(MainRouterPage.HOME);
+                } else this.props.history.push(MainRouterPage.REGISTER);
             }
         }
     }
