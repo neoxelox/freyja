@@ -9,7 +9,7 @@ interface Props {
     icon?: keyof typeof icons;
     selectedIcon?: keyof typeof icons;
     children: string;
-    to: string;
+    to?: string;
     align?: "row" | "column";
 }
 
@@ -26,7 +26,13 @@ export default class LocationLink extends Component<Props> {
         return (
             <Link
                 to={to}
-                className={classNames("location-link", this.isActive() && "location-link-active", align === "row" && "location-link-row")}
+                className={classNames(
+                    "location-link",
+                    this.isActive() && "location-link-active",
+                    align === "row" && "location-link-row",
+                    to === undefined && "location-link-disabled",
+                )}
+                onClick={to === undefined ? (e) => e.preventDefault() : () => undefined}
             >
                 {icon && (this.isActive() && selectedIcon ? <Icon icon={selectedIcon} size="sm" /> : <Icon icon={icon} size="sm" />)}
                 <h5>{children}</h5>

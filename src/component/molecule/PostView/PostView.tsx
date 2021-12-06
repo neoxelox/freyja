@@ -46,6 +46,14 @@ class PostView extends Component<Props, State> {
     };
 
     async componentDidMount(): Promise<void> {
+        await this.loadUser();
+    }
+
+    async componentDidUpdate(prevProps: Readonly<Props>): Promise<void> {
+        if (prevProps.post.id !== this.props.post.id) await this.loadUser();
+    }
+
+    async loadUser(): Promise<void> {
         const { post, communityId } = this.props;
 
         const res = await CommunityService.getUserAndMembership(communityId, post.creator_id);

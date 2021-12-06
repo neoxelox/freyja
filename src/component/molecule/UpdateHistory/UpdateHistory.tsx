@@ -51,36 +51,26 @@ class UpdateHistory extends Component<Props, State> {
                 );
             case "ACCEPTED":
                 return (
-                    <>
-                        <Button disabled={loading} onClick={() => this.updateHistory("IN PROGRESS")} size="md" className="start-history">
-                            EMPEZAR
-                        </Button>
-                        <Button disabled={loading} onClick={() => this.updateHistory("REJECTED")} size="md" className="reject-history">
-                            DENEGAR
-                        </Button>
-                    </>
+                    <Button disabled={loading} onClick={() => this.updateHistory("IN_PROGRESS")} size="md" className="start-history">
+                        EMPEZAR
+                    </Button>
                 );
-            case "IN PROGRESS":
+            case "IN_PROGRESS":
                 return (
-                    <>
-                        <Button disabled={loading} onClick={() => this.updateHistory("RESOLVED")} size="md" className="resolve-history">
-                            RESOLVER
-                        </Button>
-                        <Button disabled={loading} onClick={() => this.updateHistory("ACCEPTED")} size="md" className="accept-history">
-                            MARCAR COMO ACEPTADA
-                        </Button>
-                    </>
+                    <Button disabled={loading} onClick={() => this.updateHistory("RESOLVED")} size="md" className="resolve-history">
+                        RESOLVER
+                    </Button>
                 );
             case "REJECTED":
                 return (
                     <Button disabled={loading} onClick={() => this.updateHistory("ACCEPTED")} size="md" className="accept-history">
-                        ACEPTAR
+                        REABRIR
                     </Button>
                 );
             case "RESOLVED":
                 return (
-                    <Button disabled={loading} onClick={() => this.updateHistory("IN PROGRESS")} size="md" className="start-history">
-                        VOLVER A ABRIR
+                    <Button disabled={loading} onClick={() => this.updateHistory("IN_PROGRESS")} size="md" className="start-history">
+                        REABRIR
                     </Button>
                 );
         }

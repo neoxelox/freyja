@@ -44,6 +44,7 @@ class JoinCommunitiesPage extends Component<Props, State> {
             ),
         );
 
+        AppService.setLoadingTimeout();
         await AppService.refresh();
 
         if (responses.every((r) => r === true)) history.replace(MainRouterPage.HOME);

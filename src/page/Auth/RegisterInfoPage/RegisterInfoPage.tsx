@@ -63,7 +63,8 @@ class RegisterInfoPage extends Component<Props, state> {
     }
 
     async omit() {
-        await AppService.load();
+        AppService.setLoadingTimeout();
+        await AppService.refresh();
         this.props.history.replace(MainRouterPage.HOME);
     }
 
@@ -102,10 +103,11 @@ class RegisterInfoPage extends Component<Props, state> {
                         <Button type="submit" loading={loading}>
                             SIGUIENTE
                         </Button>
-
-                        <h5 onClick={() => this.omit()}>Omitir</h5>
                     </Col>
                 </form>
+                <h5 onClick={() => this.omit()} role="button">
+                    Omitir
+                </h5>
             </Auth>
         );
     }

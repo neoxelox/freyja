@@ -25,7 +25,15 @@ class VoteIcon extends Component<Props, State> {
         voted: false,
     };
 
-    componentDidMount() {
+    async componentDidMount(): Promise<void> {
+        await this.isVoted();
+    }
+
+    async componentDidUpdate(prevProps: Readonly<Props>): Promise<void> {
+        if (prevProps.post.id !== this.props.post.id) await this.isVoted();
+    }
+
+    async isVoted(): Promise<void> {
         const { post, membershipId } = this.props;
         this.setState({ voted: !!post.voter_ids.find((id) => id === membershipId) });
     }

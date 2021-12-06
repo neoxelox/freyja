@@ -48,7 +48,7 @@ const PostSlice = createSlice({
 export function isStateFilter(filter: IssueFilter): boolean {
     switch (filter) {
         case "PENDING":
-        case "IN PROGRESS":
+        case "IN_PROGRESS":
         case "REJECTED":
         case "ACCEPTED":
         case "RESOLVED":
@@ -97,6 +97,14 @@ function getCompareFunction(order: IssueOrder): (a: PostDto, b: PostDto) => numb
     }
 }
 
+function filterByPriority(post: PostDto, priorityFilter: number): boolean {
+    if (priorityFilter === 0) return post.priority < 5;
+    else if (priorityFilter === 5) return post.priority >= 5 && post.priority < 10;
+    else {
+        return post.priority >= 10;
+    }
+}
+
 function orderIssues(issues: PostDto[], order: IssueOrder): PostDto[] {
     const compareFunction = getCompareFunction(order);
     return compareFunction ? issues.sort((a, b) => compareFunction(a, b)) : issues;
@@ -111,7 +119,9 @@ export const selectIssues = (state: PostState) => {
     const issues = posts.filter(
         (post) =>
             post.type === "ISSUE" &&
-            (!filter || (stateFilter && post.state === stateFilter) || (priorityFilter && post.priority === priorityFilter)),
+            (filter === undefined ||
+                (stateFilter && post.state === stateFilter) ||
+                (priorityFilter !== undefined && filterByPriority(post, priorityFilter as number))),
     );
     return orderIssues(issues, order);
 };

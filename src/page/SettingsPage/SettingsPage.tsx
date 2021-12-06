@@ -11,6 +11,7 @@ import { RootState } from "../../store";
 import { selectCommunity } from "../../store/CommunityStore";
 import { CommunityAndMembershipDto } from "../../services/model/community-and-membership.dto";
 import ProfileImage from "../../component/atom/ProfileImage/ProfileImage";
+import { role } from "../../utils/role";
 
 interface Props {
     info: UserDto;
@@ -39,6 +40,9 @@ class SettingsPage extends Component<Props> {
                         </Row>
                         <Row gap={10} alignItems="center" style={{ textAlign: "center" }} justifyContent="center">
                             {community.community.name || community.community.address} <br /> {community.membership.door}
+                        </Row>
+                        <Row justifyContent="center">
+                            <h5 className="light">{role(community.membership.role)}</h5>
                         </Row>
                     </Col>
                     <Col>

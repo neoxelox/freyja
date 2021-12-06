@@ -34,4 +34,14 @@
         color: $primary;
         @include icon-color($primary);
     }
+
+    &.location-link-disabled {
+        color: $secondary;
+        @include icon-color($secondary);
+
+        &:hover {
+            color: $secondary;
+            @include icon-color($secondary);
+        }
+    }
 }

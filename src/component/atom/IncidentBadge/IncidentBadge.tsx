@@ -30,7 +30,7 @@ export default class IncidentBadge extends Component<Props> {
                     bg: "danger",
                     text: "RECHAZADA",
                 };
-            case "IN PROGRESS":
+            case "IN_PROGRESS":
             default:
                 return {
                     bg: "warning",

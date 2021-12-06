@@ -18,7 +18,7 @@ function getStateClassName(state: PostDto["state"]): string {
             return "rejected";
         case "ACCEPTED":
             return "accepted";
-        case "IN PROGRESS":
+        case "IN_PROGRESS":
             return "in-progress";
         case "RESOLVED":
             return "resolved";
@@ -57,9 +57,9 @@ const states: StateOption[] = [
         onClick: () => dispatchStateFilter("ACCEPTED"),
     },
     {
-        state: "IN PROGRESS",
+        state: "IN_PROGRESS",
         text: "En progreso",
-        onClick: () => dispatchStateFilter("IN PROGRESS"),
+        onClick: () => dispatchStateFilter("IN_PROGRESS"),
     },
     {
         state: "RESOLVED",

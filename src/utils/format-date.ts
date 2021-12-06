@@ -38,9 +38,9 @@ export function getMonth(date: Date): string {
 
 export function formatDate(date: Date): string {
     return (
-        getHour(date) +
+        twoDigits(getHour(date)) +
         ":" +
-        date.getMinutes() +
+        twoDigits(date.getMinutes()) +
         " " +
         getPartOfTheDay(date) +
         " · " +
@@ -50,4 +50,9 @@ export function formatDate(date: Date): string {
         ", " +
         date.getFullYear()
     );
+}
+
+export function twoDigits(n: number): string {
+    if (n < 10) return "0" + n.toString();
+    else return n.toString();
 }

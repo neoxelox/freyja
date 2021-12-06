@@ -19,7 +19,7 @@ export default class Footer extends Component {
                     </LocationLink>
                 </Col>
                 <Col gap={10}>
-                    <LocationLink to="/calendar" icon="calendarOutline" selectedIcon="calendar">
+                    <LocationLink icon="calendarOutline" selectedIcon="calendar">
                         Calendario
                     </LocationLink>
                 </Col>

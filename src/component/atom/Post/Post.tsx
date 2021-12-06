@@ -36,6 +36,14 @@ class Post extends Component<Props, State> {
     };
 
     async componentDidMount(): Promise<void> {
+        await this.loadUser();
+    }
+
+    async componentDidUpdate(prevProps: Readonly<Props>): Promise<void> {
+        if (prevProps.post.id !== this.props.post.id) await this.loadUser();
+    }
+
+    async loadUser(): Promise<void> {
         const { post, communityId } = this.props;
 
         const res = await CommunityService.getUserAndMembership(communityId, post.creator_id);
@@ -73,7 +81,7 @@ class Post extends Component<Props, State> {
                                 <Col gap={10}>
                                     <p className="post-text">{getPostPreview(post.message)}</p>
                                     {isIncident && <IncidentBadge state={post.state} />}
-                                    <PostFooter post={post} onVote={(val) => onVote(val)} />
+                                    <PostFooter post={post} onVote={(val) => onVote?.(val)} />
                                 </Col>
                             </Col>
                         </Row>
