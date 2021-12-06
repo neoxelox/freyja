@@ -16,6 +16,10 @@ import { role } from "../../../utils/role";
 import { connect } from "react-redux";
 import { RootState } from "../../../store";
 import { selectCommunity } from "../../../store/CommunityStore";
+import Button from "../../atom/Button/Button";
+import { classNames } from "@agustinmj/class-names";
+import PostComments from "./PostComments/PostComments";
+import PostHistory from "./PostHistory/PostHistory";
 
 interface Props {
     post: PostDto;
@@ -26,12 +30,14 @@ interface Props {
 interface State {
     user: UserDto | undefined;
     membership: MembershipDto | undefined;
+    tab: "comments" | "history";
 }
 
 class PostView extends Component<Props, State> {
     state: State = {
         user: undefined,
         membership: undefined,
+        tab: "comments",
     };
 
     async componentDidMount(): Promise<void> {
@@ -46,39 +52,62 @@ class PostView extends Component<Props, State> {
 
     render(): JSX.Element {
         const { post, onVote } = this.props;
-        const { user, membership } = this.state;
+        const { user, membership, tab } = this.state;
         const isIncident = post.type === "ISSUE";
 
         return (
-            <Card className="post-view">
-                <div className="mt-1">
-                    <Row gap={10} alignItems="center" justifyContent="flex-start" className="mb-2">
-                        <ProfileImage image={user?.picture} role={membership?.role} />
+            <>
+                <Card className="post-view">
+                    <div className="mt-1">
+                        <Row gap={10} alignItems="center" justifyContent="flex-start" className="mb-2">
+                            <ProfileImage image={user?.picture} role={membership?.role} />
 
-                        <Col>
-                            <Row gap={5}>
-                                <p style={{ marginBottom: 0 }} className="username">
-                                    {user?.name}
+                            <Col>
+                                <Row gap={5}>
+                                    <p style={{ marginBottom: 0 }} className="username">
+                                        {user?.name}
+                                    </p>
+                                    <p style={{ marginBottom: 0 }} className="flat-id">
+                                        {"· " + membership?.door}
+                                    </p>
+                                </Row>
+                                <p style={{ marginBottom: 0 }} className="role">
+                                    {membership ? role(membership.role) : ""}
                                 </p>
-                                <p style={{ marginBottom: 0 }} className="flat-id">
-                                    {"· " + membership?.door}
-                                </p>
-                            </Row>
-                            <p style={{ marginBottom: 0 }} className="role">
-                                {membership ? role(membership.role) : ""}
-                            </p>
+                            </Col>
+                        </Row>
+
+                        <Col gap={10}>
+                            <div>{post.message}</div>
+                            {isIncident && <IncidentBadge state={post.state} />}
+                            <div className="post-date">{formatDate(new Date(post.created_at))}</div>
+                            <PostFooter post={post} onVote={(val) => onVote(val)} />
                         </Col>
+                        {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon" />}
+                    </div>
+                </Card>
+                {isIncident && (
+                    <Row className="issue-tabs" justifyContent="space-between">
+                        <Button
+                            appearence="secondary"
+                            size="md"
+                            className={classNames(tab === "comments" && "issue-tab-active")}
+                            onClick={() => this.setState({ tab: "comments" })}
+                        >
+                            COMENTARIOS
+                        </Button>
+                        <Button
+                            appearence="secondary"
+                            size="md"
+                            className={classNames(tab === "history" && "issue-tab-active")}
+                            onClick={() => this.setState({ tab: "history" })}
+                        >
+                            HISTORIAL
+                        </Button>
                     </Row>
-
-                    <Col gap={10}>
-                        <div>{post.message}</div>
-                        <div className="post-date">{formatDate(new Date(post.created_at))}</div>
-                        {isIncident && <IncidentBadge state={post.state} />}
-                        <PostFooter post={post} onVote={(val) => onVote(val)} />
-                    </Col>
-                    {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon" />}
-                </div>
-            </Card>
+                )}
+                {tab === "comments" ? <PostComments post={post} postCreatorName={user?.name} /> : <PostHistory post={post} />}
+            </>
         );
     }
 }

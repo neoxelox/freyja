@@ -21,6 +21,7 @@ interface Props {
     post: PostDto;
     communityId: string;
     isAnchored?: boolean;
+    onVote?: (post: PostDto) => any;
 }
 
 interface State {
@@ -45,7 +46,7 @@ class Post extends Component<Props, State> {
     }
 
     render(): JSX.Element {
-        const { post, isAnchored } = this.props;
+        const { post, isAnchored, onVote } = this.props;
         const { user, membership } = this.state;
         const isIncident = post.type === "ISSUE";
         return (
@@ -69,11 +70,11 @@ class Post extends Component<Props, State> {
                                         {"· " + membership?.door}
                                     </p>
                                 </Row>
-                                <div>
+                                <Col gap={10}>
                                     <p className="post-text">{getPostPreview(post.message)}</p>
                                     {isIncident && <IncidentBadge state={post.state} />}
-                                    <PostFooter post={post} />
-                                </div>
+                                    <PostFooter post={post} onVote={(val) => onVote(val)} />
+                                </Col>
                             </Col>
                         </Row>
                         {isIncident && <Icon icon="incidentIcon" size="xs" color="#6B7280" className="incident-icon" />}

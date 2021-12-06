@@ -5,12 +5,12 @@ import "./Button.scss";
 interface Props extends DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
     loading?: boolean;
     appearence?: "primary" | "secondary" | "tertiary";
-    size?: "md" | "sm";
+    size?: "lg" | "md" | "sm";
 }
 
 export default class Button extends Component<Props> {
     render(): JSX.Element {
-        const { loading, children, disabled, appearence = "primary", size = "md", className, ...buttonProps } = this.props;
+        const { loading, children, disabled, appearence = "primary", size = "lg", className, ...buttonProps } = this.props;
 
         return (
             <button

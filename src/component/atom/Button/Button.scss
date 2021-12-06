@@ -18,6 +18,11 @@ button {
     color: $dark;
   }
 
+  &.button-md {
+    height: 34px;
+    max-width: 150px;
+  }
+
   &.button-sm {
     height: 34px;
     max-width: 100px;

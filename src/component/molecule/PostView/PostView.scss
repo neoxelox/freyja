@@ -1,13 +1,15 @@
 @import "../../../assets/style/colors.scss";
 
 .post-view {
+    position: relative;
+
     padding: 20px;
     border-radius: 0 !important;
 
     color: $dark;
 
-    border: none;
-    border-bottom: solid 2px $primary;
+    border: none !important;
+    border-bottom: solid 2px $primary !important;
 
     .username {
         font-weight: bold;
@@ -17,5 +19,26 @@
     .role,
     .post-date {
         color: $secondary;
+    }
+
+    .incident-icon {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+    }
+}
+
+.issue-tabs {
+    padding: 20px 20px 0;
+
+    button {
+        border: 2px solid $primary;
+        color: $primary;
+        background-color: transparent;
+
+        &.issue-tab-active {
+            color: white;
+            background-color: $primary;
+        }
     }
 }

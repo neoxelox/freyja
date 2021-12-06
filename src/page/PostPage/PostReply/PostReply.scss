@@ -1,0 +1,13 @@
+@import "../../../index";
+
+.post-reply {
+  padding: 20px;
+  border-bottom: solid $secondary 1px;
+
+  .reply-input {
+    padding: 0 !important;
+    height: 80px !important;
+    max-height: 80px !important;
+    min-height: 80px !important;
+  }
+}

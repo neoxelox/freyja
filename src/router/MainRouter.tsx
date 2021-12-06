@@ -23,6 +23,7 @@ export enum MainRouterPage {
     REGISTERINFO = "/register/info",
     REGISTERCODE = "/register/code",
     POST = "/post/:id",
+    ISSUE = "/issue/:id",
     ISSUES = "/issues",
     CREATEPOST = "/create-post",
     CREATEISSUE = "/create-issue",
@@ -55,7 +56,7 @@ export default function MainRouter(): JSX.Element {
             <PrivateRoute path={MainRouterPage.HOME} exact>
                 <DashboardPage />
             </PrivateRoute>
-            <PrivateRoute path={MainRouterPage.POST} exact>
+            <PrivateRoute path={[MainRouterPage.POST, MainRouterPage.ISSUE]} exact>
                 <PostPage />
             </PrivateRoute>
             <PrivateRoute path={MainRouterPage.ISSUES}>

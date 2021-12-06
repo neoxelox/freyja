@@ -19,7 +19,7 @@
         border-left: solid 1px $light;
         border-right: solid 1px $light;
 
-        @media (max-width: $break-mobile) {
+        @media (max-width: 600px) {
             margin: 0 auto 90px;
             min-width: unset;
 

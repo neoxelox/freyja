@@ -22,4 +22,9 @@
     @media (max-width: $break-mobile) {
         display: flex !important;
     }
+
+    @media (max-width: 600px) {
+        border-left: none;
+        border-right: none;
+    }
 }

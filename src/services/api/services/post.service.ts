@@ -9,6 +9,9 @@ import { CreatePostRequest } from "../requests/post/create-post.request";
 import { CreatePostResponse } from "../responses/post/create-post.response";
 import { GetPostResponse } from "../responses/post/get-post.response";
 import { VotePostResponse } from "../responses/post/vote-post.response";
+import { GetCommentsResponse } from "../responses/post/get-comments.response";
+import { GetHistoryResponse } from "../responses/post/get-history.response";
+import { PostHistoryDto } from "../../model/post-history.dto";
 
 export type IssueOrder = "date" | "priority" | undefined;
 export type OrderType = "asc" | "desc";
@@ -37,6 +40,26 @@ export class PostService {
         );
         if (res) store.dispatch(PostAction.setPosts(res.posts));
         store.dispatch(PostAction.setLoading(false));
+    }
+
+    static async getComments(communityId: string, postId: string): Promise<PostDto[] | void> {
+        store.dispatch(PostAction.setLoading(true));
+        const res = await request<GetCommentsResponse>({
+            method: "GET",
+            path: "/v1/community/" + communityId + "/post/" + postId + "/thread",
+        }).catch((e) => apiErrorHandler(e));
+        store.dispatch(PostAction.setLoading(false));
+        if (res) return res.thread;
+    }
+
+    static async getHistory(communityId: string, postId: string): Promise<PostHistoryDto[] | void> {
+        store.dispatch(PostAction.setLoading(true));
+        const res = await request<GetHistoryResponse>({
+            method: "GET",
+            path: "/v1/community/" + communityId + "/post/" + postId + "/history",
+        }).catch((e) => apiErrorHandler(e));
+        store.dispatch(PostAction.setLoading(false));
+        if (res) return res.history;
     }
 
     static async getPost(communityId: string, postId: string): Promise<PostDto | void> {

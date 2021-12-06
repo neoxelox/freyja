@@ -2,6 +2,10 @@ export function getHour(date: Date): number {
     return date.getHours() % 12;
 }
 
+export function getPartOfTheDay(date: Date): "AM" | "PM" {
+    return date.getHours() < 12 ? "AM" : "PM";
+}
+
 export function getMonth(date: Date): string {
     const monthNumber = date.getMonth();
     switch (monthNumber) {
@@ -33,5 +37,17 @@ export function getMonth(date: Date): string {
 }
 
 export function formatDate(date: Date): string {
-    return getHour(date) + ":" + date.getMinutes() + " · " + getMonth(date) + " " + date.getDate() + ", " + date.getFullYear();
+    return (
+        getHour(date) +
+        ":" +
+        date.getMinutes() +
+        " " +
+        getPartOfTheDay(date) +
+        " · " +
+        getMonth(date) +
+        " " +
+        date.getDate() +
+        ", " +
+        date.getFullYear()
+    );
 }

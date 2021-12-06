@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Post from "../../component/atom/Post/Post";
 import PostView from "../../component/molecule/PostView/PostView";
 import { PostDto } from "../../services/model/post.dto";
 import BasePage from "../BasePage/BasePage";
@@ -21,16 +20,31 @@ type Props = RouteComponentProps<Params> & StoreProps;
 
 interface State {
     post: PostDto | undefined;
-    comments: PostDto[];
 }
 
 class PostPage extends Component<Props, State> {
+    postPoller: NodeJS.Timeout;
+
     state: State = {
         post: undefined,
-        comments: [],
     };
 
     async componentDidMount(): Promise<void> {
+        await this.loadPost();
+        this.postPoller = setInterval(() => this.loadPost(), 8000);
+    }
+
+    componentDidUpdate(prevProps: Readonly<Props>) {
+        const newId = this.props.match.params.id;
+        const oldId = prevProps.match.params.id;
+        if (newId !== oldId) this.loadPost();
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.postPoller);
+    }
+
+    async loadPost(): Promise<void> {
         //Fetch post and comments and set page state with them
         const { id } = this.props.match.params;
         const { communityId } = this.props;
@@ -39,16 +53,13 @@ class PostPage extends Component<Props, State> {
     }
 
     render(): JSX.Element {
-        const { comments, post } = this.state;
+        const { post } = this.state;
 
         return (
             <BasePage footer={false}>
                 {post && (
                     <>
                         <PostView post={post} onVote={(val) => this.setState({ post: val })} />
-                        {comments.map((comment: PostDto, i: number) => (
-                            <Post key={i.toString()} post={comment} />
-                        ))}
                     </>
                 )}
             </BasePage>
