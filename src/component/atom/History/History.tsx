@@ -31,6 +31,14 @@ class History extends Component<Props, State> {
     };
 
     async componentDidMount(): Promise<void> {
+        await this.loadUser();
+    }
+
+    async componentDidUpdate(prevProps: Readonly<Props>): Promise<void> {
+        if (prevProps.history.created_at !== this.props.history.created_at) await this.loadUser();
+    }
+
+    async loadUser(): Promise<void> {
         const { history, communityId, post } = this.props;
 
         const res = await CommunityService.getUserAndMembership(communityId, history.updator_id || post.creator_id);
