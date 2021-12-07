@@ -1,0 +1,32 @@
+FROM node:15-alpine AS builder
+
+RUN apk update && \
+    apk add --no-cache curl bash python3 g++ make libc6-compat && \
+    rm -rf /var/cache/apk/* && \
+    curl -sfL https://install.goreleaser.com/github.com/tj/node-prune.sh | bash -s -- -b /usr/local/bin
+
+WORKDIR /build
+
+COPY package.json package-lock.json /build/
+
+RUN npm ci
+
+COPY . /build
+
+RUN echo "NODE_ENV=production\nREACT_APP_FREYJA_ODIN_BASE_URL=https://api.community.bz" >> .env
+
+RUN npm run build
+
+RUN npm prune --production && node-prune
+
+FROM nginx:1.21.4-alpine AS app
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY --from=builder /build/build /usr/share/nginx/html
+
+EXPOSE 2222
+
+CMD ["nginx", "-g", "daemon off;"]
