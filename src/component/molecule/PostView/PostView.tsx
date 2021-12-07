@@ -70,7 +70,7 @@ class PostView extends Component<Props, State> {
 
         return (
             <>
-                <Card className="post-view">
+                <Card className="post-view fade-in">
                     <div className="mt-1">
                         <Row gap={10} alignItems="center" justifyContent="flex-start" className="mb-2">
                             <ProfileImage image={user?.picture} role={membership?.role} />

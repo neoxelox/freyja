@@ -59,7 +59,7 @@ class Post extends Component<Props, State> {
         const isIncident = post.type === "ISSUE";
         return (
             <Link to={(isIncident ? "/issue/" : "/post/") + post.id}>
-                <Card className="post">
+                <Card className="post fade-in">
                     {isAnchored && (
                         <div className="post-header">
                             <span className="anchor-text">Anclado</span>

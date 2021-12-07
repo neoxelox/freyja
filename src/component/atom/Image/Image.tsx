@@ -29,7 +29,7 @@ export class Image extends Component<ImageProps> {
                         src={src}
                         alt=""
                         onLoad={() => this.setState({ loaded: true })}
-                        className={classNames("image", !loaded && "image-not-loaded", className)}
+                        className={classNames("image", !loaded && "image-not-loaded", className, "fade-in")}
                         style={style}
                     />
                 )}

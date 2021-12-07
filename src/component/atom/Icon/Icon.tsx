@@ -26,7 +26,7 @@ export default class Icon extends Component<Props> {
                 <Svg
                     src={this.iconsMap.get(icon) as string}
                     color={color}
-                    className={classNames(size || "sm", onClick && "clickable-icon", className)}
+                    className={classNames(size || "sm", onClick && "clickable-icon", className, "fade-in")}
                     style={style || {}}
                 />
             </div>

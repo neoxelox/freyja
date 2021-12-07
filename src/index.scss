@@ -25,6 +25,10 @@ code {
     }
 }
 
+.fade-in {
+    animation: fade-in 0.2s ease-in;
+}
+
 $break-mobile: 780px;
 
 @import "./assets/style/colors.scss";
@@ -136,5 +140,14 @@ p, h6, h5, h4, h3, h2, h1 {
 
     @media (max-width: 650px) {
         display: block
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }

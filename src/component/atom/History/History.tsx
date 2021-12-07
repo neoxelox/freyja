@@ -53,7 +53,7 @@ class History extends Component<Props, State> {
         const { user, membership } = this.state;
 
         return (
-            <Col gap={10} className="history">
+            <Col gap={10} className="history fade-in">
                 <h5 className="light">{formatDate(new Date(history.created_at))}</h5>
                 <Row gap={10}>
                     <div>

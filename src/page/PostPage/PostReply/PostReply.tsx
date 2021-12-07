@@ -46,7 +46,7 @@ class PostReply extends Component<Props, State> {
         const { message, loading } = this.state;
 
         return (
-            <Row className="post-reply">
+            <Row className="post-reply fade-in">
                 <Col flex={5} gap={10}>
                     <h5 className="light">
                         Responde a <b>{postCreatorName}...</b>
