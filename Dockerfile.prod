@@ -13,7 +13,8 @@ RUN npm ci
 
 COPY . /build
 
-RUN echo "NODE_ENV=production\nREACT_APP_FREYJA_ODIN_BASE_URL=https://api.community.bz" >> .env
+ENV NODE_ENV=production
+ENV REACT_APP_FREYJA_ODIN_BASE_URL=https://api.community.bz
 
 RUN npm run build
 
