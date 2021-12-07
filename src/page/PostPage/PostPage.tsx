@@ -21,6 +21,7 @@ type Props = RouteComponentProps<Params> & StoreProps;
 interface State {
     post: PostDto | undefined;
     lastRefresh: Date;
+    reload: boolean;
 }
 
 class PostPage extends Component<Props, State> {
@@ -29,6 +30,7 @@ class PostPage extends Component<Props, State> {
     state: State = {
         post: undefined,
         lastRefresh: new Date(),
+        reload: false,
     };
 
     async componentDidMount(): Promise<void> {
@@ -36,10 +38,14 @@ class PostPage extends Component<Props, State> {
         this.postPoller = setInterval(() => this.loadPost(), 8000);
     }
 
-    componentDidUpdate(prevProps: Readonly<Props>) {
+    async componentDidUpdate(prevProps: Readonly<Props>): Promise<void> {
         const newId = this.props.match.params.id;
         const oldId = prevProps.match.params.id;
-        if (newId !== oldId) this.loadPost();
+        if (newId !== oldId) {
+            this.setState({ reload: true });
+            await this.loadPost();
+            this.setState({ reload: false });
+        }
     }
 
     componentWillUnmount() {
@@ -55,11 +61,11 @@ class PostPage extends Component<Props, State> {
     }
 
     render(): JSX.Element {
-        const { post, lastRefresh } = this.state;
+        const { post, lastRefresh, reload } = this.state;
 
         return (
             <BasePage footer={false}>
-                {post && (
+                {post && !reload && (
                     <PostView
                         post={post}
                         onVote={(val) => this.setState({ post: val })}

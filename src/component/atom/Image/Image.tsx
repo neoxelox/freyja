@@ -33,7 +33,7 @@ export class Image extends Component<ImageProps> {
                         style={style}
                     />
                 )}
-                {(!loaded || !src) && <Skeleton className={className} style={style} />}
+                {(!loaded || !src) && <Skeleton className={classNames(className, "fade-in")} style={style} />}
             </>
         );
     }
