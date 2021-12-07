@@ -20,7 +20,7 @@ export default class LeftMenu extends Component {
                             </LocationLink>
                         </Row>
                         <Row className="align-items-center">
-                            <LocationLink to="/calendario" icon="calendarOutline" selectedIcon="calendar" align="row">
+                            <LocationLink icon="calendarOutline" selectedIcon="calendar" align="row">
                                 Calendario
                             </LocationLink>
                         </Row>

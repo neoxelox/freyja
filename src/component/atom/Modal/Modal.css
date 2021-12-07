@@ -17,7 +17,7 @@
 }
 
 .my-modal-wrapper.modal-from-bottom {
-    align-items: end;
+    align-items: flex-end;
 }
 
 .my-modal-wrapper.modal-from-bottom .my-modal {
