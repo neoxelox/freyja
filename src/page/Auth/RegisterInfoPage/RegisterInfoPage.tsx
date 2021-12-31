@@ -13,6 +13,7 @@ import Button from "../../../component/atom/Button/Button";
 import { UserService } from "../../../services/api/services/user.service";
 import { FileService } from "../../../services/api/services/file.service";
 import { AppService } from "../../../services/api/services/app.service";
+import { toast } from "react-hot-toast";
 
 interface Props extends RouteComponentProps {
     loading: boolean;
@@ -32,6 +33,10 @@ class RegisterInfoPage extends Component<Props, state> {
             birthday: "",
             img: null,
         };
+    }
+
+    componentDidMount() {
+        toast("Recomendamos omitir esta parte para no distraeros :)", { duration: 3000 });
     }
 
     getInitialState() {

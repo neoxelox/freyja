@@ -32,13 +32,13 @@ class AuthCodePage extends Component<Props, state> {
     }
 
     componentDidMount() {
-        toast.loading("El código ha sido enviado", { duration: 2500 });
-        setTimeout(() => this.autoSubmit(), 2500);
+        toast.loading("El código se introducirá automáticamente para la demo", { duration: 700 });
+        setTimeout(() => this.autoSubmit(), 200);
     }
 
     async autoSubmit() {
         this.setState({ code: "DM5FJH" });
-        await new Promise((resolve) => setTimeout(() => resolve(this.submit()), 600));
+        await new Promise((resolve) => setTimeout(() => resolve(this.submit()), 500));
     }
 
     getInitialState() {
