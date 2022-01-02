@@ -35,7 +35,7 @@ class PostPage extends Component<Props, State> {
 
     async componentDidMount(): Promise<void> {
         await this.loadPost();
-        this.postPoller = setInterval(() => this.loadPost(), 8000);
+        this.postPoller = setInterval(() => this.loadPost(), 2000);
     }
 
     async componentDidUpdate(prevProps: Readonly<Props>): Promise<void> {
