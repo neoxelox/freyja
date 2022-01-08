@@ -1,49 +1,88 @@
-# freyja
-Community.bz main frontend
+# `Freyja`
 
-# Getting Started with Create React App
+**`Community.bz main frontend`**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**`PAE-FIB startup project`**
 
-## Available Scripts
+# Screenshots
 
-In the project directory, you can run:
+### Onboarding
 
-### `yarn start`
+![Onboarding](./docs/onboarding.png "Onboarding")
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Invitation List
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![Invitation List](./docs/invitation-list.png "Invitation List")
 
-### `yarn test`
+### Community Feed
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Community Feed](./docs/community-feed.png "Community Feed")
 
-### `yarn build`
+### Issue Feed
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Issue Feed](./docs/issue-feed.png "Issue Feed")
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Issue Feed Filters
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Issue Feed Filters](./docs/issue-feed-filters.png "Issue Feed Filters")
 
-### `yarn eject`
+### Publication
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Publication](./docs/publication.png "Publication")
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Issue
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Issue](./docs/issue.png "Issue")
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Issue History
 
-## Learn More
+![Issue History](./docs/issue-history.png "Issue History")
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Credits
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   [**`Alex Rodriguez`**](https://github.com/neoxelox)
+-   [**`Agustín Millán`**](https://github.com/AgustinMJ)
+-   [**`Marco Patiño`**](https://github.com/mpl1018)
+-   [**`Carlos Sansón`**](https://github.com/csansoon)
+
+# Setup
+
+TODO
+
+# Documentation
+
+TODO
+
+> **`NOTE`**
+> `This repository is not finished and won't be developed further due to time constraints.`
+
+# Directory structure
+
+```
+.
+├── docs
+├── public
+└── src
+    ├── assets
+    │   ├── icons
+    │   └── style
+    ├── component
+    │   ├── atom
+    │   └── molecule
+    ├── page
+    ├── router
+    ├── services
+    │   ├── api
+    │   │   ├── core
+    │   │   ├── requests
+    │   │   ├── responses
+    │   │   └── services
+    │   ├── model
+    │   └── storage
+    ├── store
+    └── utils
+```
+
+# License
+
+This project is licensed under the [Apache 2.0 License](https://opensource.org/licenses/Apache-2.0) - read the [LICENSE](LICENSE) file for details.
